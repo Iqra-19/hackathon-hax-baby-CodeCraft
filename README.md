@@ -8,9 +8,10 @@ The authoritative source for how this engineering organization builds features w
 
 If you are new to this repo, read in this order:
 
-1. **[docs/GUIDELINES.md](docs/GUIDELINES.md)** — 15-minute read. Explains the 4-phase process, when to use it, and how to write specs and tasks correctly. Includes the FAQ.
-2. **[examples/engineering-arcade-leaderboard/](examples/engineering-arcade-leaderboard/)** — A complete worked example. Read `spec.md` → `plan.md` → `tasks.md` in that folder to see what a finished feature lifecycle looks like before starting your own.
-3. **[docs/CLAUDE-CODE-STANDARDS.md](docs/CLAUDE-CODE-STANDARDS.md)** — How to configure Claude Code: which model to use when, MCP servers, skills, sub-agents, plugins, and memory. Read this before your first Claude Code session on a real feature.
+1. **[docs/ADOPTION-GUIDE.md](docs/ADOPTION-GUIDE.md)** — The full picture: how the three layers work, installation steps, agents, skills, tech stack adaptation, and future scope. Start here if you're setting up the system or explaining it to your team.
+2. **[docs/GUIDELINES.md](docs/GUIDELINES.md)** — How to use the 4-phase process day-to-day: when to use it, how to write specs and tasks, FAQ.
+3. **[examples/engineering-arcade-leaderboard/](examples/engineering-arcade-leaderboard/)** — A complete worked example. Read `spec.md` → `plan.md` → `tasks.md` to see what a finished feature lifecycle looks like.
+4. **[docs/CLAUDE-CODE-STANDARDS.md](docs/CLAUDE-CODE-STANDARDS.md)** — Deep reference for Claude Code configuration: model selection, MCP servers, skills, sub-agents, plugins, memory.
 
 ---
 

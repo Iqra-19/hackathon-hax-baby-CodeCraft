@@ -10,8 +10,9 @@ This is a process and standards repository — it contains no application code. 
 
 | Path | Purpose |
 |---|---|
-| `docs/spec-driven-development.md` | Full rationale and detail for the 4-phase workflow |
+| `docs/ADOPTION-GUIDE.md` | End-to-end adoption guide: layers, installation, usage, future scope — start here for the org pilot |
 | `docs/GUIDELINES.md` | Practical how-to guide with examples and FAQ |
+| `docs/spec-driven-development.md` | Full rationale and detail for the 4-phase workflow |
 | `docs/CLAUDE-CODE-STANDARDS.md` | Claude Code configuration: model selection, MCP servers, skills, sub-agents, memory |
 | `templates/` | Starter files — copy these when starting a new feature |
 | `examples/engineering-arcade-leaderboard/` | Worked example: complete spec, plan, and tasks for reference |
