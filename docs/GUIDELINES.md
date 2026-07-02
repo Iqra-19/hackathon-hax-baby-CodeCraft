@@ -234,10 +234,10 @@ Never patch the implementation to cover a stale spec. A spec that no longer matc
 
 ```bash
 mkdir -p specs/<your-feature-slug>
-cp spec.md plan.md tasks.md notes.md specs/<your-feature-slug>/
+cp templates/spec.md templates/plan.md templates/tasks.md templates/notes.md specs/<your-feature-slug>/
 ```
 
-Open `spec.md` and start with context + FR-NNN acceptance criteria. Each template has inline guidance.
+Open `specs/<your-feature-slug>/spec.md` and start with context + FR-NNN acceptance criteria. Each template has inline guidance.
 
 ---
 
@@ -294,7 +294,7 @@ No — append-only. Add a new dated entry instead of editing old ones.
 ```bash
 # Start a new feature
 mkdir -p specs/my-feature
-cp spec.md plan.md tasks.md notes.md specs/my-feature/
+cp templates/spec.md templates/plan.md templates/tasks.md templates/notes.md specs/my-feature/
 
 # Check phase status across all active features
 grep -r "^status:" specs/*/spec.md
@@ -306,4 +306,4 @@ grep -r "^status: in-review" specs/*/plan.md
 grep -r "^status: draft" specs/*/spec.md
 ```
 
-For the full rationale behind this process, see `spec-driven-development.md`.
+For the full rationale behind this process, see `docs/spec-driven-development.md`.

@@ -8,20 +8,23 @@ This is a process and standards repository — it contains no application code. 
 
 ## Key documents
 
-| File | Purpose |
+| Path | Purpose |
 |---|---|
-| `spec-driven-development.md` | Full rationale and detail for the 4-phase workflow |
-| `GUIDELINES.md` | Practical how-to guide with examples and FAQ |
-| `CLAUDE-CODE-STANDARDS.md` | Claude Code configuration: model selection, MCP servers, skills, sub-agents, memory |
-| `spec.md`, `plan.md`, `tasks.md`, `notes.md` | Root templates — copy these when starting a new feature |
+| `docs/spec-driven-development.md` | Full rationale and detail for the 4-phase workflow |
+| `docs/GUIDELINES.md` | Practical how-to guide with examples and FAQ |
+| `docs/CLAUDE-CODE-STANDARDS.md` | Claude Code configuration: model selection, MCP servers, skills, sub-agents, memory |
+| `templates/` | Starter files — copy these when starting a new feature |
+| `examples/engineering-arcade-leaderboard/` | Worked example: complete spec, plan, and tasks for reference |
 | `specs/<feature-slug>/` | Live feature specs, one folder per feature |
+| `.claude/agents/` | Phase-owner sub-agent definitions |
+| `.claude/skills/` | Project-level reusable skills |
 
 ## Quick-start
 
 ```bash
 # Start a new feature
 mkdir -p specs/<feature-slug>
-cp spec.md plan.md tasks.md notes.md specs/<feature-slug>/
+cp templates/spec.md templates/plan.md templates/tasks.md templates/notes.md specs/<feature-slug>/
 
 # Check phase status across all active features
 grep -r "^status:" specs/*/spec.md
@@ -135,6 +138,6 @@ The difference in output between these two framings is not marginal. Train every
 
 ## Spec-driven development
 
-For any feature larger than a small bugfix, do not jump straight to code. Follow the phase structure below. See `workflows/spec-driven-development.md` for the full process and `specs/_template/` for the file templates.
+For any feature larger than a small bugfix, do not jump straight to code. Follow the phase structure below. See `docs/spec-driven-development.md` for the full process and `templates/` for the file templates.
 
 Phase order: **spec → plan → tasks → implement**. Each phase produces a markdown file under `specs/<feature-slug>/` and requires human approval (per `agents/` ownership) before the next phase starts. Do not collapse phases to save time — that's the exact shortcut this process exists to prevent.

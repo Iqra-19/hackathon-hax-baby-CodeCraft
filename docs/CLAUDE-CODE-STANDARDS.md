@@ -4,7 +4,7 @@
 > **Owner:** Amin Tai
 > **Status:** Org standard — applies to every repo and every engineer using Claude Code.
 
-This document defines how Claude Code is configured and used across our engineering organization: model selection, MCP server integration, skills, sub-agents, and memory management. It extends the AI Engineering Handbook and is binding in the same way `CLAUDE.md` and `workflows/spec-driven-development.md` are — this isn't a tips document, it's how we expect Claude Code to be set up on every project.
+This document defines how Claude Code is configured and used across our engineering organization: model selection, MCP server integration, skills, sub-agents, and memory management. It extends the AI Engineering Handbook and is binding in the same way `CLAUDE.md` and `docs/spec-driven-development.md` are — this isn't a tips document, it's how we expect Claude Code to be set up on every project.
 
 ---
 
@@ -12,7 +12,7 @@ This document defines how Claude Code is configured and used across our engineer
 
 A generic Claude Code setup gets you maybe 20% of its value — a chat box that edits files. The other 80% — deliberate model selection, custom skills, sub-agents scoped to our `agents/` roles, MCP integrations, and structured memory — is what turns it into the kind of teammate described in our AI Engineering Handbook's Final Vision. This standard exists so that capability is consistent across every repo and every engineer, not dependent on who happened to watch a tutorial.
 
-This standard is organized around five capability areas. Each one ties back to something we already have or are building, and each is explicitly mapped onto the four phases of `workflows/spec-driven-development.md` — spec → plan → tasks → implement. This document doesn't introduce a parallel process; it's how that existing process gets executed in Claude Code.
+This standard is organized around five capability areas. Each one ties back to something we already have or are building, and each is explicitly mapped onto the four phases of `docs/spec-driven-development.md` — spec → plan → tasks → implement. This document doesn't introduce a parallel process; it's how that existing process gets executed in Claude Code.
 
 ### How these capabilities map onto the spec-driven phases
 
@@ -141,7 +141,7 @@ For larger or longer-running projects, a structured memory folder is required in
 └── contracts/      — API contracts, interface agreements between services
 ```
 
-This extends the pattern `specs/<feature>/notes.md` already establishes at the feature level — `memory/` and `state/` do the same thing at the project level, for anything spanning multiple features. `notes.md` itself remains the required memory artifact within a single feature's spec-driven lifecycle: every deviation from an approved `plan.md`, and every decision not significant enough for a full ADR, gets logged there per `workflows/spec-driven-development.md`.
+This extends the pattern `specs/<feature>/notes.md` already establishes at the feature level — `memory/` and `state/` do the same thing at the project level, for anything spanning multiple features. `notes.md` itself remains the required memory artifact within a single feature's spec-driven lifecycle: every deviation from an approved `plan.md`, and every decision not significant enough for a full ADR, gets logged there per `docs/spec-driven-development.md`.
 
 **Standard:** if the same context is being re-explained to Claude every session, it belongs in a memory file, not a prompt.
 
@@ -201,7 +201,7 @@ Any deviation from `plan.md` during step 10 onward gets logged in `notes.md` wit
 
 ## Relationship to other foundation documents
 
-This standard does not replace `workflows/spec-driven-development.md` — it is the execution layer underneath it. `spec-driven-development.md` defines the phases, owners, and approval gates; this document defines exactly which model, sub-agent, skill, and MCP server are used to carry out each phase in Claude Code. Read both together: the workflow doc for *what* happens and *who* approves it, this standard for *how* it's actually run.
+This standard does not replace `docs/spec-driven-development.md` — it is the execution layer underneath it. `spec-driven-development.md` defines the phases, owners, and approval gates; this document defines exactly which model, sub-agent, skill, and MCP server are used to carry out each phase in Claude Code. Read both together: the workflow doc for *what* happens and *who* approves it, this standard for *how* it's actually run.
 
 ---
 
@@ -252,3 +252,99 @@ These apply across all phases and sessions. They are not phase-specific.
 | Monitor a deployment / PR in the background | `/loop every N minutes <check>` |
 | Get notified when a session finishes | `/hooks` → set completion notification |
 | Autonomous Claude without disabling all safety gates | Allow/deny lists in permissions settings |
+
+---
+
+## 8. Plugins — marketplace extensions for Claude Code
+
+The Claude Code plugin marketplace lets you install reusable skills and integrations beyond what ships out of the box. Two tiers:
+
+- **Official plugins** — published by Anthropic via `claude-plugins-official`. One-step install, tested, fully supported.
+- **Community plugins** — third-party. Require a two-step install (register the marketplace, then install). Review what a community plugin does before adopting org-wide.
+
+### How installation works
+
+```bash
+# Official Anthropic marketplace — one step
+/plugin install <name>@claude-plugins-official
+
+# Community marketplace — two steps
+/plugin marketplace add <github-owner>/<repo>   # register the source
+/plugin install <name>@<registered-name>        # install from it
+
+# npm-based packages
+npx <package-name>
+
+# After any install or custom skill file change
+/reload-plugins
+```
+
+Skills defined by plugins or written as custom markdown files live in:
+- `.claude/skills/` — project-scoped, committed to the repo
+- `~/.claude/skills/` — global, applies to every project on that machine
+
+Claude loads relevant skills automatically based on context, or you can invoke any skill explicitly with `/<skill-name>`.
+
+### Org-level plugins — install once per developer machine
+
+| Plugin | Source | Install | What it does |
+|---|---|---|---|
+| `skill-creator` | Official | `/plugin install skill-creator@claude-plugins-official` | 4-mode meta-tool for creating, evaluating, improving, and benchmarking skills — use it to build new skills against our standards |
+| `superpowers` | Official | `/plugin install superpowers@claude-plugins-official` | Wraps TDD and subagent-driven development into a structured plan → implement → verify loop; integrates with our spec-driven phases |
+| `frontend-design` | Official | `/plugin install frontend-design@claude-plugins-official` | Generates production-grade frontend UIs with component libraries and design systems — reduces boilerplate for the frontend developer role |
+| `get-shit-done` | npm | `npx get-shit-done-cc` | Context engineering system that combats context rot; structures sessions as spec → implement → verify — aligns with our own process |
+| `claude-mem` | Community | `/plugin marketplace add thedotmack/claude-mem` then `/plugin install claude-mem@claude-mem` | Cross-session memory via MCP — persists decisions, context, and learnings so engineers don't re-explain the same background at the start of every session |
+
+One-time setup block to run on each developer machine:
+
+```bash
+/plugin install skill-creator@claude-plugins-official
+/plugin install superpowers@claude-plugins-official
+/plugin install frontend-design@claude-plugins-official
+/plugin marketplace add thedotmack/claude-mem
+/plugin install claude-mem@claude-mem
+npx get-shit-done-cc
+/reload-plugins
+```
+
+### Project-level plugins — install per project when needed
+
+| Plugin | Source | Install | What it does |
+|---|---|---|---|
+| `context-mode` | Community | `/plugin marketplace add mksglu/context-mode` then `/plugin install context-mode@context-mode` | Reduces context window consumption for large codebases — useful when a project's codebase is large enough that full-context sessions become slow or expensive |
+
+Add project-level plugin setup to the project's onboarding documentation so new engineers run it when they clone the repo.
+
+### Custom skill files (project-level)
+
+Beyond marketplace plugins, you can write custom skills as markdown files describing a reusable workflow. The four required AI Skills — Development (code-review, security-review, performance-review, refactoring-best-practices, from Section 3) belong in `~/.claude/skills/` globally since they apply across every project.
+
+Project-specific skills go in `.claude/skills/` and are committed to the repo.
+
+**Anatomy of a skill file:**
+
+```markdown
+# <Skill name — used as the slash-command label>
+
+<1–3 sentences: what this skill does and when to invoke it.>
+
+1. <First step — specific, not vague>
+2. <Second step>
+3. <Output format or report structure>
+
+<Any constraints: what the skill must NOT do.>
+```
+
+This repo's own `.claude/skills/` directory contains sample project-level skills for our spec-driven process. See `.claude/skills/spec-check.md` and `.claude/skills/phase-gate.md`.
+
+### Quick reference addition
+
+| Need | Use |
+|---|---|
+| Build/improve a skill interactively | `skill-creator` plugin — 4 modes: Create, Eval, Improve, Benchmark |
+| Run TDD + subagent implementation | `superpowers` plugin |
+| Generate a production frontend UI | `frontend-design` plugin |
+| Prevent context rot in long sessions | `get-shit-done` plugin (`npx get-shit-done-cc`) |
+| Persist decisions across Claude Code sessions | `claude-mem` plugin |
+| Check spec compliance during implementation | `/spec-check` (project skill, `.claude/skills/spec-check.md`) |
+| Verify a phase gate before starting the next phase | `/phase-gate` (project skill, `.claude/skills/phase-gate.md`) |
