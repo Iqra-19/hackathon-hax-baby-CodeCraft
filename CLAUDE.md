@@ -137,6 +137,26 @@ The difference in output between these two framings is not marginal. Train every
 
 ---
 
+## Agent invocation policy
+
+Phase-owner agents (Product Manager, Architect, Planner, Developer, Reviewer) are expensive to spin up. Do not invoke them by default. Apply this decision gate before reaching for an agent:
+
+| Signal | Approach |
+|---|---|
+| Question, explanation, or single-file edit | Handle inline — no agent |
+| One phase of work (e.g. "write the spec") on an existing feature | One targeted agent |
+| New feature spanning multiple phases with approval gates | Full agent chain |
+
+**Default: handle inline.** Only escalate to an agent when the task requires that agent's specific write scope or the work is too large for the main context window.
+
+Never invoke a phase agent for:
+- Answering questions about the process or docs
+- Reading and summarizing existing specs/plans
+- Small edits to any file (< ~20 lines changed)
+- Any task that can be completed in a single response
+
+---
+
 ## Spec-driven development
 
 For any feature larger than a small bugfix, do not jump straight to code. Follow the phase structure below. See `docs/spec-driven-development.md` for the full process and `templates/` for the file templates.
