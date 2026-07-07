@@ -14,13 +14,81 @@ Everything you need to go from zero to a running feature workflow in under 10 mi
 git clone https://github.com/Tntra/ai-engineering-playbook ~/ai-engineering-playbook
 ```
 
-### Step 2 — Set up your project
+### Step 2 — Copy the Claude config into your project
 
-In your project root, create a `specs/` folder and copy the four phase templates for your feature:
+This is the step most people miss. The playbook ships five phase-owner agents and two skills that Claude Code needs to find inside your project. Copy them in once, commit them, and every engineer on the project gets them automatically.
 
 ```bash
 cd your-project
 
+# Create the .claude directories
+mkdir -p .claude/agents .claude/skills
+
+# Copy the phase-owner agents (PM, Architect, Planner, Developer, Reviewer)
+cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
+
+# Copy the project skills (spec-check, phase-gate)
+cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
+```
+
+**What these do:**
+
+| File | What Claude Code uses it for |
+|---|---|
+| `.claude/agents/product-manager.md` | Writes `spec.md` with FR-NNN acceptance criteria |
+| `.claude/agents/architect.md` | Writes `plan.md` with ADRs and constitution check |
+| `.claude/agents/planner.md` | Writes `tasks.md` with task IDs and dependency tree |
+| `.claude/agents/developer.md` | Implements tasks, enforces pre-PR review gates |
+| `.claude/agents/reviewer.md` | Read-only quality gate before any PR opens |
+| `.claude/skills/spec-check.md` | `/spec-check` — checks code against FR-NNN criteria |
+| `.claude/skills/phase-gate.md` | `/phase-gate` — verifies exit criteria before next phase |
+
+### Step 3 — Create a project `CLAUDE.md`
+
+This file tells Claude Code about your specific tech stack and project conventions. It is read automatically at the start of every session — the agents use it to give stack-aware architecture advice and apply the right review lens.
+
+Create `CLAUDE.md` at your project root (copy the block below and fill in the blanks):
+
+```markdown
+# CLAUDE.md
+
+## Stack
+
+Language: <language and version>
+Framework: <framework>
+Package manager: <npm / pip / cargo / etc.>
+Build: `<build command>`
+Test: `<test command>`
+Lint: `<lint command>`
+DB migrations: `<migration command, if any>`
+
+## Project conventions
+
+- <e.g. API errors must use { error: string } shape>
+- <e.g. no business logic in route handlers — service layer owns it>
+- <add your own>
+
+## Security notes
+
+- <e.g. all SQL via ORM, no string interpolation>
+
+## Performance notes
+
+- <e.g. async endpoints for all I/O>
+
+## Org process
+
+Follow the spec-driven workflow: https://github.com/Tntra/ai-engineering-playbook
+Templates and agents are in .claude/ — committed to this repo.
+```
+
+Keep it to one screenful. The agents pick up the rest from the playbook's global rules.
+
+### Step 4 — Start a feature
+
+Create a `specs/` folder and copy the four phase templates:
+
+```bash
 mkdir -p specs/my-feature-name
 
 cp ~/ai-engineering-playbook/templates/spec.md \
@@ -30,7 +98,7 @@ cp ~/ai-engineering-playbook/templates/spec.md \
    specs/my-feature-name/
 ```
 
-### Step 3 — Phase 1: Write the spec
+### Step 5 — Phase 1: Write the spec
 
 Open Claude Code in your project and run:
 
@@ -43,7 +111,7 @@ The agent produces `specs/my-feature-name/spec.md` with `FR-NNN` acceptance crit
 
 > **Rule:** No phase starts until the previous file has `status: approved`.
 
-### Step 4 — Phase 2: Write the plan
+### Step 6 — Phase 2: Write the plan
 
 Switch to Opus (required for architecture work), then prompt:
 
@@ -56,7 +124,7 @@ The spec is approved at specs/my-feature-name/spec.md.
 
 The agent produces `specs/my-feature-name/plan.md` with architecture overview, ADRs for every non-trivial decision, and a Constitution check. Get senior-engineer or architecture-review sign-off, then set `status: approved`.
 
-### Step 5 — Phase 3: Break into tasks
+### Step 7 — Phase 3: Break into tasks
 
 ```
 Use the Planner agent to break the approved plan into tasks.md.
@@ -64,7 +132,7 @@ Use the Planner agent to break the approved plan into tasks.md.
 
 The agent produces `specs/my-feature-name/tasks.md` — an atomic checklist with task IDs (`T001`, `T002`), parallelization markers (`[P]`), verify steps, and a dependency tree. A quick senior-engineer skim is enough to proceed.
 
-### Step 6 — Phase 4: Implement
+### Step 8 — Phase 4: Implement
 
 Work through the task list top to bottom:
 
@@ -125,12 +193,14 @@ ai-workflows/
 ├── CLAUDE.md                          ← AI agent behavioral rules (read by Claude Code)
 │
 ├── docs/                              ← process documentation
-│   ├── GUIDELINES.md                  ← how to use the process (start here)
+│   ├── ADOPTION-GUIDE.md              ← full setup and installation guide
+│   ├── GUIDELINES.md                  ← how to use the process day-to-day
 │   ├── spec-driven-development.md     ← full rationale and phase definitions
 │   └── CLAUDE-CODE-STANDARDS.md       ← Claude Code configuration standard
 │
-├── templates/                         ← copy these when starting a feature
-│   ├── spec.md
+├── templates/                         ← copy these when starting a project or feature
+│   ├── project-claude.md              ← project CLAUDE.md starter (copy to your project root)
+│   ├── spec.md                        ← copy to specs/<slug>/
 │   ├── plan.md
 │   ├── tasks.md
 │   └── notes.md
@@ -162,14 +232,27 @@ ai-workflows/
 
 ---
 
-## Starting a new feature
+## Setting up a new project
 
-See [Quick start](#quick-start) above for the full walkthrough including clone and setup.
+See [Quick start](#quick-start) above for the full walkthrough.
 
-Once the playbook is cloned to `~/ai-engineering-playbook`:
+**One-time per project** (Steps 2–3 in Quick start):
 
 ```bash
-# In your project root
+cd your-project
+
+# Copy Claude agents and skills
+mkdir -p .claude/agents .claude/skills
+cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
+cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
+
+# Create project CLAUDE.md (fill in your stack and conventions)
+cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
+```
+
+**Per feature** (Step 4 in Quick start):
+
+```bash
 mkdir -p specs/<feature-slug>
 cp ~/ai-engineering-playbook/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
 

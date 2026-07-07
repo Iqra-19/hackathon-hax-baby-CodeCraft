@@ -472,16 +472,23 @@ npx get-shit-done-cc
 /reload-plugins
 ```
 
-### Step 4 — Create a project `CLAUDE.md` for each existing project
+### Step 4 — Set up each project
 
-For each project, create a thin `CLAUDE.md` at the project root. Start from the template:
+For each project, copy the `.claude/` config and create a project `CLAUDE.md`. Do this once per project, then commit both.
 
 ```bash
-cp ~/ai-engineering-playbook/templates/project-claude.md /path/to/your-project/CLAUDE.md
-# Then edit to fill in the stack and project conventions
+cd /path/to/your-project
+
+# Copy phase-owner agents and skills
+mkdir -p .claude/agents .claude/skills
+cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
+cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
+
+# Create the project CLAUDE.md from the template, then fill in your stack
+cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
 ```
 
-*(Note: `templates/project-claude.md` is a future addition — see Future scope below.)*
+Edit `CLAUDE.md` to add the project's language, framework, build/test commands, and any project-specific conventions. Keep it to one screenful — the operating principles come from the global `~/.claude/CLAUDE.md` and don't need to be repeated here.
 
 ### Step 5 — Start your first feature
 
@@ -607,8 +614,7 @@ claude --worktree feature-b    # in another terminal
 | Item | What it is |
 |---|---|
 | `templates/stacks/` | Pre-written project `CLAUDE.md` snippets for Node, Python, React, Go, Django, Next.js |
-| `templates/project-claude.md` | Thin project CLAUDE.md starter that engineers fill in with the right stack snippet |
-| `install.sh` | One script that sets up `~/.claude/` from `ai-workflows` — one-command onboarding |
+| `install.sh` | One script that sets up `~/.claude/` from the playbook — one-command onboarding |
 | Stack-specific review skills | `security-review-node.md`, `security-review-python.md` etc. with stack-aware checklists |
 
 ### Medium-term (post-pilot)
