@@ -151,8 +151,8 @@ DB migrations: `<migration command>`
 
 ## Org process
 
-Follow the spec-driven workflow: https://github.com/tntra/ai-workflows
-Templates: clone ai-workflows and copy from templates/
+Follow the spec-driven workflow: https://github.com/Tntra/ai-engineering-playbook
+Templates: clone ai-engineering-playbook and copy from templates/
 ```
 
 This is what makes the global agents and review skills **stack-aware**. The Developer agent reads the project `CLAUDE.md` before writing a single line of code. The Reviewer agent reads it to know what "bad" looks like for this specific stack.
@@ -383,8 +383,8 @@ The `ai-workflows` repo will provide **stack templates** — pre-written `CLAUDE
 
 ```bash
 # For a Node.js + React project
-cat ai-workflows/templates/stacks/node-express.md >> CLAUDE.md
-cat ai-workflows/templates/stacks/react.md >> CLAUDE.md
+cat ~/ai-engineering-playbook/templates/stacks/node-express.md >> CLAUDE.md
+cat ~/ai-engineering-playbook/templates/stacks/react.md >> CLAUDE.md
 ```
 
 ### What a stack template looks like
@@ -436,10 +436,10 @@ Priority order based on org portfolio:
 - Claude Code installed (`npm install -g @anthropic-ai/claude-code` or download the desktop app)
 - Access to the `ai-workflows` repo
 
-### Step 1 — Clone `ai-workflows`
+### Step 1 — Clone the playbook
 
 ```bash
-git clone https://github.com/tntra/ai-workflows ~/ai-workflows
+git clone https://github.com/Tntra/ai-engineering-playbook ~/ai-engineering-playbook
 ```
 
 ### Step 2 — Set up the global layer
@@ -448,10 +448,10 @@ git clone https://github.com/tntra/ai-workflows ~/ai-workflows
 mkdir -p ~/.claude/agents ~/.claude/skills
 
 # Copy org operating principles
-cp ~/ai-workflows/CLAUDE.md ~/.claude/CLAUDE.md
+cp ~/ai-engineering-playbook/CLAUDE.md ~/.claude/CLAUDE.md
 
 # Copy phase-owner agents
-cp ~/ai-workflows/.claude/agents/* ~/.claude/agents/
+cp ~/ai-engineering-playbook/.claude/agents/* ~/.claude/agents/
 
 # Add review skills (write these four files per CLAUDE-CODE-STANDARDS.md Section 3)
 # ~/.claude/skills/code-review.md
@@ -477,7 +477,7 @@ npx get-shit-done-cc
 For each project, create a thin `CLAUDE.md` at the project root. Start from the template:
 
 ```bash
-cp ~/ai-workflows/templates/project-claude.md /path/to/your-project/CLAUDE.md
+cp ~/ai-engineering-playbook/templates/project-claude.md /path/to/your-project/CLAUDE.md
 # Then edit to fill in the stack and project conventions
 ```
 
@@ -489,10 +489,10 @@ cp ~/ai-workflows/templates/project-claude.md /path/to/your-project/CLAUDE.md
 cd your-project
 
 mkdir -p specs/my-first-feature
-cp ~/ai-workflows/templates/spec.md \
-   ~/ai-workflows/templates/plan.md \
-   ~/ai-workflows/templates/tasks.md \
-   ~/ai-workflows/templates/notes.md \
+cp ~/ai-engineering-playbook/templates/spec.md \
+   ~/ai-engineering-playbook/templates/plan.md \
+   ~/ai-engineering-playbook/templates/tasks.md \
+   ~/ai-engineering-playbook/templates/notes.md \
    specs/my-first-feature/
 
 # Open Claude Code and start Phase 1
@@ -507,7 +507,7 @@ cp ~/ai-workflows/templates/spec.md \
 
 ```bash
 mkdir -p specs/<feature-slug>
-cp ~/ai-workflows/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
+cp ~/ai-engineering-playbook/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
 ```
 
 Then open Claude Code in your project and begin Phase 1.

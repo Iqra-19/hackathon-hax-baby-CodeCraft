@@ -1,6 +1,93 @@
-# AI Workflows
+# AI Engineering Playbook
 
 The authoritative source for how this engineering organization builds features with Claude Code. Contains the process, the standards, the templates, and the agent definitions — not application code.
+
+---
+
+## Quick start
+
+Everything you need to go from zero to a running feature workflow in under 10 minutes.
+
+### Step 1 — Clone the playbook
+
+```bash
+git clone https://github.com/Tntra/ai-engineering-playbook ~/ai-engineering-playbook
+```
+
+### Step 2 — Set up your project
+
+In your project root, create a `specs/` folder and copy the four phase templates for your feature:
+
+```bash
+cd your-project
+
+mkdir -p specs/my-feature-name
+
+cp ~/ai-engineering-playbook/templates/spec.md \
+   ~/ai-engineering-playbook/templates/plan.md \
+   ~/ai-engineering-playbook/templates/tasks.md \
+   ~/ai-engineering-playbook/templates/notes.md \
+   specs/my-feature-name/
+```
+
+### Step 3 — Phase 1: Write the spec
+
+Open Claude Code in your project and run:
+
+```
+Use the Product Manager agent to write the spec for [feature name].
+Context: [2–3 sentences on what this needs to do at the system level].
+```
+
+The agent produces `specs/my-feature-name/spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
+
+> **Rule:** No phase starts until the previous file has `status: approved`.
+
+### Step 4 — Phase 2: Write the plan
+
+Switch to Opus (required for architecture work), then prompt:
+
+```
+/model opus
+
+Use the Architect agent to write the plan for this feature.
+The spec is approved at specs/my-feature-name/spec.md.
+```
+
+The agent produces `specs/my-feature-name/plan.md` with architecture overview, ADRs for every non-trivial decision, and a Constitution check. Get senior-engineer or architecture-review sign-off, then set `status: approved`.
+
+### Step 5 — Phase 3: Break into tasks
+
+```
+Use the Planner agent to break the approved plan into tasks.md.
+```
+
+The agent produces `specs/my-feature-name/tasks.md` — an atomic checklist with task IDs (`T001`, `T002`), parallelization markers (`[P]`), verify steps, and a dependency tree. A quick senior-engineer skim is enough to proceed.
+
+### Step 6 — Phase 4: Implement
+
+Work through the task list top to bottom:
+
+```
+Use the Developer agent to implement T001 from specs/my-feature-name/tasks.md.
+```
+
+Repeat for each task. Log any deviation from the plan in `notes.md` (append-only).
+
+Before opening any PR, run the quality gates in order:
+
+```
+/spec-check      ← verifies each FR-NNN criterion against the actual code
+/phase-gate      ← confirms all exit criteria are met before merge
+```
+
+Then run the review skills explicitly:
+
+```
+/code-review
+/security-review   ← required, must be run explicitly
+/performance-review
+```
 
 ---
 
@@ -77,15 +164,17 @@ ai-workflows/
 
 ## Starting a new feature
 
+See [Quick start](#quick-start) above for the full walkthrough including clone and setup.
+
+Once the playbook is cloned to `~/ai-engineering-playbook`:
+
 ```bash
-# 1. Create the feature folder
+# In your project root
 mkdir -p specs/<feature-slug>
+cp ~/ai-engineering-playbook/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
 
-# 2. Copy the templates
-cp templates/spec.md templates/plan.md templates/tasks.md templates/notes.md specs/<feature-slug>/
-
-# 3. Open Claude Code and start Phase 1
-#    Use the Product Manager sub-agent or write spec.md yourself
+# Open Claude Code and begin Phase 1
+# Prompt: "Use the Product Manager agent to write the spec for [feature]."
 ```
 
 ---
