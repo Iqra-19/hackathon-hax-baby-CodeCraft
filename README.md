@@ -4,6 +4,29 @@ The authoritative source for how this engineering organization builds features w
 
 ---
 
+## Pilot project requirements
+
+Every pilot project must have these four things committed to the repo before any feature work begins:
+
+| Required | What it does |
+|---|---|
+| `CLAUDE.md` at the project root | Tells Claude your stack, conventions, and security rules — read at the start of every session |
+| `.claude/agents/` (all 5 agents) | Phase-owner agents: PM, Architect, Planner, Developer, Reviewer |
+| `.claude/skills/` (2 skills) | `spec-check` and `phase-gate` — quality gates before any PR |
+| `specs/README.md` | Explains the specs/ folder to any engineer who opens the project |
+
+These are not optional. A project without `CLAUDE.md` gives Claude no project context — it behaves like a generic assistant, not a project-aware one. A project without `.claude/agents/` cannot run the spec-driven phases.
+
+**Verify your project is compliant:**
+
+```bash
+ls CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
+```
+
+If any of those paths are missing, follow [Setting up a pilot project](#setting-up-a-pilot-project) below.
+
+---
+
 ## Quick start
 
 Everything you need to go from zero to a running feature workflow in under 10 minutes.
@@ -79,35 +102,31 @@ DB migrations: `<migration command, if any>`
 ## Org process
 
 Follow the spec-driven workflow: https://github.com/Tntra/ai-engineering-playbook
-Templates and agents are in .claude/ — committed to this repo.
+Agents and skills are in .claude/ — committed to this repo.
 ```
 
 Keep it to one screenful. The agents pick up the rest from the playbook's global rules.
 
 ### Step 4 — Start a feature
 
-Create a `specs/` folder and copy the four phase templates:
-
-```bash
-mkdir -p specs/my-feature-name
-
-cp ~/ai-engineering-playbook/templates/spec.md \
-   ~/ai-engineering-playbook/templates/plan.md \
-   ~/ai-engineering-playbook/templates/tasks.md \
-   ~/ai-engineering-playbook/templates/notes.md \
-   specs/my-feature-name/
-```
+When you're ready to write a spec, open Claude Code in your project. The Product Manager agent creates the `specs/<feature-slug>/` folder and copies all four phase templates automatically — no manual setup needed.
 
 ### Step 5 — Phase 1: Write the spec
 
-Open Claude Code in your project and run:
+Open Claude Code in your project and use one of these two prompts:
 
 ```
+# From a description — agent asks clarifying questions, then writes the spec
 Use the Product Manager agent to write the spec for [feature name].
 Context: [2–3 sentences on what this needs to do at the system level].
+
+# From a Jira ticket — agent fetches the ticket, fills gaps, then writes the spec
+Use the Product Manager agent to write the spec for PROJECT-123.
 ```
 
-The agent produces `specs/my-feature-name/spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
+The agent creates `specs/<feature-slug>/` automatically, scaffolds the phase templates, and produces `spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
+
+> **Jira path:** Requires the Atlassian Rovo MCP to be connected in Claude Code. Replace `PROJECT-123` with your actual ticket key.
 
 > **Rule:** No phase starts until the previous file has `status: approved`.
 
@@ -200,6 +219,8 @@ ai-workflows/
 │
 ├── templates/                         ← copy these when starting a project or feature
 │   ├── project-claude.md              ← project CLAUDE.md starter (copy to your project root)
+│   ├── specs-readme.md                ← specs/ folder README (copy to your project's specs/)
+│   ├── research.md                    ← Phase 0 template (optional — for technical spikes)
 │   ├── spec.md                        ← copy to specs/<slug>/
 │   ├── plan.md
 │   ├── tasks.md
@@ -232,32 +253,72 @@ ai-workflows/
 
 ---
 
-## Setting up a new project
+## Setting up a pilot project
 
-See [Quick start](#quick-start) above for the full walkthrough.
+One-time setup per project. Run all commands from your **project root**.
 
-**One-time per project** (Steps 2–3 in Quick start):
+### Step 1 — Copy the phase-owner agents and skills
 
 ```bash
-cd your-project
-
-# Copy Claude agents and skills
 mkdir -p .claude/agents .claude/skills
-cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
-cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
 
-# Create project CLAUDE.md (fill in your stack and conventions)
-cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
+# Copy the five phase-owner agents
+cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
+
+# Copy the two project skills
+cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
 ```
 
-**Per feature** (Step 4 in Quick start):
+Safe to re-run — existing files are not overwritten.
+
+### Step 2 — Create the project CLAUDE.md
 
 ```bash
-mkdir -p specs/<feature-slug>
-cp ~/ai-engineering-playbook/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
+# Only runs if CLAUDE.md does not already exist
+[ -f CLAUDE.md ] || cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
+```
 
-# Open Claude Code and begin Phase 1
-# Prompt: "Use the Product Manager agent to write the spec for [feature]."
+Open `CLAUDE.md` and fill in:
+- Language, framework, and package manager
+- Build, test, lint, and migration commands
+- Project conventions (e.g. error shape, layer rules)
+- Security and performance notes for your stack
+
+Keep it to one screenful. The org operating principles come from `~/.claude/CLAUDE.md` — do not repeat them here.
+
+### Step 3 — Scaffold the specs/ folder
+
+```bash
+mkdir -p specs
+
+# Only runs if specs/README.md does not already exist
+[ -f specs/README.md ] || cp ~/ai-engineering-playbook/templates/specs-readme.md specs/README.md
+```
+
+### Step 4 — Commit everything
+
+```bash
+git add CLAUDE.md .claude/ specs/README.md
+git commit -m "chore: add AI workflow config (CLAUDE.md, agents, skills, specs/)"
+```
+
+### Step 5 — Verify
+
+```bash
+ls -la CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
+```
+
+All four paths must exist before you start any feature work.
+
+**Per feature** — open Claude Code and use one of these prompts. The agent creates the folder and scaffolds the templates automatically:
+
+```
+# From a description
+Use the Product Manager agent to write the spec for [feature name].
+Context: [2–3 sentences on what this needs to do at the system level].
+
+# From a Jira ticket
+Use the Product Manager agent to write the spec for PROJECT-123.
 ```
 
 ---

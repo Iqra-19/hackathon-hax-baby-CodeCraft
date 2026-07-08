@@ -299,8 +299,9 @@ File ends with a dependency tree showing which tasks block others.
 
 Work through `tasks.md` top to bottom. Before any PR:
 1. Run `/spec-check` — verify code satisfies FR-NNN criteria
-2. Run code-review, security-review, performance-review skills explicitly
-3. Log any deviation from the plan in `notes.md`
+2. Run `/phase-gate` — confirm all exit criteria are met before merge
+3. Run code-review, security-review, performance-review skills explicitly
+4. Log any deviation from the plan in `notes.md`
 
 ### Approval gates summary
 
@@ -521,12 +522,20 @@ Then open Claude Code in your project and begin Phase 1.
 
 ### Writing a spec
 
+The PM agent creates the `specs/<feature-slug>/` folder and scaffolds all phase templates automatically. Use either prompt:
+
 ```
-Prompt: "Use the Product Manager agent to write a spec for [feature].
-         Context: [2-3 sentences on what this needs to do at the system level]."
+# From a description
+Use the Product Manager agent to write the spec for [feature name].
+Context: [2–3 sentences on what this needs to do at the system level].
+
+# From a Jira ticket (requires Atlassian Rovo MCP connected in Claude Code)
+Use the Product Manager agent to write the spec for PROJECT-123.
 ```
 
-The PM agent will ask clarifying questions, then produce `spec.md` with FR-NNN acceptance criteria in Given-When-Then format.
+For the Jira path, the agent fetches the full ticket, maps clear content to FR-NNN format, and asks targeted follow-up questions only for what is missing (vague description, no acceptance criteria, unclear scope, unstated technical constraints). Replace `PROJECT-123` with your actual ticket key.
+
+The agent produces `specs/<feature-slug>/spec.md` with FR-NNN acceptance criteria in Given-When-Then format.
 
 ### Getting architecture
 
@@ -649,6 +658,9 @@ ai-workflows/
 │   └── ADOPTION-GUIDE.md              ← this document
 │
 ├── templates/
+│   ├── project-claude.md              ← project CLAUDE.md starter
+│   ├── specs-readme.md                ← specs/ folder README
+│   ├── research.md                    ← Phase 0 template (optional)
 │   ├── spec.md                        ← copy to specs/<slug>/
 │   ├── plan.md
 │   ├── tasks.md

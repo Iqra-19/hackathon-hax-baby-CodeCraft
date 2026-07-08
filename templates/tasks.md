@@ -3,6 +3,7 @@ feature: <feature-slug>
 status: draft
 owner: <engineer-name>
 created: <YYYY-MM-DD>
+execution-strategy: <MVP First | Risk First | Dependency Order>   # how to sequence tasks
 ---
 
 # Tasks: <Feature Name>
@@ -11,13 +12,16 @@ created: <YYYY-MM-DD>
 
 Task ID format: `T001`, `T002`, … — used for traceability back to `FR-NNN` requirements.
 `[P]` marks tasks that can run in parallel with other `[P]` tasks at the same dependency level.
-`[US1]` references the user story this task satisfies.
+`Satisfies: FR-NNN` links each task to the acceptance criterion it implements.
 
-- [ ] **T001 [US1]:** <description>
+- [ ] **T001:** <description>
+      Satisfies: FR-001
       Verify: <how you'll confirm this is correct>
-- [ ] **T002 [P] [US1]:** <description>
+- [ ] **T002 [P]:** <description>
+      Satisfies: FR-002
       Verify: <how you'll confirm this is correct>
-- [ ] **T003 [P] [US2]:** <description>
+- [ ] **T003 [P]:** <description>
+      Satisfies: FR-003
       Verify: <how you'll confirm this is correct>
 
 ## Dependencies between tasks

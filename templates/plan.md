@@ -3,6 +3,8 @@ feature: <feature-slug>
 status: draft   # draft -> in-review -> approved
 owner: <engineer-name>
 created: <YYYY-MM-DD>
+# approved-by: <name>        # fill in at approval time
+# approved-date: <YYYY-MM-DD>
 ---
 
 # Plan: <Feature Name>
@@ -15,13 +17,13 @@ High-level approach. Diagram if useful (Mermaid is fine, Claude can render it).
 
 ## Tech stack & rationale
 
-Per `engineering/tech-stack.md` defaults unless there's a specific reason to deviate — state the reason if so.
+List the key languages, frameworks, and libraries this feature uses. State any deviations from the project's existing stack and why.
 
 ## Data model
 
 ## API contracts
 
-Request/response shapes, error cases, versioning notes per `engineering/backend.md`.
+Request/response shapes, error cases, versioning notes. All errors must follow `{ error: string }` shape per the constitution check.
 
 ## Integration points
 
@@ -39,13 +41,12 @@ Gate: all items must be checked before tasks can start. Re-evaluate after any sc
 
 ## Architecture Decision Records (ADRs)
 
-For each non-trivial decision, per `knowledge/decision-log.md`:
+One ADR per non-trivial decision (library choice, infra dependency, data model trade-off, etc.).
 
 ### ADR-1: <Decision title>
 
 - **Problem:**
 - **Options considered:**
-- **Tradeoffs:**
 - **Chosen solution:**
 - **Reasoning:**
 
