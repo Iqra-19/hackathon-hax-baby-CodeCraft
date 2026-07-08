@@ -310,14 +310,15 @@ ls -la CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
 
 All four paths must exist before you start any feature work.
 
-**Per feature:**
+**Per feature** — open Claude Code and use one of these prompts. The agent creates the folder and scaffolds the templates automatically:
 
-```bash
-mkdir -p specs/<feature-slug>
-cp ~/ai-engineering-playbook/templates/{spec,plan,tasks,notes}.md specs/<feature-slug>/
+```
+# From a description
+Use the Product Manager agent to write the spec for [feature name].
+Context: [2–3 sentences on what this needs to do at the system level].
 
-# Open Claude Code and begin Phase 1
-# Prompt: "Use the Product Manager agent to write the spec for [feature]."
+# From a Jira ticket
+Use the Product Manager agent to write the spec for PROJECT-123.
 ```
 
 ---

@@ -1,7 +1,7 @@
 ---
 name: spec-check
 description: Verify the current implementation satisfies every FR-NNN acceptance criterion in the approved spec. Run before any PR.
-allowed-tools: Read
+tools: Read
 ---
 
 # Spec compliance check

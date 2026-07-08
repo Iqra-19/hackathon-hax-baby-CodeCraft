@@ -3,6 +3,8 @@ feature: <feature-slug>
 status: draft   # draft -> in-review -> approved
 owner: <engineer-name>
 created: <YYYY-MM-DD>
+# approved-by: <name>        # fill in at approval time
+# approved-date: <YYYY-MM-DD>
 ---
 
 # Spec: <Feature Name>
