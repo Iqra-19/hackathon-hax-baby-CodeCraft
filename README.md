@@ -4,6 +4,29 @@ The authoritative source for how this engineering organization builds features w
 
 ---
 
+## Pilot project requirements
+
+Every pilot project must have these four things committed to the repo before any feature work begins:
+
+| Required | What it does |
+|---|---|
+| `CLAUDE.md` at the project root | Tells Claude your stack, conventions, and security rules — read at the start of every session |
+| `.claude/agents/` (all 5 agents) | Phase-owner agents: PM, Architect, Planner, Developer, Reviewer |
+| `.claude/skills/` (2 skills) | `spec-check` and `phase-gate` — quality gates before any PR |
+| `specs/README.md` | Explains the specs/ folder to any engineer who opens the project |
+
+These are not optional. A project without `CLAUDE.md` gives Claude no project context — it behaves like a generic assistant, not a project-aware one. A project without `.claude/agents/` cannot run the spec-driven phases.
+
+**Verify your project is compliant:**
+
+```bash
+ls CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
+```
+
+If any of those paths are missing, follow [Setting up a pilot project](#setting-up-a-pilot-project) below.
+
+---
+
 ## Quick start
 
 Everything you need to go from zero to a running feature workflow in under 10 minutes.
@@ -232,25 +255,64 @@ ai-workflows/
 
 ---
 
-## Setting up a new project
+## Setting up a pilot project
 
-See [Quick start](#quick-start) above for the full walkthrough.
+One-time setup per project. Run all commands from your **project root**.
 
-**One-time per project** (Steps 2–3 in Quick start):
+### Step 1 — Copy the phase-owner agents and skills
 
 ```bash
-cd your-project
-
-# Copy Claude agents and skills
 mkdir -p .claude/agents .claude/skills
-cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
-cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
 
-# Create project CLAUDE.md (fill in your stack and conventions)
-cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
+# Copy the five phase-owner agents
+cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
+
+# Copy the two project skills
+cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
 ```
 
-**Per feature** (Step 4 in Quick start):
+Safe to re-run — existing files are not overwritten.
+
+### Step 2 — Create the project CLAUDE.md
+
+```bash
+# Only runs if CLAUDE.md does not already exist
+[ -f CLAUDE.md ] || cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
+```
+
+Open `CLAUDE.md` and fill in:
+- Language, framework, and package manager
+- Build, test, lint, and migration commands
+- Project conventions (e.g. error shape, layer rules)
+- Security and performance notes for your stack
+
+Keep it to one screenful. The org operating principles come from `~/.claude/CLAUDE.md` — do not repeat them here.
+
+### Step 3 — Scaffold the specs/ folder
+
+```bash
+mkdir -p specs
+
+# Only runs if specs/README.md does not already exist
+[ -f specs/README.md ] || cp ~/ai-engineering-playbook/templates/specs-readme.md specs/README.md
+```
+
+### Step 4 — Commit everything
+
+```bash
+git add CLAUDE.md .claude/ specs/README.md
+git commit -m "chore: add AI workflow config (CLAUDE.md, agents, skills, specs/)"
+```
+
+### Step 5 — Verify
+
+```bash
+ls -la CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
+```
+
+All four paths must exist before you start any feature work.
+
+**Per feature:**
 
 ```bash
 mkdir -p specs/<feature-slug>
