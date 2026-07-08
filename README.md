@@ -102,35 +102,31 @@ DB migrations: `<migration command, if any>`
 ## Org process
 
 Follow the spec-driven workflow: https://github.com/Tntra/ai-engineering-playbook
-Templates and agents are in .claude/ — committed to this repo.
+Agents and skills are in .claude/ — committed to this repo.
 ```
 
 Keep it to one screenful. The agents pick up the rest from the playbook's global rules.
 
 ### Step 4 — Start a feature
 
-Create a `specs/` folder and copy the four phase templates:
-
-```bash
-mkdir -p specs/my-feature-name
-
-cp ~/ai-engineering-playbook/templates/spec.md \
-   ~/ai-engineering-playbook/templates/plan.md \
-   ~/ai-engineering-playbook/templates/tasks.md \
-   ~/ai-engineering-playbook/templates/notes.md \
-   specs/my-feature-name/
-```
+When you're ready to write a spec, open Claude Code in your project. The Product Manager agent creates the `specs/<feature-slug>/` folder and copies all four phase templates automatically — no manual setup needed.
 
 ### Step 5 — Phase 1: Write the spec
 
-Open Claude Code in your project and run:
+Open Claude Code in your project and use one of these two prompts:
 
 ```
+# From a description — agent asks clarifying questions, then writes the spec
 Use the Product Manager agent to write the spec for [feature name].
 Context: [2–3 sentences on what this needs to do at the system level].
+
+# From a Jira ticket — agent fetches the ticket, fills gaps, then writes the spec
+Use the Product Manager agent to write the spec for PROJECT-123.
 ```
 
-The agent produces `specs/my-feature-name/spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
+The agent creates `specs/<feature-slug>/` automatically, scaffolds the phase templates, and produces `spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
+
+> **Jira path:** Requires the Atlassian Rovo MCP to be connected in Claude Code. Replace `PROJECT-123` with your actual ticket key.
 
 > **Rule:** No phase starts until the previous file has `status: approved`.
 
@@ -223,6 +219,8 @@ ai-workflows/
 │
 ├── templates/                         ← copy these when starting a project or feature
 │   ├── project-claude.md              ← project CLAUDE.md starter (copy to your project root)
+│   ├── specs-readme.md                ← specs/ folder README (copy to your project's specs/)
+│   ├── research.md                    ← Phase 0 template (optional — for technical spikes)
 │   ├── spec.md                        ← copy to specs/<slug>/
 │   ├── plan.md
 │   ├── tasks.md
