@@ -1,3 +1,9 @@
+---
+name: phase-gate
+description: Check all exit criteria for the current phase before advancing to the next one. Use between any two phases (spec→plan, plan→tasks, tasks→implement).
+allowed-tools: Read
+---
+
 # Phase gate check
 
 Before starting a new spec-driven phase, verify all exit criteria for the previous phase are satisfied.

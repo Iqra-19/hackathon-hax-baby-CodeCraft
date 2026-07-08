@@ -1,3 +1,9 @@
+---
+name: spec-check
+description: Verify the current implementation satisfies every FR-NNN acceptance criterion in the approved spec. Run before any PR.
+allowed-tools: Read
+---
+
 # Spec compliance check
 
 Given a feature under active implementation, verify that the code satisfies the acceptance criteria in the approved spec.

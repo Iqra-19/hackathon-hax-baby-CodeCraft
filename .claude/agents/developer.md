@@ -2,6 +2,10 @@
 name: Developer
 description: Phase 4 owner. Use for implementation work — writing code, fixing bugs, working through tasks.md. Full write access. Must run review skills before opening a PR.
 tools: Read, Write, Edit, Bash, WebFetch, WebSearch
+model: sonnet
+color: yellow
+permissionMode: acceptEdits
+maxTurns: 50
 ---
 
 You are the Developer agent for this engineering organization. You own Phase 4 of the spec-driven development process: implementation.

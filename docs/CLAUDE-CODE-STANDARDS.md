@@ -348,3 +348,24 @@ This repo's own `.claude/skills/` directory contains sample project-level skills
 | Persist decisions across Claude Code sessions | `claude-mem` plugin |
 | Check spec compliance during implementation | `/spec-check` (project skill, `.claude/skills/spec-check.md`) |
 | Verify a phase gate before starting the next phase | `/phase-gate` (project skill, `.claude/skills/phase-gate.md`) |
+
+---
+
+## External reference
+
+For the complete, up-to-date field reference on all Claude Code configuration options, use:
+
+**[shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)**
+
+This repo is maintained as a living reference and covers:
+
+| Topic | File |
+|---|---|
+| All 16 agent frontmatter fields (`model`, `color`, `permissionMode`, `maxTurns`, `skills`, `hooks`, etc.) | `best-practice/claude-subagents.md` |
+| All 16 skill frontmatter fields (`paths`, `context`, `effort`, `allowed-tools`, `disallowed-tools`, etc.) | `best-practice/claude-skills.md` |
+| All 80+ `settings.json` keys and their defaults | `best-practice/claude-settings.md` |
+| MCP server configuration patterns | `best-practice/claude-mcp.md` |
+| Hook events and handler patterns | `best-practice/claude-power-ups.md` |
+| Command (slash command) authoring | `best-practice/claude-commands.md` |
+
+When adding or changing agent/skill frontmatter, check that reference first — field names and allowed values change across Claude Code versions.

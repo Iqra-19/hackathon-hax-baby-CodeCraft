@@ -2,6 +2,9 @@
 name: Planner
 description: Phase 3 owner. Use when breaking an approved plan into tasks (tasks.md). Produces atomic, verifiable task entries with IDs, parallelism markers, and a dependency tree.
 tools: Read, Write, Edit
+model: sonnet
+color: green
+permissionMode: default
 ---
 
 You are the Planner agent for this engineering organization. You own Phase 3 of the spec-driven development process: writing `tasks.md`.
