@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pip's Homepage @ Midnight Nursery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Quicksand:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --cream: #FFF8F1;
+    --berry: #A34063;
+    --berry-dark: #812E4C;
+    --cocoa: #5C4033;
+    --amber: #FFC56B;
+    --lilac: #C9B6E4;
+    --blush: #F6C1CC;
+    --sky: #BFD9F2;
+    --mint: #C5E8D8;
+    --amber-glow: 0 12px 32px -4px rgba(255, 197, 107, 0.38);
+    --amber-glow-strong: 0 0 24px rgba(255, 197, 107, 0.65);
+    --amber-soft: rgba(255, 197, 107, 0.18);
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--cocoa);
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(#eedac8 1px, transparent 1px),
+      radial-gradient(rgba(201, 182, 228, 0.3) 1px, transparent 1px);
+    background-size: 32px 32px, 64px 64px;
+    background-position: 0 0, 16px 16px;
+  }
+
+  .font-fraunces { font-family: 'Fraunces', serif; }
+  .font-quicksand { font-family: 'Quicksand', sans-serif; }
+  .font-mono-retro { font-family: 'Space Mono', monospace; }
+  .font-pixel { font-family: 'VT323', monospace; }
+
+  /* Win98 Classic Bevel */
+  .win98-box {
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #5C4033;
+    border-bottom: 2px solid #5C4033;
+    box-shadow: inset 1px 1px 0px #ffebe1, inset -1px -1px 0px #8b5a45;
+  }
+
+  .win98-btn {
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #4a2c20;
+    border-bottom: 2px solid #4a2c20;
+    background: #eedfd5;
+    box-shadow: inset 1px 1px 0px #ffffff;
+  }
+  .win98-btn:active {
+    border-top: 2px solid #4a2c20;
+    border-left: 2px solid #4a2c20;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: translate(1px, 1px);
+  }
+
+  .win98-inset {
+    border-top: 2px solid #7a5445;
+    border-left: 2px solid #7a5445;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    background: #ffffff;
+  }
+
+  /* Amber Glows ONLY - NO GREY SHADOWS */
+  .glow-amber-card {
+    box-shadow: 0 12px 32px -4px rgba(255, 197, 107, 0.35), 0 0 0 1px rgba(255, 197, 107, 0.22);
+  }
+  .glow-amber-halo {
+    filter: drop-shadow(0 0 26px rgba(255, 197, 107, 0.7));
+  }
+
+  /* Holographic Foil Border for Trading Card */
+  .holo-card {
+    position: relative;
+    border: 3px solid transparent;
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+                linear-gradient(135deg, #FFC56B, #F6C1CC, #C9B6E4, #BFD9F2, #FFC56B) border-box;
+    box-shadow: 0 14px 36px -4px rgba(255, 197, 107, 0.45), 0 0 16px rgba(201, 182, 228, 0.3);
+  }
+
+  /* Marquee animation */
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 24s linear infinite;
+  }
+
+  /* Floating animation */
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+  }
+  .animate-float {
+    animation: floatSlow 5s ease-in-out infinite;
+  }
+
+  /* Sticky tape look */
+  .tape-strip {
+    background: rgba(255, 248, 241, 0.85);
+    box-shadow: 0 2px 6px rgba(255, 197, 107, 0.3);
+    border-left: 2px dashed rgba(163, 64, 99, 0.25);
+    border-right: 2px dashed rgba(163, 64, 99, 0.25);
+  }
+
+  /* 88x31 Badges styling */
+  .web-badge-8831 {
+    width: 88px;
+    height: 31px;
+    image-rendering: pixelated;
+    font-family: 'VT323', monospace;
+    font-size: 11px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s;
+  }
+  .web-badge-8831:hover {
+    filter: brightness(1.08);
+  }
+</style>
+</head>
+<body class="selection:bg-[#A34063] selection:text-white">
+
+  <!-- ========================================================== -->
+  <!-- SECTION 1: STICKY TOOLBAR (44px, berry bg #A34063) -->
+  <!-- ========================================================== -->
+  <header class="sticky top-0 z-50 h-[44px] bg-[#A34063] border-b-2 border-[#812E4C] text-[#FFF8F1] px-4 flex items-center justify-between shadow-[0_4px_16px_rgba(255,197,107,0.25)]">
+    <!-- Left: Space Mono logo -->
+    <div class="flex items-center gap-2">
+      <span class="text-[#FFC56B] text-sm animate-pulse">✦</span>
+      <span class="font-mono-retro font-bold text-[15px] tracking-tight text-[#FFF8F1]">Pip's Homepage</span>
+      <span class="font-pixel text-[13px] bg-[#812E4C] text-[#FFC56B] px-1.5 py-0.5 rounded border border-[#FFC56B]/40">v1.02</span>
+    </div>
+
+    <!-- Center: Amber Marquee -->
+    <div class="flex-1 max-w-xl mx-4 overflow-hidden relative h-[24px] bg-[#812E4C]/60 rounded border border-[#FFC56B]/30 flex items-center px-2">
+      <div class="animate-marquee font-mono-retro text-[12px] text-[#FFC56B] tracking-wider font-semibold">
+        ✦ now playing: twinkle v2 · zzz edition · welcome to my corner of the web! ✦ dream weather: 72° &amp; 100% snuggles ✦ bedtime shift: active ✦
+      </div>
+    </div>
+
+    <!-- Right: Odometer + Controls + Pip avatar -->
+    <div class="flex items-center gap-3">
+      <!-- Vintage mechanical hit odometer -->
+      <div class="flex items-center gap-1 bg-[#1A1115] px-2 py-0.5 rounded border border-[#FFC56B]/50 shadow-inner">
+        <span class="font-pixel text-[11px] text-[#FFC56B]/80 mr-1 tracking-widest">HITS</span>
+        <div class="flex font-mono-retro font-bold text-[13px] tracking-widest text-[#FFC56B]">
+          <span class="bg-[#2B1B22] px-1 border-r border-[#1A1115]">0</span>
+          <span class="bg-[#2B1B22] px-1 border-r border-[#1A1115]">0</span>
+          <span class="bg-[#2B1B22] px-1 border-r border-[#1A1115]">0</span>
+          <span class="bg-[#2B1B22] px-1 border-r border-[#1A1115]">0</span>
+          <span class="bg-[#2B1B22] px-1 border-r border-[#1A1115]">4</span>
+          <span class="bg-[#3D2530] text-white px-1">2</span>
+        </div>
+      </div>
+
+      <!-- Action Pill Buttons (28px) -->
+      <div class="flex items-center gap-1.5">
+        <button class="h-[28px] px-2.5 rounded-full bg-[#812E4C] hover:bg-[#6c243e] text-[#FFF8F1] border border-[#FFC56B]/40 font-quicksand text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer">
+          <span class="text-[11px]">🔇</span> <span>Sound Off</span>
+        </button>
+        <button class="h-[28px] px-2.5 rounded-full bg-[#812E4C] hover:bg-[#6c243e] text-[#FFF8F1] border border-[#FFC56B]/40 font-quicksand text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer">
+          <span class="text-[#FFC56B]">☾</span> <span>Bedtime</span>
+        </button>
+        <button class="h-[28px] px-2.5 rounded-full bg-[#812E4C] hover:bg-[#6c243e] text-[#FFC56B] border border-[#FFC56B]/60 font-quicksand text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer shadow-[0_0_8px_rgba(255,197,107,0.3)]">
+          <span>✦</span> <span>Chaos</span>
+        </button>
+      </div>
+
+      <!-- Pip Face Circle (24px with amber ring) -->
+      <div class="relative w-7 h-7 rounded-full ring-2 ring-[#FFC56B] ring-offset-1 ring-offset-[#A34063] overflow-hidden bg-[#FFF8F1] shadow-[0_0_8px_#FFC56B] flex items-center justify-center">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuACFBpuSiBqDorhDB6oPrZZebP6R8wsCw8IQFP57xWsQ1ScqaMV9dvnbJySyO9uWhxizg72m41I1gNdFlKIb9d49vJoAxFCM7_JkFtb8EvX4qYnmTOZQj2N-SzxigoWm1S_Ku8su41JokgWV9qPW8nXevlLsC1K4mNaRvXIFA6y2QzRtaHxI7b5_hHbYGQLoNcxgj4sB1Lj5v6G46dvVSjLvdJ8vX7pUaxLMsLbBju9NkiiVOtgXCVjOrvo6tI75zWCraCd6GW0iAE" alt="Pip avatar" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 2: HERO (120px pad, centered, star-print bg texture) -->
+  <!-- ========================================================== -->
+  <section class="relative pt-16 pb-24 px-6 max-w-5xl mx-auto flex flex-col items-center text-center">
+    
+    <!-- Ambient Stars & Moon Decor -->
+    <div class="absolute top-8 right-12 text-[#FFC56B] text-4xl select-none animate-pulse opacity-90 filter drop-shadow-[0_0_12px_#FFC56B]">
+      🌙
+    </div>
+    <div class="absolute top-20 left-16 text-[#FFC56B] text-xl opacity-75 animate-bounce">✦</div>
+    <div class="absolute top-36 right-36 text-[#C9B6E4] text-lg opacity-80">✧</div>
+    <div class="absolute top-48 left-32 text-[#F6C1CC] text-base opacity-70">⋆</div>
+    <div class="absolute top-12 left-1/3 text-[#FFC56B] text-sm opacity-60">✦</div>
+    <div class="absolute top-64 right-20 text-[#BFD9F2] text-xl opacity-80">⋆</div>
+
+    <!-- Center Hero Illustration Container (Pip 420px with amber cloud halo) -->
+    <div class="relative mb-6">
+      <!-- Amber Halo Glow Layer -->
+      <div class="absolute -inset-6 rounded-full bg-[#FFC56B]/25 filter blur-2xl -z-10 animate-pulse"></div>
+
+      <!-- Speech Bubble (top-right of Pip) -->
+      <div class="absolute -top-4 -right-16 md:-right-24 z-20 bg-[#FFF8F1] text-[#A34063] border-2 border-[#A34063] rounded-full py-2 px-5 font-quicksand font-bold text-sm tracking-wide shadow-[0_6px_20px_rgba(255,197,107,0.4)] flex items-center gap-1.5 animate-float" style="animation-delay: -1s;">
+        <span>oh! a visitor! it was getting so quiet in here.</span>
+        <span class="text-[#FFC56B]">✦</span>
+        <!-- Speech Bubble pointer -->
+        <div class="absolute -bottom-2 left-6 w-3 h-3 bg-[#FFF8F1] border-b-2 border-r-2 border-[#A34063] transform rotate-45"></div>
+      </div>
+
+      <!-- Pip 420px render -->
+      <div class="w-[340px] md:w-[420px] aspect-square rounded-full relative flex items-center justify-center glow-amber-halo">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ZvysroIN6laVHUydI0fqk7oIgZR252J9KxlyUc0AfzrAXFZoGeXM5QoKjAV0dfQzM9_Yq8zPgmPrH6ersgKGNUQG2bQcGaC7teHmIMFiG9geHScEal_9wxvdBlAzImXt-EeRFoF2qPfs6--F-9Fu_8L4fQ5_QiRchdzRGR9Q8_L6e33w-ca8B6516ezIDu2D69IQ1YyvNxHr7FnFrJNvsagiKEatJpXi501iryNuQfKKcoX-YQ9rD-4H8Ds_e1XEUv-RP-MB5gY" alt="Pip the Sleepy Skull Baby waving on a fluffy cloud" class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(255,197,107,0.45)]">
+      </div>
+    </div>
+
+    <!-- Hero Headlines & Text -->
+    <div class="max-w-2xl flex flex-col items-center">
+      <h1 class="font-fraunces font-bold text-5xl md:text-6xl text-[#A34063] tracking-tight mb-2 flex items-center gap-3">
+        <span>Hi, I'm Pip!</span>
+        <span class="text-[#FFC56B] text-4xl filter drop-shadow-[0_0_8px_#FFC56B]">✦</span>
+      </h1>
+      
+      <p class="font-quicksand font-semibold text-xl md:text-2xl text-[#5C4033] mb-3">
+        Junior Dream Engineer <span class="text-[#A34063]">·</span> Midnight Nursery
+      </p>
+
+      <p class="font-fraunces italic text-lg md:text-xl text-[#5C4033]/90 mb-5 max-w-lg">
+        “I build the dreams you fall asleep inside.”
+      </p>
+
+      <!-- Easter Egg Hint (Space Mono 12px lilac) -->
+      <div class="inline-flex items-center gap-2 bg-[#C9B6E4]/25 px-3 py-1.5 rounded-full border border-[#C9B6E4]/60 font-mono-retro text-[12px] text-[#812E4C]">
+        <span>psst… pip's bow is ticklish</span>
+        <span class="cursor-pointer hover:scale-125 transition-transform">🎀</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 3: ABOUT (white card, 16px radius, holographic foil border) -->
+  <!-- ========================================================== -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header with index stamp -->
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono-retro text-xs font-bold bg-[#A34063] text-[#FFF8F1] px-2 py-0.5 rounded">01</span>
+      <h2 class="font-fraunces font-bold text-2xl text-[#A34063]">Nursery Passport &amp; Character Sheet</h2>
+      <div class="flex-1 h-[2px] bg-gradient-to-r from-[#FFC56B] to-transparent"></div>
+    </div>
+
+    <!-- Holographic Card Container -->
+    <div class="holo-card rounded-2xl p-6 md:p-8 bg-white grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left: Beveled Photo Frame with pip_portrait (5 cols) -->
+      <div class="md:col-span-5 flex flex-col items-center">
+        <div class="win98-box p-2 bg-[#FFF8F1] w-full max-w-sm rounded">
+          <div class="win98-inset p-1 bg-white relative overflow-hidden group">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuACFBpuSiBqDorhDB6oPrZZebP6R8wsCw8IQFP57xWsQ1ScqaMV9dvnbJySyO9uWhxizg72m41I1gNdFlKIb9d49vJoAxFCM7_JkFtb8EvX4qYnmTOZQj2N-SzxigoWm1S_Ku8su41JokgWV9qPW8nXevlLsC1K4mNaRvXIFA6y2QzRtaHxI7b5_hHbYGQLoNcxgj4sB1Lj5v6G46dvVSjLvdJ8vX7pUaxLMsLbBju9NkiiVOtgXCVjOrvo6tI75zWCraCd6GW0iAE" alt="Official studio character portrait of Pip" class="w-full h-auto object-cover rounded-sm">
+            <div class="absolute top-2 right-2 bg-[#A34063] text-[#FFC56B] text-[10px] font-mono-retro px-2 py-0.5 rounded border border-[#FFC56B]">
+              ★ 1ST ED
+            </div>
+          </div>
+          <div class="pt-2 pb-1 px-1 flex justify-between items-center font-mono-retro text-[11px] text-[#5C4033]/80">
+            <span>pip_portrait.jpg · 892 KB</span>
+            <span class="text-[#A34063] font-bold cursor-pointer hover:underline">click to enlarge ↗</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Stat rows (7 cols) -->
+      <div class="md:col-span-7 flex flex-col justify-center">
+        <div class="flex items-center justify-between mb-4 border-b pb-3 border-[#FFC56B]/40">
+          <div>
+            <span class="font-mono-retro text-xs text-[#A34063] font-bold tracking-wider uppercase block">Nursery Class: Newborn Dreamer</span>
+            <h3 class="font-fraunces font-bold text-3xl text-[#A34063]">about pip <span class="text-[#FFC56B]">✦</span></h3>
+          </div>
+          <span class="font-mono-retro text-xs bg-[#FFC56B]/30 text-[#5C4033] px-2.5 py-1 rounded-full border border-[#FFC56B]">
+            ID #0042-DREAM
+          </span>
+        </div>
+
+        <!-- Stat Rows -->
+        <div class="space-y-3.5 text-sm">
+          <div class="bg-[#FFF8F1] p-3 rounded-xl border border-[#FFC56B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-mono-retro font-bold text-xs text-[#A34063] tracking-wide uppercase">SPECIES</span>
+            <span class="font-quicksand font-bold text-[#5C4033]">Dream Skull Baby (Soft Vinyl Toy Class)</span>
+          </div>
+
+          <div class="bg-[#FFF8F1] p-3 rounded-xl border border-[#FFC56B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-mono-retro font-bold text-xs text-[#A34063] tracking-wide uppercase">LOOK</span>
+            <span class="font-quicksand font-bold text-[#5C4033]">round skull · amber eyes · star nightcap · pink bow</span>
+          </div>
+
+          <div class="bg-[#FFF8F1] p-3 rounded-xl border border-[#FFC56B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-mono-retro font-bold text-xs text-[#A34063] tracking-wide uppercase">VIBE</span>
+            <span class="font-quicksand font-bold text-[#5C4033]">curious · sleepy · clumsy · giggles at everything</span>
+          </div>
+
+          <div class="bg-[#FFF8F1] p-3 rounded-xl border border-[#FFC56B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-mono-retro font-bold text-xs text-[#A34063] tracking-wide uppercase">JOB</span>
+            <span class="font-quicksand font-bold text-[#A34063]">Junior Dream Engineer, Midnight Nursery</span>
+          </div>
+
+          <div class="bg-[#FFF8F1] p-3 rounded-xl border border-[#FFC56B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span class="font-mono-retro font-bold text-xs text-[#A34063] tracking-wide uppercase">LOVES</span>
+            <span class="font-quicksand font-bold text-[#5C4033]">lullabies · nightlights · counting stars</span>
+          </div>
+        </div>
+
+        <!-- Mini System Meter -->
+        <div class="mt-5 pt-4 border-t border-[#FFC56B]/40 flex items-center justify-between font-mono-retro text-xs text-[#5C4033]">
+          <span>SNUGGLE METER:</span>
+          <div class="w-48 h-3.5 bg-[#FFF8F1] rounded-full border border-[#A34063]/40 overflow-hidden p-0.5">
+            <div class="bg-gradient-to-r from-[#FFC56B] to-[#A34063] h-full rounded-full" style="width: 94%;"></div>
+          </div>
+          <span class="font-bold text-[#A34063]">94% COZY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 4: PROJECTS "Dream OS Desktop" -->
+  <!-- ========================================================== -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header with retro prompt -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-3">
+        <span class="font-mono-retro text-xs font-bold bg-[#A34063] text-[#FFF8F1] px-2 py-0.5 rounded">02</span>
+        <h2 class="font-fraunces font-bold text-2xl text-[#A34063]">Dream OS 98 Bedside Workshop</h2>
+      </div>
+      <div class="font-mono-retro text-xs text-[#A34063] font-bold bg-[#FFF8F1] px-3 py-1 rounded border border-[#A34063]/30">
+        C:\MIDNIGHT_NURSERY\PROJECTS&gt; <span class="animate-ping">▋</span>
+      </div>
+    </div>
+
+    <!-- DreamOS Desktop Container -->
+    <div class="bg-[#ecdcd3] border-4 border-[#fff] rounded-xl p-5 shadow-[0_16px_40px_-6px_rgba(255,197,107,0.4)] relative">
+      
+      <!-- Desktop Icons Ribbon -->
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
+        <!-- Icon 1: Lullaby Lab (Active) -->
+        <div class="flex flex-col items-center p-2 rounded bg-[#A34063]/15 border-2 border-dotted border-[#A34063] cursor-pointer">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm mb-1">
+            🎵
+          </div>
+          <span class="font-mono-retro text-[11px] font-bold text-[#A34063] text-center leading-tight">Lullaby_Lab.exe</span>
+          <span class="font-pixel text-[11px] text-[#A34063]">[OPEN]</span>
+        </div>
+
+        <!-- Icon 2: Nightlight Collection -->
+        <div class="flex flex-col items-center p-2 rounded hover:bg-white/40 cursor-pointer transition-colors">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm mb-1">
+            🌙
+          </div>
+          <span class="font-mono-retro text-[11px] font-bold text-[#5C4033] text-center leading-tight">Nightlights.app</span>
+        </div>
+
+        <!-- Icon 3: Dream Delivery Routes -->
+        <div class="flex flex-col items-center p-2 rounded hover:bg-white/40 cursor-pointer transition-colors">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm mb-1">
+            📦
+          </div>
+          <span class="font-mono-retro text-[11px] font-bold text-[#5C4033] text-center leading-tight">Routes.map</span>
+        </div>
+
+        <!-- Icon 4: Rattle & Block Toys -->
+        <div class="flex flex-col items-center p-2 rounded hover:bg-white/40 cursor-pointer transition-colors">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm mb-1">
+            🎲
+          </div>
+          <span class="font-mono-retro text-[11px] font-bold text-[#5C4033] text-center leading-tight">RattleToys.bin</span>
+        </div>
+
+        <!-- Icon 5: Pip's Growth Chart -->
+        <div class="flex flex-col items-center p-2 rounded hover:bg-white/40 cursor-pointer transition-colors">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-2xl shadow-sm mb-1">
+            📊
+          </div>
+          <span class="font-mono-retro text-[11px] font-bold text-[#5C4033] text-center leading-tight">GrowthChart.dat</span>
+        </div>
+      </div>
+
+      <!-- Active Window: Lullaby Lab (Win98 Style) -->
+      <div class="win98-box bg-[#fdf8f5] rounded-none overflow-hidden shadow-2xl">
+        <!-- Berry Gradient Title Bar with Controls -->
+        <div class="bg-gradient-to-r from-[#A34063] to-[#812E4C] text-[#FFF8F1] px-3 py-1.5 flex items-center justify-between font-mono-retro text-xs font-bold select-none">
+          <div class="flex items-center gap-2">
+            <span>🎵</span>
+            <span>Lullaby Lab v1.02 — [Unicorn Music Box]</span>
+          </div>
+          <div class="flex items-center gap-1 font-mono">
+            <button class="win98-btn w-5 h-5 flex items-center justify-center text-black text-[10px] font-bold cursor-pointer">─</button>
+            <button class="win98-btn w-5 h-5 flex items-center justify-center text-black text-[10px] font-bold cursor-pointer">□</button>
+            <button class="win98-btn w-5 h-5 flex items-center justify-center text-black text-[10px] font-bold cursor-pointer">×</button>
+          </div>
+        </div>
+
+        <!-- Window Submenu bar -->
+        <div class="bg-[#eedfd5] border-b border-[#c8b3a7] px-3 py-1 flex gap-4 font-mono-retro text-[11px] text-[#5C4033]">
+          <span class="cursor-pointer hover:underline">File</span>
+          <span class="cursor-pointer hover:underline">Chimes</span>
+          <span class="cursor-pointer hover:underline">NightMode</span>
+          <span class="cursor-pointer hover:underline">About</span>
+        </div>
+
+        <!-- Window Interior Content -->
+        <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          
+          <!-- Music Box Render in Beveled Photo Frame (5 cols) -->
+          <div class="md:col-span-5 flex flex-col items-center">
+            <div class="win98-box p-2 bg-[#FFF8F1] w-full">
+              <div class="win98-inset p-2 bg-white flex items-center justify-center">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMO5A9dd2xUmaMZTIui7OHnAnAgvN-xsUn4lP5EGGbIbvnLS32fj_g25GxImzI-ORZn8hLJcVW1TmvCUt-bHXx05VXAUE8j8ZkKQCNOL-rZhSBiAdcdil_BrmXm1EK6OFczlDaONruLL76GMVvMNcuFsT80qjqcjlGDaRT3Dg4LTA1jcA0lkQrEMSnPhfY-Pr-WeOu5gEsdbpQTx2CuKU-bXjMOWsBviY4jw48OrrOxjQcgneDfkRJvez2G4DcyAekZviTefVcWFY" alt="Pink-and-cream music box with spinning unicorn" class="w-full max-w-[240px] h-auto object-contain glow-amber-halo">
+              </div>
+              <div class="mt-2 text-center font-mono-retro text-[11px] text-[#5C4033]">
+                pip_lullaby_box.png · 100% wound
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Controls & Xylophone Keys (7 cols) -->
+          <div class="md:col-span-7 flex flex-col space-y-4">
+            <div>
+              <span class="font-mono-retro text-xs text-[#A34063] font-bold">CURRENT PATCH:</span>
+              <h4 class="font-fraunces font-bold text-2xl text-[#A34063]">Twinkle v2 (Spun Cloud Mix)</h4>
+              <p class="font-quicksand text-sm text-[#5C4033]">
+                Calibrated to 48 BPM for optimal infant and kitten REM sleep cycles. Built with pure brass chime rods and dream steam.
+              </p>
+            </div>
+
+            <!-- Big Round "Wind the Key" Button -->
+            <div class="flex items-center gap-4 py-2">
+              <button class="win98-btn px-6 py-2.5 rounded-full bg-gradient-to-r from-[#FFC56B] to-[#ffa34d] text-[#5C4033] font-fraunces font-bold text-base flex items-center gap-2 cursor-pointer shadow-[0_4px_16px_rgba(255,197,107,0.5)] hover:scale-105 active:scale-95 transition-all">
+                <span class="text-xl">🔑</span> <span>Wind the Key</span>
+              </button>
+              <div class="font-mono-retro text-xs text-[#5C4033]">
+                <span class="text-[#A34063] font-bold">STATUS:</span> Ready to play
+              </div>
+            </div>
+
+            <!-- 8 Pastel Xylophone Note Keys -->
+            <div>
+              <span class="font-mono-retro text-[11px] text-[#5C4033] font-bold block mb-1.5 uppercase">
+                Interactive Chime Keys (C Major Pentatonic):
+              </span>
+              <div class="grid grid-cols-8 gap-1.5">
+                <button class="h-14 rounded-md bg-[#F6C1CC] hover:bg-[#efa6b5] border-b-4 border-[#d68597] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>C5</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#FFC56B] hover:bg-[#f7b654] border-b-4 border-[#de982f] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>D5</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#BFD9F2] hover:bg-[#a6caeb] border-b-4 border-[#85b0d6] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>E5</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#C5E8D8] hover:bg-[#add9c4] border-b-4 border-[#8ec2a8] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>G5</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#C9B6E4] hover:bg-[#b8a1d9] border-b-4 border-[#9c82c2] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>A5</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#F6C1CC] hover:bg-[#efa6b5] border-b-4 border-[#d68597] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>C6</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#FFC56B] hover:bg-[#f7b654] border-b-4 border-[#de982f] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>D6</span>
+                </button>
+                <button class="h-14 rounded-md bg-[#BFD9F2] hover:bg-[#a6caeb] border-b-4 border-[#85b0d6] text-[#5C4033] font-mono-retro font-bold text-xs flex flex-col items-center justify-end pb-1 transition-transform active:translate-y-1">
+                  <span>E6</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Window Status Bar -->
+            <div class="win98-inset px-3 py-1 font-mono-retro text-[11px] text-[#5C4033] flex justify-between bg-[#fff]">
+              <span>Key tension: 100%</span>
+              <span>Tempo: 48 BPM</span>
+              <span>Output: Analog Star Speaker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 5: ORIGIN STORY (5 scenes vertical, sky gradient darkens) -->
+  <!-- ========================================================== -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-8">
+      <span class="font-mono-retro text-xs font-bold bg-[#A34063] text-[#FFF8F1] px-2 py-0.5 rounded">03</span>
+      <h2 class="font-fraunces font-bold text-2xl text-[#A34063]">The Making of a Dream Engineer</h2>
+      <div class="flex-1 h-[2px] bg-gradient-to-r from-[#FFC56B] to-transparent"></div>
+    </div>
+
+    <!-- 5 Scenes Sequence with Sky Gradient shift -->
+    <div class="relative space-y-6">
+      <!-- Right Rail Progress Dots -->
+      <div class="hidden lg:flex flex-col items-center absolute -right-8 top-10 space-y-16">
+        <div class="w-3.5 h-3.5 rounded-full bg-[#FFC56B] ring-4 ring-[#FFC56B]/30 shadow-[0_0_10px_#FFC56B]"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-[#FFC56B]/60"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-[#FFC56B]/60"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-[#FFC56B]/60"></div>
+        <div class="w-3.5 h-3.5 rounded-full bg-[#FFC56B] ring-4 ring-[#FFC56B]/30 shadow-[0_0_10px_#FFC56B]"></div>
+      </div>
+
+      <!-- Scene 1: Peach Sky -->
+      <div class="rounded-2xl p-6 bg-gradient-to-r from-[#FFD8C9] to-[#FFE6DA] border border-[#FFC56B]/50 glow-amber-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-3 flex justify-center">
+          <div class="w-24 h-24 rounded-2xl bg-white/70 border border-white flex items-center justify-center text-4xl shadow-sm">
+            🌙
+          </div>
+        </div>
+        <div class="md:col-span-9">
+          <div class="font-mono-retro text-xs font-bold text-[#A34063] mb-1">SCENE 01 · 20:15 PM · PEACH DUSK</div>
+          <h3 class="font-fraunces font-bold text-xl text-[#A34063] mb-2">A Moonbeam in the Attic</h3>
+          <p class="font-quicksand font-semibold italic text-[#5C4033] text-base leading-relaxed">
+            When evening wraps the nursery, a golden moonbeam sneaks through the skylight, settling softly on an empty cradle of clouds.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scene 2: Rose-Peach Sky -->
+      <div class="rounded-2xl p-6 bg-gradient-to-r from-[#F6CCD6] to-[#FEDEE6] border border-[#F6C1CC] glow-amber-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-3 flex justify-center">
+          <div class="w-24 h-24 rounded-2xl bg-white/70 border border-white flex items-center justify-center text-4xl shadow-sm">
+            ⭐
+          </div>
+        </div>
+        <div class="md:col-span-9">
+          <div class="font-mono-retro text-xs font-bold text-[#A34063] mb-1">SCENE 02 · 21:30 PM · ROSE TWILIGHT</div>
+          <h3 class="font-fraunces font-bold text-xl text-[#A34063] mb-2">Baby Pip Awakens</h3>
+          <p class="font-quicksand font-semibold italic text-[#5C4033] text-base leading-relaxed">
+            Tiny Pip opens two glowing amber eyes, wearing a starry nightcap tied with a pink bow. The nursery is warm, but something is missing.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scene 3: Violet Sky -->
+      <div class="rounded-2xl p-6 bg-gradient-to-r from-[#D7CEF0] to-[#E8E2F9] border border-[#C9B6E4] glow-amber-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-3 flex justify-center">
+          <div class="w-24 h-24 rounded-2xl bg-white/70 border border-white flex items-center justify-center text-4xl shadow-sm">
+            🤫
+          </div>
+        </div>
+        <div class="md:col-span-9">
+          <div class="font-mono-retro text-xs font-bold text-[#812E4C] mb-1">SCENE 03 · 23:00 PM · VIOLET DEEPENING</div>
+          <h3 class="font-fraunces font-bold text-xl text-[#812E4C] mb-2">Too Quiet to Sleep</h3>
+          <p class="font-quicksand font-semibold italic text-[#5C4033] text-base leading-relaxed">
+            Pip cannot snooze—complete silence feels lonely! Pip gathers ticking wind-up keys, brass springs, and honey clouds to craft a cheerful chime.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scene 4: Twilight #2D3561 -->
+      <div class="rounded-2xl p-6 bg-gradient-to-r from-[#2D3561] to-[#3a4478] text-[#FFF8F1] border border-[#BFD9F2]/40 glow-amber-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-3 flex justify-center">
+          <div class="w-24 h-24 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-4xl shadow-sm">
+            🦄
+          </div>
+        </div>
+        <div class="md:col-span-9">
+          <div class="font-mono-retro text-xs font-bold text-[#FFC56B] mb-1">SCENE 04 · 00:30 AM · MIDNIGHT BLUE</div>
+          <h3 class="font-fraunces font-bold text-xl text-[#FFF8F1] mb-2">The First Music Box</h3>
+          <p class="font-quicksand font-semibold italic text-[#FFF8F1]/90 text-base leading-relaxed">
+            With one winding turn, Twinkle v2 plays into the dark. Down in the valley, three baby mice curl their tails and fall peacefully asleep.
+          </p>
+        </div>
+      </div>
+
+      <!-- Scene 5: Near-black #050712 with Amber Lantern Spotlight -->
+      <div class="rounded-2xl p-6 bg-[#050712] text-[#FFF8F1] border-2 border-[#FFC56B]/60 relative overflow-hidden shadow-[0_0_36px_rgba(255,197,107,0.4)] grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <!-- Radial Spotlight Glow -->
+        <div class="absolute -right-10 -bottom-10 w-96 h-96 rounded-full bg-[#FFC56B]/20 filter blur-3xl pointer-events-none"></div>
+
+        <!-- Lantern Render (md:col-span-4) -->
+        <div class="md:col-span-4 flex flex-col items-center relative z-10">
+          <div class="relative w-36 h-36 flex items-center justify-center glow-amber-halo">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdqO12dZEZOcxrOyJSLOEAE-RmOLwOx-4PJx8xilUoeU5N0-UXqc4zG9LkvzIlAmM2CsX5W3x7_Wu0kskFG268ibdDWW-HvcHmWc1UqLt7I5CHcW6459fiKohdJixw53crVvneQrwSoowY4SC-eG9S_a9zU0nPihgyc46gg3nvMk7Nfj7yJjPqN3yzaffO4-5zdPRuaYZYCB1AipZqduzwHxmuY5GDH7ip4MJnElf8EvQLtDCcdQTuCimssKpr74irbXdctxP6_dY" alt="Pip's glowing crescent moon nightlight lantern" class="w-full h-full object-contain filter drop-shadow-[0_0_24px_#FFC56B]">
+          </div>
+        </div>
+
+        <!-- Finale text + "lights on" button -->
+        <div class="md:col-span-8 relative z-10">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono-retro text-xs font-bold text-[#FFC56B]">SCENE 05 · 02:45 AM · DEEP MIDNIGHT SHIFT</span>
+            <button class="px-3 py-1 rounded-full bg-[#FFC56B] text-[#5C4033] font-quicksand font-bold text-xs flex items-center gap-1.5 hover:bg-white transition-colors cursor-pointer shadow-[0_0_12px_#FFC56B]">
+              <span>☀</span> <span>lights on</span>
+            </button>
+          </div>
+          <h3 class="font-fraunces font-bold text-2xl text-[#FFC56B] mb-2">Junior Dream Engineer on Duty</h3>
+          <p class="font-quicksand font-semibold italic text-[#FFF8F1]/95 text-base leading-relaxed mb-3">
+            Now Pip patrols the rooftops atop a warm cumulus cloud, lantern in hand, tuning ambient night frequencies so no creature fears the shadows.
+          </p>
+          <div class="font-mono-retro text-xs text-[#C9B6E4]">
+            ✦ Officially certified by The Midnight Cloud Academy #0042
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 6: GUESTBOOK (star-wallpaper bg) -->
+  <!-- ========================================================== -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono-retro text-xs font-bold bg-[#A34063] text-[#FFF8F1] px-2 py-0.5 rounded">04</span>
+      <h2 class="font-fraunces font-bold text-2xl text-[#A34063]">Pillow Guestbook: Sign Pip's Nursery Wall</h2>
+      <div class="flex-1 h-[2px] bg-gradient-to-r from-[#FFC56B] to-transparent"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left: Sign form (5 cols) -->
+      <div class="lg:col-span-5 bg-white rounded-2xl p-6 glow-amber-card border border-[#FFC56B]/30">
+        <h3 class="font-fraunces font-bold text-xl text-[#A34063] mb-1 flex items-center gap-2">
+          <span>sign pip's nursery wall</span>
+          <span class="text-[#FFC56B]">✦</span>
+        </h3>
+        <p class="font-quicksand text-xs text-[#5C4033]/80 mb-4">
+          Leave a bedtime greeting, note, or stamp before your next nap!
+        </p>
+
+        <form class="space-y-4" onsubmit="event.preventDefault();">
+          <div>
+            <label class="block font-mono-retro text-xs font-bold text-[#A34063] mb-1 uppercase">YOUR NAME / HANDLE (32 CHARS):</label>
+            <input type="text" maxlength="32" placeholder="e.g., Starlight Wanderer" class="w-full bg-[#FFF8F1] border-2 border-[#FFC56B]/50 rounded-xl px-3 py-2 text-sm font-quicksand font-bold text-[#5C4033] focus:outline-none focus:border-[#A34063]">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block font-mono-retro text-xs font-bold text-[#A34063] uppercase">BEDTIME MESSAGE (140 CHARS):</label>
+              <span class="font-mono-retro text-xs text-[#5C4033]/70">0/140</span>
+            </div>
+            <textarea rows="3" maxlength="140" placeholder="Wishing you the warmest blankets and softest lullabies..." class="w-full bg-[#FFF8F1] border-2 border-[#FFC56B]/50 rounded-xl p-3 text-sm font-quicksand font-semibold text-[#5C4033] focus:outline-none focus:border-[#A34063] resize-none"></textarea>
+          </div>
+
+          <!-- 6 Sticker Emoji Picker (🌙⭐🎵✦💤🌸) -->
+          <div>
+            <label class="block font-mono-retro text-xs font-bold text-[#A34063] mb-1.5 uppercase">PICK A NURSERY STICKER:</label>
+            <div class="flex items-center gap-2">
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B] flex items-center justify-center text-lg hover:scale-110 transition-transform">🌙</button>
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B]/40 flex items-center justify-center text-lg hover:scale-110 transition-transform">⭐</button>
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B]/40 flex items-center justify-center text-lg hover:scale-110 transition-transform">🎵</button>
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B]/40 flex items-center justify-center text-lg hover:scale-110 transition-transform">✦</button>
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B]/40 flex items-center justify-center text-lg hover:scale-110 transition-transform">💤</button>
+              <button type="button" class="w-9 h-9 rounded-xl bg-[#FFF8F1] border-2 border-[#FFC56B]/40 flex items-center justify-center text-lg hover:scale-110 transition-transform">🌸</button>
+            </div>
+          </div>
+
+          <!-- Berry Submit Button -->
+          <button type="submit" class="w-full py-3 rounded-xl bg-[#A34063] hover:bg-[#812E4C] text-[#FFF8F1] font-fraunces font-bold text-base flex items-center justify-center gap-2 shadow-[0_6px_20px_rgba(255,197,107,0.4)] cursor-pointer transition-all">
+            <span>Leave a note</span> <span class="text-[#FFC56B]">✦</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Masonry Sticky Note Wall (8 notes ±3° tilt) (7 cols) -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <!-- Note 1: Blush -->
+        <div class="relative bg-[#FEDEE6] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform -rotate-2 border border-[#F6C1CC]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#A34063]">Barnaby the Owl</span>
+            <span class="text-base">🌙</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “The 2:00 AM gentle rain dream was a 10/10! Woke up feeling like my wings were wrapped in fresh cotton.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#A34063]/80">22 mins ago · via Dial-Up</span>
+        </div>
+
+        <!-- Note 2: Sky -->
+        <div class="relative bg-[#DCECF9] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform rotate-2 border border-[#BFD9F2]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#3A6B9B]">Luna the Moth</span>
+            <span class="text-base">⭐</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Left some warm sugar water by your nursery window sill, Pip. Don't let your moon lantern burn out!”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#3A6B9B]/80">1 hour ago · via Midnight Bell</span>
+        </div>
+
+        <!-- Note 3: Lilac -->
+        <div class="relative bg-[#E8E0F7] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform rotate-1 border border-[#C9B6E4]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#6C4B99]">Sleepy Bear</span>
+            <span class="text-base">💤</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Zzzzz... mmmfff... 5 more minutes please... best pillow homepage ever... zzz.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#6C4B99]/80">3 hours ago · via CozyCave</span>
+        </div>
+
+        <!-- Note 4: Mint -->
+        <div class="relative bg-[#DBF3E7] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform -rotate-3 border border-[#C5E8D8]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#327357]">Fluff Cloud 9</span>
+            <span class="text-base">🎵</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Pip, your unicorn music box chord changes solved my insomnia! Bookmarking this on Netscape 4.0.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#327357]/80">5 hours ago · via Netscape</span>
+        </div>
+
+        <!-- Note 5: Blush -->
+        <div class="relative bg-[#FEDEE6] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform rotate-3 border border-[#F6C1CC]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#A34063]">Tiny Snail</span>
+            <span class="text-base">🌸</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Crawled 4 days to reach this website. It was 100% worth every shell millimeter.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#A34063]/80">Yesterday · via Moss Modem</span>
+        </div>
+
+        <!-- Note 6: Sky -->
+        <div class="relative bg-[#DCECF9] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform -rotate-1 border border-[#BFD9F2]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#3A6B9B]">Glowworm Trio</span>
+            <span class="text-base">✦</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Can we be backup lanterns for your rooftop route tomorrow night? We charge 1 dewdrop per hour.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#3A6B9B]/80">Yesterday · via Starlink Jr</span>
+        </div>
+
+        <!-- Note 7: Mint -->
+        <div class="relative bg-[#DBF3E7] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform rotate-2 border border-[#C5E8D8]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#327357]">Hedgehog Quill</span>
+            <span class="text-base">💤</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “Rolled into a prickly ball and woke up feeling untangled. Magic lullabies!”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#327357]/80">2 days ago · via AcornWeb</span>
+        </div>
+
+        <!-- Note 8: Lilac -->
+        <div class="relative bg-[#E8E0F7] p-4 rounded-xl shadow-[0_8px_20px_rgba(255,197,107,0.3)] transform -rotate-2 border border-[#C9B6E4]">
+          <div class="tape-strip w-16 h-4 absolute -top-2 left-1/2 -translate-x-1/2 rounded-sm"></div>
+          <div class="flex justify-between items-start mb-2 pt-1">
+            <span class="font-fraunces font-bold text-sm text-[#6C4B99]">Professor Dormouse</span>
+            <span class="text-base">🌙</span>
+          </div>
+          <p class="font-quicksand font-semibold text-[13px] text-[#5C4033] mb-2 leading-snug">
+            “A+ bedtime engineering thesis. Awarded the honorary Golden Thimble.”
+          </p>
+          <span class="font-mono-retro text-[10px] text-[#6C4B99]/80">3 days ago · via Teacup-Mail</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- SECTION 7: FOOTER -->
+  <!-- ========================================================== -->
+  <footer class="mt-16 bg-[#FCECE3] border-t-2 border-[#A34063]/30 pt-12 pb-16 px-6 text-center relative overflow-hidden">
+    
+    <!-- 88x31 Pixel Badges Strip (6 badges) -->
+    <div class="max-w-2xl mx-auto mb-8">
+      <div class="font-mono-retro text-xs text-[#A34063] font-bold mb-3 uppercase tracking-wider">
+        Pixel Web Heritage · 88x31 Badges
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        
+        <!-- Badge 1: made with love -->
+        <div class="web-badge-8831 bg-[#A34063] text-[#FFC56B]">
+          <span>MADE W/ ♥</span>
+        </div>
+
+        <!-- Badge 2: best viewed at bedtime -->
+        <div class="web-badge-8831 bg-[#1B1F3B] text-[#FFF8F1]">
+          <span>BEDTIME★OK</span>
+        </div>
+
+        <!-- Badge 3: pip approved -->
+        <div class="web-badge-8831 bg-[#5C4033] text-[#FFC56B]">
+          <span>PIP APPROVED</span>
+        </div>
+
+        <!-- Badge 4: no cookies -->
+        <div class="web-badge-8831 bg-[#FFF8F1] text-[#A34063] border-red-900">
+          <span>NO COOKIES</span>
+        </div>
+
+        <!-- Badge 5: Y2K compliant -->
+        <div class="web-badge-8831 bg-[#3A6B9B] text-[#FFF8F1]">
+          <span>Y2K·READY</span>
+        </div>
+
+        <!-- Badge 6: powered by dreams -->
+        <div class="web-badge-8831 bg-[#6C4B99] text-[#FFC56B]">
+          <span>DREAM★CORE</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Webring Strip -->
+    <div class="inline-flex items-center gap-3 bg-white px-5 py-2 rounded-full border border-[#FFC56B] shadow-[0_4px_16px_rgba(255,197,107,0.3)] mb-8 font-mono-retro text-xs font-bold text-[#5C4033]">
+      <span class="text-[#A34063] cursor-pointer hover:underline">← [Prev Dream]</span>
+      <span class="text-[#FFC56B]">✦</span>
+      <span class="text-[#A34063]">[pip's midnight webring #0042]</span>
+      <span class="text-[#FFC56B]">✦</span>
+      <span class="text-[#A34063] cursor-pointer hover:underline">[Next Dream] →</span>
+    </div>
+
+    <!-- Credits & Slogan -->
+    <div class="space-y-2 mb-10">
+      <p class="font-mono-retro text-[11px] text-[#5C4033]">
+        Pip character art: haX.baby Track 1 Creator Asset Pack · Fonts: Fraunces, Quicksand, Space Mono, VT323
+      </p>
+      <p class="font-quicksand font-bold text-sm text-[#A34063]">
+        best viewed at bedtime · zzz
+      </p>
+      <p class="font-mono-retro text-[10px] text-[#5C4033]/70">
+        © 2026 Pip @ The Midnight Nursery. All dream pillows reserved.
+      </p>
+    </div>
+
+    <!-- FINAL DELIBERATE PEAK-END ELEMENT: Pip Waving Goodbye with Speech Bubble -->
+    <div class="flex flex-col items-center justify-center pt-4">
+      <div class="relative inline-block">
+        <!-- Speech Bubble -->
+        <div class="mb-3 bg-white text-[#A34063] border-2 border-[#A34063] rounded-full py-2 px-6 font-quicksand font-bold text-sm shadow-[0_6px_20px_rgba(255,197,107,0.45)] flex items-center gap-2">
+          <span>sweet dreams, come back soon</span>
+          <span class="text-[#FFC56B]">✦</span>
+        </div>
+        
+        <!-- Small Pip Waving (68px circle avatar) -->
+        <div class="w-20 h-20 mx-auto rounded-full ring-4 ring-[#FFC56B] ring-offset-2 ring-offset-[#FCECE3] bg-white overflow-hidden shadow-[0_0_20px_#FFC56B] animate-bounce" style="animation-duration: 3s;">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ZvysroIN6laVHUydI0fqk7oIgZR252J9KxlyUc0AfzrAXFZoGeXM5QoKjAV0dfQzM9_Yq8zPgmPrH6ersgKGNUQG2bQcGaC7teHmIMFiG9geHScEal_9wxvdBlAzImXt-EeRFoF2qPfs6--F-9Fu_8L4fQ5_QiRchdzRGR9Q8_L6e33w-ca8B6516ezIDu2D69IQ1YyvNxHr7FnFrJNvsagiKEatJpXi501iryNuQfKKcoX-YQ9rD-4H8Ds_e1XEUv-RP-MB5gY" alt="Pip waving goodbye from cloud" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+</html>

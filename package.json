@@ -1,0 +1,27 @@
+{
+  "name": "pip-portfolio",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext ts --max-warnings 0",
+    "format": "prettier --write src"
+  },
+  "dependencies": {
+    "@lordicon/element": "^3.0.2",
+    "@supabase/supabase-js": "^2.45.4",
+    "canvas-confetti": "^1.9.3",
+    "gsap": "^3.12.5",
+    "lucide": "^0.447.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@types/canvas-confetti": "^1.9.0",
+    "eslint": "^9.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.8"
+  }
+}

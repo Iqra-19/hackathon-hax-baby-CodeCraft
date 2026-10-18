@@ -1,10 +1,70 @@
-# CLAUDE.md
+# CLAUDE.md — Pip's Portfolio (haX Hackathon 2026)
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This repo doubles as the **ai-engineering-playbook** (process/standards) and the **Baby's First Portfolio** hackathon website (`src/`, `index.html`). The playbook operating principles below apply to all code written here.
 
-## What this repo is
+## Project constitution (enforced on every task)
 
-This is a process and standards repository — it contains no application code. It holds the templates, guidelines, and behavioral rules for AI-driven feature development using Claude Code across our engineering organization. All engineering work on actual products should reference these documents as the authoritative source.
+- **Stack:** Vite 5 + TypeScript strict. Vanilla TS only — no React, no Vue.
+- **No new npm packages without asking.** Approved: gsap, canvas-confetti, lucide, @supabase/supabase-js.
+- **Every effect respects `prefers-reduced-motion` and the mute state.** No exceptions.
+- **Zero console errors or warnings** (Playwright CI fails on any `console.error`).
+- **All localStorage access wrapped in try/catch.**
+- **Pip is never scary, creepy, or gory.** Gentle · curious · sleepy · clumsy · giggly.
+- **Text ≤ 150 words per section / story scene.**
+- **Credits footer stays.** Never remove the Pip asset pack credit line.
+- **Mute starts muted, is always visible, always keyboard-reachable.**
+
+## Stack
+
+Language: TypeScript 5 (strict)  
+Build/Dev: Vite 5 · `npm run dev` · `npm run build`  
+Styling: Plain CSS with custom properties (`src/styles/tokens.css`)  
+Motion: CSS animations + IntersectionObserver; GSAP ScrollTrigger for Dream Delivery SVG  
+Audio: Raw Web Audio API (`src/modules/audio.ts`)  
+Backend: Supabase (guestbook + hits) — anon key only, RLS enabled  
+Deploy: Vercel  
+
+## Source layout
+
+```
+src/
+├── main.ts             — boots all modules
+├── modules/            — one file per feature module
+│   ├── theme.ts        — day/night toggle
+│   ├── audio.ts        — Web Audio chimes, click sounds, mute
+│   ├── eyes.ts         — cursor-tracking pupils + gyro/touch
+│   ├── sparkle.ts      — sparkle trail (+2 pts)
+│   ├── egg.ts          — Easter eggs: bow×5, Konami code
+│   ├── projects.ts     — Dream OS draggable windows
+│   ├── story.ts        — scroll scenes + flashlight cursor
+│   ├── guestbook.ts    — Supabase guestbook (+2 pts)
+│   └── toolbar.ts      — hit counter (+1 pt), chaos mode (+5 pts)
+└── styles/
+    ├── tokens.css      — all design tokens (day/night/chaos themes)
+    ├── base.css        — reset, typography, layout helpers
+    ├── toolbar.css     ─┐
+    ├── hero.css         │ one per section
+    ├── about.css        │
+    ├── projects.css     │
+    ├── story.css        │
+    ├── guestbook.css    │
+    ├── footer.css      ─┘
+    └── chaos.css       — chaos mode overrides
+public/assets/          — Pip WebP/AVIF images (cut-out transparent)
+index.html              — single page, 7 sections
+```
+
+## Rubric (judges score these)
+
+| Criterion | Weight | Key signals |
+|---|---|---|
+| Functionality & Polish | 35% | Zero errors, smooth motion, every button works |
+| Early-Web Soul | 30% | Marquee, hit counter, retro chrome, pixel fonts |
+| Creativity & Surprises | 20% | Easter eggs, unexpected toys |
+| Clean Craft | 15% | Responsive, fast, accessible |
+| Side quests | +13 pts | Chaos (+5), click+mute (+3), guestbook (+2), sparkle (+2), counter (+1) |
+
+## What this repo is (playbook context)
 
 ## Key documents
 

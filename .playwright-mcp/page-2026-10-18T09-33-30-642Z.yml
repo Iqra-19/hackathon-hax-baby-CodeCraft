@@ -1,0 +1,225 @@
+- generic [active] [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - generic [ref=f4e4]: ✦ Pip's Homepage
+      - generic [ref=f4e5]: v1.02
+    - generic [ref=f4e7]: "✦ now playing: twinkle v2 · zzz edition · welcome to my corner of the web! ✦ dream weather: 72° & 100% snuggles ✦ bedtime shift: active ✦ now playing: twinkle v2 · zzz edition · welcome to my corner of the web! ✦ dream weather: 72° & 100% snuggles ✦ bedtime shift: active ✦"
+    - generic [ref=f4e8]:
+      - generic "Visitor count" [ref=f4e9]:
+        - generic [ref=f4e10]: HITS
+        - generic [ref=f4e11]:
+          - generic [ref=f4e12]: "0"
+          - generic [ref=f4e13]: "0"
+          - generic [ref=f4e14]: "0"
+          - generic [ref=f4e15]: "0"
+          - generic [ref=f4e16]: "0"
+          - generic [ref=f4e17]: "5"
+      - generic [ref=f4e18]:
+        - button "Turn sound on" [ref=f4e19] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f4e20]: 🔇
+          - generic [ref=f4e21]: Sound Off
+        - button "Toggle night mode" [ref=f4e22] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f4e23]: ☾
+          - generic [ref=f4e24]: Bedtime
+        - button "Toggle chaos mode" [ref=f4e25] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f4e26]: ✦
+          - generic [ref=f4e27]: Chaos
+  - main [ref=f4e29]:
+    - generic [ref=f4e30]:
+      - generic [aria-hidden]: 🌙
+      - generic [aria-hidden]: ✦
+      - generic [aria-hidden]: ✧
+      - generic [aria-hidden]: ⋆
+      - generic [aria-hidden]: ✦
+      - generic [ref=f4e31]:
+        - generic [ref=f4e32]:
+          - figure "Pip, skull baby dream engineer":
+            - img "Pip, a sleepy skull baby in a starry nightcap, waving from a cloud"
+            - button "Pip's pink bow — tap me!"
+        - generic [ref=f4e34]:
+          - heading "Hi, I'm Pip!" [level=1] [ref=f4e35]:
+            - text: Hi, I'm
+            - generic [ref=f4e36]: Pip!
+            - generic [aria-hidden] [ref=f4e37]: ✦
+          - paragraph [ref=f4e38]: Junior Dream Engineer · Midnight Nursery
+          - paragraph [ref=f4e39]: "\"I build the dreams you fall asleep inside.\""
+          - generic "Easter egg hint" [ref=f4e40]:
+            - generic [ref=f4e41]: psst… pip's bow is ticklish
+            - generic [aria-hidden] [ref=f4e42] [cursor=pointer]: 🎀
+    - generic [ref=f4e44]:
+      - generic [ref=f4e45]:
+        - generic [ref=f4e46]: "01"
+        - heading "Nursery Passport & Character Sheet" [level=2] [ref=f4e47]
+      - generic [ref=f4e49]:
+        - generic [ref=f4e51]:
+          - generic [ref=f4e52]:
+            - img "Official studio character portrait of Pip" [ref=f4e53]
+            - generic [aria-hidden] [ref=f4e54]: ★ 1ST ED
+          - generic [ref=f4e55]:
+            - generic [ref=f4e56]: pip_portrait.jpg · 892 KB
+            - generic [ref=f4e57] [cursor=pointer]: click to enlarge ↗
+        - generic [ref=f4e58]:
+          - generic [ref=f4e59]:
+            - generic [ref=f4e60]:
+              - generic [ref=f4e61]: "NURSERY CLASS: NEWBORN DREAMER"
+              - heading "about pip ✦" [level=3] [ref=f4e62]
+            - generic [ref=f4e63]: "ID #0042-DREAM"
+          - generic [ref=f4e64]:
+            - generic [ref=f4e65]:
+              - term [ref=f4e66]: SPECIES
+              - definition [ref=f4e67]: Dream Skull Baby (Soft Vinyl Toy Class)
+            - generic [ref=f4e68]:
+              - term [ref=f4e69]: LOOK
+              - definition [ref=f4e70]: round skull · amber eyes · star nightcap · pink bow
+            - generic [ref=f4e71]:
+              - term [ref=f4e72]: VIBE
+              - definition [ref=f4e73]: curious · sleepy · clumsy · giggles at everything · hates silence
+            - generic [ref=f4e74]:
+              - term [ref=f4e75]: JOB
+              - definition [ref=f4e76]: Junior Dream Engineer, Midnight Nursery
+            - generic [ref=f4e77]:
+              - term [ref=f4e78]: LOVES
+              - definition [ref=f4e79]: lullabies · nightlights · soft rattles · counting stars
+          - 'generic "Snuggle meter: 94% cozy" [ref=f4e80]':
+            - generic [ref=f4e81]: "SNUGGLE METER:"
+            - progressbar [ref=f4e82]
+            - generic [ref=f4e84]: 94% COZY
+    - generic [ref=f4e86]:
+      - generic [ref=f4e87]:
+        - generic [ref=f4e88]: "02"
+        - heading "Dream OS 98 Bedside Workshop" [level=2] [ref=f4e89]
+        - generic [aria-hidden] [ref=f4e91]:
+          - text: C:\MIDNIGHT_NURSERY\PROJECTS>
+          - generic [ref=f4e92]: ▋
+      - list [ref=f4e94]:
+        - listitem [ref=f4e95] [cursor=pointer]:
+          - generic [ref=f4e96]: 🎵
+          - generic [ref=f4e97]: Lullaby_Lab.exe
+        - listitem [ref=f4e98] [cursor=pointer]:
+          - generic [ref=f4e99]: 🌙
+          - generic [ref=f4e100]: Nightlights.app
+        - listitem [ref=f4e101] [cursor=pointer]:
+          - generic [ref=f4e102]: 📦
+          - generic [ref=f4e103]: Routes.map
+        - listitem [ref=f4e104] [cursor=pointer]:
+          - generic [ref=f4e105]: 🎲
+          - generic [ref=f4e106]: RattleToys.bin
+        - listitem [ref=f4e107] [cursor=pointer]:
+          - generic [ref=f4e108]: 📊
+          - generic [ref=f4e109]: GrowthChart.dat
+    - generic [ref=f4e110]:
+      - generic [ref=f4e112]:
+        - generic [ref=f4e113]: "03"
+        - heading "The Making of a Dream Engineer" [level=2] [ref=f4e114]
+      - generic [ref=f4e116]:
+        - generic "Scene 1 of 5" [ref=f4e117]:
+          - generic [ref=f4e118]:
+            - generic [aria-hidden] [ref=f4e119]: 🌙
+            - generic [ref=f4e120]: SCENE 01 · 20:15 PM · PEACH DUSK
+            - heading "A Moonbeam in the Attic" [level=3] [ref=f4e121]
+            - paragraph [ref=f4e122]: When evening wraps the nursery, a golden moonbeam sneaks through the skylight, settling softly on an empty cradle of clouds.
+        - generic "Scene 2 of 5" [ref=f4e123]:
+          - generic [ref=f4e124]:
+            - generic [aria-hidden] [ref=f4e125]: ⭐
+            - generic [ref=f4e126]: SCENE 02 · 21:30 PM · ROSE TWILIGHT
+            - heading "Baby Pip Awakens" [level=3] [ref=f4e127]
+            - paragraph [ref=f4e128]: Tiny Pip opens two glowing amber eyes, wearing a starry nightcap tied with a pink bow. The nursery is warm, but something is missing.
+        - generic "Scene 3 of 5" [ref=f4e129]:
+          - generic [ref=f4e130]:
+            - generic [aria-hidden] [ref=f4e131]: 🤫
+            - generic [ref=f4e132]: SCENE 03 · 23:00 PM · VIOLET DEEPENING
+            - heading "Too Quiet to Sleep" [level=3] [ref=f4e133]
+            - paragraph [ref=f4e134]: Pip cannot snooze — complete silence feels lonely! Pip gathers ticking wind-up keys, brass springs, and honey clouds to craft a cheerful chime.
+        - generic "Scene 4 of 5" [ref=f4e135]:
+          - generic [ref=f4e136]:
+            - generic [aria-hidden] [ref=f4e137]: 🦄
+            - generic [ref=f4e138]: SCENE 04 · 00:30 AM · MIDNIGHT BLUE
+            - heading "The First Music Box" [level=3] [ref=f4e139]
+            - paragraph [ref=f4e140]: With one winding turn, Twinkle v2 plays into the dark. Down in the valley, three baby mice curl their tails and fall peacefully asleep.
+        - generic "Scene 5 of 5" [ref=f4e141]:
+          - generic [ref=f4e142]:
+            - img "Pip's glowing crescent moon nightlight lantern" [ref=f4e144]
+            - generic [ref=f4e145]: SCENE 05 · 02:45 AM · DEEP MIDNIGHT SHIFT
+            - heading "Junior Dream Engineer on Duty" [level=3] [ref=f4e146]
+            - paragraph [ref=f4e147]: Now Pip patrols the rooftops atop a warm cumulus cloud, lantern in hand, tuning ambient night frequencies so no creature fears the shadows.
+            - generic [aria-hidden] [ref=f4e148]: "✦ Officially certified by The Midnight Cloud Academy #0042"
+            - button "Turn lights on" [ref=f4e149] [cursor=pointer]: ☀ lights on
+    - generic [ref=f4e151]:
+      - generic [ref=f4e152]:
+        - generic [ref=f4e153]: "04"
+        - 'heading "Pillow Guestbook: Sign Pip''s Nursery Wall" [level=2] [ref=f4e154]'
+      - generic [ref=f4e156]:
+        - generic [ref=f4e157]:
+          - heading "sign pip's nursery wall ✦" [level=3] [ref=f4e158]:
+            - text: sign pip's nursery wall
+            - generic [ref=f4e159]: ✦
+          - paragraph [ref=f4e160]: Leave a bedtime greeting, note, or stamp before your next nap!
+          - generic [ref=f4e161]:
+            - generic [ref=f4e162]:
+              - generic [ref=f4e163]: "YOUR NAME / HANDLE (32 CHARS):"
+              - textbox "YOUR NAME / HANDLE (32 CHARS):" [ref=f4e164]:
+                - /placeholder: e.g., Starlight Wanderer
+            - generic [ref=f4e165]:
+              - generic [ref=f4e166]:
+                - generic [ref=f4e167]: "BEDTIME MESSAGE (140 CHARS):"
+                - generic [ref=f4e168]: 0/140
+              - textbox "BEDTIME MESSAGE (140 CHARS):" [ref=f4e169]:
+                - /placeholder: Wishing you the warmest blankets and softest lullabies...
+            - group "PICK A NURSERY STICKER:" [ref=f4e170]:
+              - generic [ref=f4e172]:
+                - generic [ref=f4e173]:
+                  - radio "🌙" [checked]
+                  - generic [ref=f4e174] [cursor=pointer]: 🌙
+                - generic [ref=f4e175]:
+                  - radio "⭐"
+                  - generic [ref=f4e176] [cursor=pointer]: ⭐
+                - generic [ref=f4e177]:
+                  - radio "🎵"
+                  - generic [ref=f4e178] [cursor=pointer]: 🎵
+                - generic [ref=f4e179]:
+                  - radio
+                  - generic [aria-hidden] [ref=f4e180] [cursor=pointer]: ✦
+                - generic [ref=f4e181]:
+                  - radio "💤"
+                  - generic [ref=f4e182] [cursor=pointer]: 💤
+                - generic [ref=f4e183]:
+                  - radio "🌸"
+                  - generic [ref=f4e184] [cursor=pointer]: 🌸
+            - button "📌 Pin Note to Nursery Wall" [ref=f4e185] [cursor=pointer]:
+              - generic [ref=f4e186]: 📌
+              - text: Pin Note to Nursery Wall
+            - status [ref=f4e187]
+        - generic "Guestbook entries" [ref=f4e188]:
+          - paragraph [ref=f4e189]: Be the first to sign Pip's wall! 🌟
+  - contentinfo [ref=f4e190]:
+    - generic [ref=f4e191]:
+      - generic [ref=f4e192]:
+        - generic [ref=f4e193]: NURSERY WEB BADGE VAULT · 88×31
+        - generic [ref=f4e194]:
+          - generic [ref=f4e195] [cursor=pointer]: MADE W/ ♥
+          - generic [ref=f4e196] [cursor=pointer]: BEDTIME★OK
+          - generic [ref=f4e197] [cursor=pointer]: PIP APPROVED
+          - generic [ref=f4e198] [cursor=pointer]: NO SPOOKIES
+          - generic [ref=f4e199] [cursor=pointer]: Y2K·READY
+          - generic [ref=f4e200] [cursor=pointer]: DREAM★CORE
+      - generic "Webring navigation" [ref=f4e201]:
+        - button "Previous site" [ref=f4e202] [cursor=pointer]: ← [Prev Dream]
+        - generic [ref=f4e203]: "✦ [pip's midnight webring #0042] ✦"
+        - button "Next site" [ref=f4e204] [cursor=pointer]: "[Next Dream] →"
+      - generic [ref=f4e205]:
+        - paragraph [ref=f4e206]:
+          - text: "Pip character art:"
+          - link "haX.baby Track 1 Creator Asset Pack" [ref=f4e207] [cursor=pointer]:
+            - /url: https://hax.baby
+          - text: "· Fonts: Fraunces, Quicksand, Space Mono, VT323 ·"
+          - link "GSAP" [ref=f4e208] [cursor=pointer]:
+            - /url: https://gsap.com
+          - text: ·
+          - link "Supabase" [ref=f4e209] [cursor=pointer]:
+            - /url: https://supabase.com
+        - paragraph [ref=f4e210]: best viewed at bedtime · zzz
+        - paragraph [ref=f4e211]: © 2026 Pip @ The Midnight Nursery. All dream pillows reserved.
+      - generic [ref=f4e213]:
+        - generic [ref=f4e214]: sweet dreams, come back soon
+        - generic [ref=f4e215]: ✦
+  - generic: ✨ Welcome back! Pip missed you!

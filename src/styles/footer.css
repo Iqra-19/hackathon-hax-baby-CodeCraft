@@ -1,0 +1,168 @@
+/* Footer — retro peak-end delight */
+.site-footer {
+  background: var(--cream);
+  border-top: 2px solid rgba(255, 197, 107, 0.6);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-2xl);
+  font-family: var(--font-mono);
+  position: relative;
+  overflow: hidden;
+}
+
+:root[data-theme="night"] .site-footer {
+  background: var(--navy);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  text-align: center;
+}
+
+/* ─── Badge Vault ─────────────────────────────────────── */
+.badge-vault {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.badge-vault-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-badges {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* web-badge class is in base.css */
+
+/* ─── Webring ─────────────────────────────────────────── */
+.webring {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--card);
+  padding: 8px 20px;
+  border-radius: 99px;
+  border: 1px solid var(--amber);
+  box-shadow: var(--glow-card);
+}
+
+.webring-btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: text-decoration var(--duration-fast), color var(--duration-fast);
+  padding: 0;
+}
+
+.webring-btn:hover { text-decoration: underline; }
+
+.webring-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Credits ─────────────────────────────────────────── */
+.footer-credits {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.credits {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+.credits a { color: var(--amber); }
+.credits a:hover { color: var(--accent); }
+
+.footer-retro {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+/* ─── Peak-end Pip goodbye ────────────────────────────── */
+.footer-goodbye {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.goodbye-bubble {
+  background: var(--cream);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 99px;
+  padding: 6px 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: 0 6px 20px rgba(255, 197, 107, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+:root[data-theme="night"] .goodbye-bubble { background: var(--card); }
+
+.footer-pip-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+  border: 4px solid var(--amber);
+  box-shadow: 0 0 24px var(--amber);
+  animation: pip-wave 3s ease-in-out infinite;
+}
+
+.footer-pip-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.5) translateY(5%);
+}
+
+@keyframes pip-wave {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+@media (max-width: 480px) {
+  .webring { flex-wrap: wrap; justify-content: center; padding: 8px 12px; }
+  .credits { font-size: 0.7rem; }
+}

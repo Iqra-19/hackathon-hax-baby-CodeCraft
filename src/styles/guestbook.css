@@ -1,0 +1,283 @@
+/* Guestbook — Pillow Guestbook & Nursery Wall */
+.guestbook-section {
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(201, 182, 228, 0.06) 100%);
+}
+
+.gb-heading {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gb-sub {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink);
+  margin-bottom: var(--space-md);
+  max-width: 100%;
+}
+
+/* ─── Grid layout ─────────────────────────────────────── */
+.guestbook-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* ─── Form card ───────────────────────────────────────── */
+.guestbook-form-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid rgba(255, 197, 107, 0.4);
+  box-shadow: var(--glow-card);
+}
+
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.char-counter {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--cream);
+  border: 2px solid rgba(255, 197, 107, 0.6);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(163, 64, 99, 0.15);
+  outline: none;
+}
+
+/* Sticker picker */
+.gb-stickers {
+  border: none;
+  padding: 0;
+}
+
+.gb-stickers legend {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.sticker-opts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sticker-opt {
+  display: flex;
+  align-items: center;
+}
+
+.sticker-opt input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sticker-opt span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 1.25rem;
+  background: var(--cream);
+  border: 1px solid rgba(255, 197, 107, 0.4);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color var(--duration-fast),
+              box-shadow var(--duration-fast),
+              transform var(--duration-fast) var(--ease-bounce);
+}
+
+.sticker-opt span:hover { border-color: var(--amber); transform: scale(1.1); }
+
+.sticker-opt input[type="radio"]:checked + span {
+  border: 2px solid var(--amber);
+  box-shadow: 0 0 12px var(--amber);
+  transform: scale(1.05);
+  background: var(--cream);
+}
+
+.gb-submit {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.form-status {
+  font-size: 0.8rem;
+  color: var(--accent);
+  min-height: 1.4em;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* ─── Guestbook entries (masonry note wall) ──────────── */
+.guestbook-entries {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.entries-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  opacity: 0.6;
+  font-style: italic;
+  max-width: 100%;
+}
+
+/* Note card */
+.entry-card {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 197, 107, 0.4);
+  padding: var(--space-md);
+  box-shadow: 0 8px 20px rgba(255, 197, 107, 0.3);
+  animation: entry-slide-in 0.4s var(--ease-out) forwards;
+}
+
+/* Organic tilt preset — applied by JS via nth or index */
+.entry-card:nth-child(2n)   { transform: rotate(2deg); }
+.entry-card:nth-child(3n)   { transform: rotate(-1.5deg); }
+.entry-card:nth-child(4n)   { transform: rotate(1deg); }
+.entry-card:nth-child(5n)   { transform: rotate(-2.5deg); }
+
+/* Pastel bg per entry (cycled by JS or nth) */
+.entry-card:nth-child(6n+1) { background: #FEDEE6; }
+.entry-card:nth-child(6n+2) { background: #DCECF9; }
+.entry-card:nth-child(6n+3) { background: #E8E0F7; }
+.entry-card:nth-child(6n+4) { background: #DBF3E7; }
+.entry-card:nth-child(6n+5) { background: #FFF2D6; }
+.entry-card:nth-child(6n)   { background: #DCECF9; }
+
+@keyframes entry-slide-in {
+  from { opacity: 0; transform: translateY(16px) rotate(0deg); }
+  to   { opacity: 1; }
+}
+
+/* Tape strip at top */
+.entry-card::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 16px;
+  background: rgba(255, 248, 241, 0.92);
+  box-shadow: 0 2px 6px rgba(255, 197, 107, 0.4);
+  border-left: 1px dashed rgba(163, 64, 99, 0.25);
+  border-right: 1px dashed rgba(163, 64, 99, 0.25);
+  border-radius: 2px;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  padding-top: 8px;
+}
+
+.entry-name {
+  font-family: var(--font-head);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.entry-sticker {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.entry-message {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cocoa);
+  line-height: 1.5;
+  max-width: 100%;
+  margin-bottom: 6px;
+}
+
+.entry-time {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .guestbook-grid {
+    grid-template-columns: 1fr;
+  }
+  .guestbook-entries {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .guestbook-entries {
+    grid-template-columns: 1fr;
+  }
+  .entry-card:nth-child(n) { transform: none; }
+}

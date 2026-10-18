@@ -1,0 +1,75 @@
+/* Chaos Mode overrides */
+
+/* Tilted sections */
+:root[data-chaos="true"] .section {
+  position: relative;
+}
+
+:root[data-chaos="true"] .trading-card {
+  transform: rotate(-3deg) scale(1.02) !important;
+}
+
+:root[data-chaos="true"] .section-title {
+  animation: chaos-shake 0.5s ease-in-out infinite;
+  font-family: var(--font-retro) !important;
+  letter-spacing: 0.1em;
+}
+
+@keyframes chaos-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1deg); }
+  75% { transform: rotate(1deg); }
+}
+
+:root[data-chaos="true"] .hero-name {
+  animation: chaos-glitch 2s linear infinite;
+}
+
+@keyframes chaos-glitch {
+  0%, 90%, 100% { text-shadow: none; transform: none; }
+  92% { text-shadow: 2px 0 #ff4500, -2px 0 #00ff88; transform: skew(-2deg); }
+  94% { text-shadow: -2px 0 #ff4500, 2px 0 #00ff88; transform: skew(2deg); }
+  96% { text-shadow: 2px 2px #ff4500; transform: translate(2px, -1px); }
+}
+
+/* Desktop icons fly around */
+:root[data-chaos="true"] .desktop-icon {
+  animation: icon-float 3s ease-in-out infinite;
+  animation-delay: var(--icon-delay, 0s);
+}
+
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+/* Marquee goes 3× faster */
+:root[data-chaos="true"] .marquee-content {
+  animation-duration: 8s !important;
+}
+
+/* Windows tilt randomly */
+:root[data-chaos="true"] .os-window {
+  border-color: #ff4500 !important;
+}
+
+/* Stars rain */
+:root[data-chaos="true"] body::after {
+  content: '★✦⭐💫✨';
+  position: fixed;
+  top: -20px;
+  left: 0;
+  right: 0;
+  font-size: 1.5rem;
+  color: var(--amber);
+  animation: star-rain 4s linear infinite;
+  pointer-events: none;
+  z-index: 9998;
+  letter-spacing: 6rem;
+  white-space: nowrap;
+}
+
+@keyframes star-rain {
+  from { transform: translateY(-20px); opacity: 1; }
+  to { transform: translateY(100vh); opacity: 0; }
+}

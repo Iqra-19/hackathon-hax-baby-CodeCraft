@@ -1,0 +1,227 @@
+/* About — Character Passport with holo-card */
+.about {
+  padding-block: var(--space-xl) var(--space-2xl);
+}
+
+/* ─── Holo-card layout ───────────────────────────────── */
+.about-card {
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+/* ─── Portrait column ────────────────────────────────── */
+.about-portrait-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portrait-frame {
+  width: 100%;
+  max-width: 280px;
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  background: var(--cream);
+}
+
+.portrait-frame .win98-inset {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.card-portrait {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  filter: drop-shadow(0 4px 12px rgba(255, 197, 107, 0.2));
+}
+
+.portrait-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--accent);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--amber);
+  box-shadow: 0 0 8px var(--amber);
+}
+
+.portrait-caption {
+  padding: 8px 4px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink);
+}
+
+.caption-link {
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+.caption-link:hover { text-decoration: underline; }
+
+/* ─── Specs column ───────────────────────────────────── */
+.about-specs-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(255, 197, 107, 0.4);
+}
+
+.nursery-class {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.about-name {
+  font-family: var(--font-head);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.registry-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(255, 197, 107, 0.3);
+  color: var(--ink);
+  padding: 4px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--amber);
+  box-shadow: 0 2px 8px rgba(255, 197, 107, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Spec rows */
+.spec-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.spec-row {
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 197, 107, 0.4);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  box-shadow: 0 4px 16px rgba(255, 197, 107, 0.15);
+}
+
+.spec-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.spec-row dd {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+}
+
+.spec-highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Snuggle meter */
+.snuggle-meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 197, 107, 0.4);
+  flex-wrap: wrap;
+}
+
+.meter-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.meter-track {
+  flex: 1;
+  min-width: 100px;
+  height: 14px;
+  background: var(--cream);
+  border-radius: 99px;
+  border: 1px solid var(--amber);
+  overflow: hidden;
+  padding: 2px;
+}
+
+.meter-fill {
+  height: 100%;
+  width: var(--fill, 0%);
+  background: linear-gradient(to right, var(--accent), var(--amber));
+  border-radius: 99px;
+  box-shadow: 0 0 8px var(--amber);
+  transition: width 1.2s var(--ease-out);
+}
+
+.meter-value {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-card {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about-portrait-col { align-items: center; }
+  .portrait-frame { max-width: 220px; }
+  .about-header { flex-direction: column; align-items: flex-start; }
+  .spec-row { flex-direction: column; align-items: flex-start; }
+  .spec-row dd { text-align: left; }
+}

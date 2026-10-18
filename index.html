@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pip's Homepage @ Midnight Nursery 🌙</title>
+  <meta name="description" content="Hi, I'm Pip! Junior Dream Engineer at the Midnight Nursery — I build the dreams you fall asleep inside.">
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Quicksand:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fixed toolbar — 3 zones: brand / marquee / controls -->
+  <header class="toolbar" role="banner">
+    <div class="toolbar-brand">
+      <span class="toolbar-logo">✦ Pip's Homepage</span>
+      <span class="toolbar-version">v1.02</span>
+    </div>
+
+    <div class="toolbar-marquee-wrap" aria-hidden="true">
+      <div class="marquee-content">
+        ✦ now playing: twinkle v2 · zzz edition · welcome to my corner of the web! ✦ dream weather: 72° &amp; 100% snuggles ✦ bedtime shift: active ✦ now playing: twinkle v2 · zzz edition · welcome to my corner of the web! ✦ dream weather: 72° &amp; 100% snuggles ✦ bedtime shift: active ✦
+      </div>
+    </div>
+
+    <div class="toolbar-controls">
+      <!-- Mechanical vintage odometer -->
+      <div class="odometer" aria-label="Visitor count">
+        <span class="odometer-label">HITS</span>
+        <div id="counter-digits" class="odometer-digits">
+          <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>1</span>
+        </div>
+      </div>
+
+      <!-- Pill buttons -->
+      <div class="toolbar-pills">
+        <button id="mute-toggle" class="toolbar-pill" aria-pressed="false" aria-label="Toggle sound">
+          <lord-icon class="toolbar-lordicon" src="/assets/icons/speaker.json" colors="primary:#fff8f1,secondary:#ffc56b" aria-hidden="true"></lord-icon>
+          <span class="pill-text">Sound Off</span>
+        </button>
+        <button id="theme-toggle" class="toolbar-pill" aria-pressed="false" aria-label="Toggle night mode">
+          <lord-icon class="toolbar-lordicon" src="/assets/icons/moon.json" colors="primary:#fff8f1,secondary:#ffc56b" aria-hidden="true"></lord-icon>
+          <span class="pill-text">Bedtime</span>
+        </button>
+        <button id="chaos-toggle" class="toolbar-pill" aria-pressed="false" aria-label="Toggle chaos mode">
+          <lord-icon class="toolbar-lordicon" src="/assets/icons/lightning.json" colors="primary:#fff8f1,secondary:#ffc56b" aria-hidden="true"></lord-icon>
+          <span class="pill-text">Chaos</span>
+        </button>
+      </div>
+
+      <!-- Pip avatar with amber ring -->
+      <div class="toolbar-pip" aria-hidden="true">
+        <img src="/assets/pip_avatar_cloud.webp" alt="" width="24" height="29">
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Section 1: Hero ── -->
+    <!-- psst… pip's bow is ticklish (×5) -->
+    <section class="section hero" id="hero">
+      <!-- Decorative ambient stars -->
+      <span class="hero-star hero-star--moon" aria-hidden="true">🌙</span>
+      <span class="hero-star hero-star--a" aria-hidden="true">✦</span>
+      <span class="hero-star hero-star--b" aria-hidden="true">✧</span>
+      <span class="hero-star hero-star--c" aria-hidden="true">⋆</span>
+      <span class="hero-star hero-star--d" aria-hidden="true">✦</span>
+
+      <div class="hero-center wrap">
+        <!-- Pip with amber halo + speech bubble -->
+        <div class="pip-container">
+          <div class="speech-bubble" id="speech-bubble" aria-live="polite" hidden>
+            <span class="bubble-text">oh! a visitor! it was getting so quiet in here.</span>
+            <span class="bubble-sparkle">✦</span>
+            <div class="bubble-tail" aria-hidden="true"></div>
+          </div>
+
+          <!-- Wake-up video: plays once, then fades to interactive Pip -->
+          <video
+            class="pip-wake-video"
+            id="pip-wake-video"
+            src="/assets/videos/pip-wakes.mp4"
+            muted
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          ></video>
+
+          <figure class="pip pip--hidden" id="pip" aria-label="Pip, skull baby dream engineer">
+            <div class="pip-halo" aria-hidden="true"></div>
+            <img
+              src="/assets/pip_avatar_cloud.webp"
+              alt="Pip, a sleepy skull baby in a starry nightcap, waving from a cloud"
+              width="896" height="1090"
+            >
+            <span class="pupil" style="--x:37%;--y:31%" aria-hidden="true"></span>
+            <span class="pupil" style="--x:55%;--y:31%" aria-hidden="true"></span>
+            <button class="bow-hit" aria-label="Pip's pink bow — tap me!"></button>
+          </figure>
+        </div>
+
+        <!-- Hero text below Pip -->
+        <div class="hero-text">
+          <h1 class="hero-name">
+            Hi, I'm <span class="accent">Pip!</span>
+            <span class="hero-sparkle" aria-hidden="true">✦</span>
+          </h1>
+          <p class="hero-subtitle">
+            Junior Dream Engineer <span class="hero-dot">·</span> Midnight Nursery
+          </p>
+          <p class="hero-tagline">"I build the dreams you fall asleep inside."</p>
+          <div class="hero-hint" aria-label="Easter egg hint">
+            <span>psst… pip's bow is ticklish</span>
+            <span class="bow-hint-icon" aria-hidden="true">🎀</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 2: About ── -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <div class="section-stamp">
+          <span class="stamp-num">01</span>
+          <h2 class="section-heading">Nursery Passport &amp; Character Sheet</h2>
+          <div class="stamp-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="holo-card about-card">
+          <!-- Left: portrait in beveled frame -->
+          <div class="about-portrait-col">
+            <div class="win98-box portrait-frame">
+              <div class="win98-inset">
+                <img
+                  src="/assets/pip_portrait.webp"
+                  alt="Official studio character portrait of Pip"
+                  width="682" height="1024"
+                  loading="lazy"
+                  class="card-portrait"
+                >
+                <div class="portrait-badge" aria-hidden="true">★ 1ST ED</div>
+              </div>
+              <div class="portrait-caption">
+                <span>pip_portrait.jpg · 892 KB</span>
+                <span class="caption-link">click to enlarge ↗</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: key-value specs + snuggle meter -->
+          <div class="about-specs-col">
+            <div class="about-header">
+              <div>
+                <span class="nursery-class">NURSERY CLASS: NEWBORN DREAMER</span>
+                <h3 class="about-name">about pip <span class="accent">✦</span></h3>
+              </div>
+              <span class="registry-tag">ID #0042-DREAM</span>
+            </div>
+
+            <dl class="spec-rows">
+              <div class="spec-row">
+                <dt>SPECIES</dt>
+                <dd>Dream Skull Baby (Soft Vinyl Toy Class)</dd>
+              </div>
+              <div class="spec-row">
+                <dt>LOOK</dt>
+                <dd>round skull · amber eyes · star nightcap · pink bow</dd>
+              </div>
+              <div class="spec-row">
+                <dt>VIBE</dt>
+                <dd>curious · sleepy · clumsy · giggles at everything · hates silence</dd>
+              </div>
+              <div class="spec-row">
+                <dt>JOB</dt>
+                <dd class="spec-highlight">Junior Dream Engineer, Midnight Nursery</dd>
+              </div>
+              <div class="spec-row">
+                <dt>LOVES</dt>
+                <dd>lullabies · nightlights · soft rattles · counting stars</dd>
+              </div>
+            </dl>
+
+            <div class="snuggle-meter" aria-label="Snuggle meter: 94% cozy">
+              <span class="meter-label">SNUGGLE METER:</span>
+              <div class="meter-track" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
+                <div class="meter-fill" style="--fill: 94%"></div>
+              </div>
+              <span class="meter-value">94% COZY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 3: Projects ── -->
+    <section class="section projects-section" id="projects">
+      <div class="wrap">
+        <div class="section-stamp">
+          <span class="stamp-num">02</span>
+          <h2 class="section-heading">Dream OS 98 Bedside Workshop</h2>
+          <div class="stamp-divider" aria-hidden="true"></div>
+          <div class="projects-prompt" aria-hidden="true">
+            C:\MIDNIGHT_NURSERY\PROJECTS&gt; <span class="prompt-cursor">▋</span>
+          </div>
+        </div>
+
+        <div class="desktop" id="desktop">
+          <!-- Desktop icons -->
+          <div class="desktop-icons" id="desktop-icons" role="list">
+            <button class="desktop-icon" data-project="lullaby-lab" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/lullaby.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">Lullaby_Lab.exe</span>
+            </button>
+            <button class="desktop-icon" data-project="nightlight" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/nightlight.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">Nightlights.app</span>
+            </button>
+            <button class="desktop-icon" data-project="delivery" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/delivery.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">Routes.map</span>
+            </button>
+            <button class="desktop-icon" data-project="rattle" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/rattle.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">RattleToys.bin</span>
+            </button>
+            <button class="desktop-icon" data-project="growth" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/chart.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">GrowthChart.dat</span>
+            </button>
+          </div>
+
+          <!-- Project windows (injected by projects.ts) -->
+          <div class="windows-layer" id="windows-layer" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 4: Story ── -->
+    <section class="section story-section dark-room" id="story">
+      <div class="wrap">
+        <div class="section-stamp section-stamp--light">
+          <span class="stamp-num">03</span>
+          <h2 class="section-heading">The Making of a Dream Engineer</h2>
+          <div class="stamp-divider" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="story-progress" aria-hidden="true">
+        <span class="progress-dot active" data-scene="1"></span>
+        <span class="progress-dot" data-scene="2"></span>
+        <span class="progress-dot" data-scene="3"></span>
+        <span class="progress-dot" data-scene="4"></span>
+        <span class="progress-dot" data-scene="5"></span>
+      </div>
+
+      <div class="story-scenes" id="story-scenes">
+        <div class="scene" data-scene="1" aria-label="Scene 1 of 5">
+          <div class="scene-content wrap">
+            <div class="scene-icon" aria-hidden="true">🌙</div>
+            <span class="scene-number">SCENE 01 · 20:15 PM · PEACH DUSK</span>
+            <h3 class="scene-title">A Moonbeam in the Attic</h3>
+            <p>When evening wraps the nursery, a golden moonbeam sneaks through the skylight, settling softly on an empty cradle of clouds.</p>
+          </div>
+        </div>
+
+        <div class="scene" data-scene="2" aria-label="Scene 2 of 5">
+          <video class="scene-bg-video" src="/assets/videos/dream-float.mp4" autoplay loop muted playsinline preload="none" aria-hidden="true"></video>
+          <div class="scene-content wrap">
+            <div class="scene-icon" aria-hidden="true">⭐</div>
+            <span class="scene-number">SCENE 02 · 21:30 PM · ROSE TWILIGHT</span>
+            <h3 class="scene-title">Baby Pip Awakens</h3>
+            <p>Tiny Pip opens two glowing amber eyes, wearing a starry nightcap tied with a pink bow. The nursery is warm, but something is missing.</p>
+          </div>
+        </div>
+
+        <div class="scene" data-scene="3" aria-label="Scene 3 of 5">
+          <div class="scene-content wrap">
+            <div class="scene-icon" aria-hidden="true">🤫</div>
+            <span class="scene-number">SCENE 03 · 23:00 PM · VIOLET DEEPENING</span>
+            <h3 class="scene-title">Too Quiet to Sleep</h3>
+            <p>Pip cannot snooze — complete silence feels lonely! Pip gathers ticking wind-up keys, brass springs, and honey clouds to craft a cheerful chime.</p>
+          </div>
+        </div>
+
+        <div class="scene" data-scene="4" aria-label="Scene 4 of 5">
+          <div class="scene-content wrap">
+            <div class="scene-icon" aria-hidden="true">🦄</div>
+            <span class="scene-number">SCENE 04 · 00:30 AM · MIDNIGHT BLUE</span>
+            <h3 class="scene-title">The First Music Box</h3>
+            <p>With one winding turn, Twinkle v2 plays into the dark. Down in the valley, three baby mice curl their tails and fall peacefully asleep.</p>
+          </div>
+        </div>
+
+        <div class="scene" data-scene="5" aria-label="Scene 5 of 5">
+          <div class="scene-content wrap">
+            <!-- Nightlight video (hidden until "lights on" is clicked) -->
+            <video
+              class="scene-nightlight-video"
+              id="nightlight-video"
+              src="/assets/videos/nightlight.mp4"
+              muted
+              playsinline
+              loop
+              preload="none"
+              hidden
+              aria-hidden="true"
+            ></video>
+            <div class="scene-finale-img" id="scene-finale-img">
+              <img
+                src="/assets/pip_dream_lantern.webp"
+                alt="Pip's glowing crescent moon nightlight lantern"
+                width="1024" height="914"
+                loading="lazy"
+              >
+            </div>
+            <span class="scene-number scene-number--amber">SCENE 05 · 02:45 AM · DEEP MIDNIGHT SHIFT</span>
+            <h3 class="scene-title scene-title--amber">Junior Dream Engineer on Duty</h3>
+            <p>Now Pip patrols the rooftops atop a warm cumulus cloud, lantern in hand, tuning ambient night frequencies so no creature fears the shadows.</p>
+            <div class="scene-cert" aria-hidden="true">✦ Officially certified by The Midnight Cloud Academy #0042</div>
+            <button class="lights-on-btn" id="lights-on" aria-label="Turn lights on">☀ lights on</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 5: Guestbook ── -->
+    <section class="section guestbook-section" id="guestbook">
+      <div class="wrap">
+        <div class="section-stamp">
+          <span class="stamp-num">04</span>
+          <h2 class="section-heading">Pillow Guestbook: Sign Pip's Nursery Wall</h2>
+          <div class="stamp-divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="guestbook-grid">
+          <!-- Left: form card -->
+          <div class="guestbook-form-card">
+            <h3 class="gb-heading">
+              sign pip's nursery wall <span class="accent">✦</span>
+            </h3>
+            <p class="gb-sub">Leave a bedtime greeting, note, or stamp before your next nap!</p>
+
+            <form class="guestbook-form" id="guestbook-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="gb-name">YOUR NAME / HANDLE (32 CHARS):</label>
+                <input type="text" id="gb-name" name="name" placeholder="e.g., Starlight Wanderer" maxlength="32" required autocomplete="nickname">
+              </div>
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label" for="gb-message">BEDTIME MESSAGE (140 CHARS):</label>
+                  <span class="char-counter" id="char-counter">0/140</span>
+                </div>
+                <textarea id="gb-message" name="message" placeholder="Wishing you the warmest blankets and softest lullabies..." maxlength="140" required rows="3"></textarea>
+              </div>
+
+              <fieldset class="gb-stickers">
+                <legend class="form-label">PICK A NURSERY STICKER:</legend>
+                <div class="sticker-opts">
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="🌙" checked><span>🌙</span></label>
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="⭐"><span>⭐</span></label>
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="🎵"><span>🎵</span></label>
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="✦"><span aria-hidden="true">✦</span></label>
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="💤"><span>💤</span></label>
+                  <label class="sticker-opt"><input type="radio" name="sticker" value="🌸"><span>🌸</span></label>
+                </div>
+              </fieldset>
+
+              <button type="submit" class="cta-btn primary gb-submit" data-click-sound>
+                <span>📌</span> Pin Note to Nursery Wall
+              </button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <!-- Right: guestbook entries wall -->
+          <div class="guestbook-entries" id="guestbook-entries" aria-label="Guestbook entries">
+            <p class="entries-empty">Be the first to sign Pip's wall! 🌟</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-inner">
+      <!-- 88×31 Badge Vault -->
+      <div class="badge-vault">
+        <div class="badge-vault-label">NURSERY WEB BADGE VAULT · 88×31</div>
+        <div class="footer-badges">
+          <div class="web-badge" style="background:#a34063;color:#ffc56b;">MADE W/ ♥</div>
+          <div class="web-badge" style="background:#050712;color:#fff8f1;">BEDTIME★OK</div>
+          <div class="web-badge" style="background:#5c4033;color:#ffc56b;">PIP APPROVED</div>
+          <div class="web-badge" style="background:#ffffff;color:#a34063;">NO SPOOKIES</div>
+          <div class="web-badge" style="background:#344d62;color:#fff8f1;">Y2K·READY</div>
+          <div class="web-badge" style="background:#812e4c;color:#ffc56b;">DREAM★CORE</div>
+        </div>
+      </div>
+
+      <!-- Webring -->
+      <div class="webring" aria-label="Webring navigation">
+        <button class="webring-btn" aria-label="Previous site">← [Prev Dream]</button>
+        <span class="webring-label">✦ [pip's midnight webring #0042] ✦</span>
+        <button class="webring-btn" aria-label="Next site">[Next Dream] →</button>
+      </div>
+
+      <!-- Credits -->
+      <div class="footer-credits">
+        <p class="credits">
+          Pip character art: <a href="https://hax.baby" target="_blank" rel="noopener noreferrer">haX.baby Track 1 Creator Asset Pack</a>
+          &nbsp;·&nbsp; Video clips: Google Flow (Veo)
+          &nbsp;·&nbsp; Fonts: Fraunces, Quicksand, Space Mono, VT323
+          &nbsp;·&nbsp; <a href="https://gsap.com" target="_blank" rel="noopener noreferrer">GSAP</a>
+          &nbsp;·&nbsp; <a href="https://supabase.com" target="_blank" rel="noopener noreferrer">Supabase</a>
+          &nbsp;·&nbsp; Icons: <a href="https://lordicon.com" target="_blank" rel="noopener noreferrer">Lordicon</a>
+        </p>
+        <p class="footer-retro">best viewed at bedtime · zzz</p>
+        <p class="footer-copy">© 2026 Pip @ The Midnight Nursery. All dream pillows reserved.</p>
+      </div>
+
+      <!-- Peak-end Pip goodbye -->
+      <div class="footer-goodbye">
+        <div class="goodbye-bubble">
+          <span>sweet dreams, come back soon</span>
+          <span class="accent">✦</span>
+        </div>
+        <div class="footer-pip-avatar" aria-hidden="true">
+          <img src="/assets/pip_avatar_cloud.webp" alt="" width="64" height="78">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

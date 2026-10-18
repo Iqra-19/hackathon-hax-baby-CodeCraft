@@ -1,0 +1,95 @@
+/* Design tokens — day/night/chaos themes */
+:root {
+  /* ─── Raw palette ──────────────────────────────────────────── */
+  --cream: #fff8f1;
+  --berry: #a34063;
+  --berry-dark: #812e4c;
+  --berry-ticker: #822a4b;
+  --cocoa: #5c4033;
+  --amber: #ffc56b;
+  --lilac: #c9b6e4;
+  --blush: #f6c1cc;
+  --sky: #bfd9f2;
+  --mint: #c5e8d8;
+  --navy: #1b1f3b;
+  --midnight: #050712;
+
+  /* ─── Semantic (day mode) ──────────────────────────────────── */
+  --bg: var(--cream);
+  --ink: var(--cocoa);
+  --accent: var(--berry);
+  --accent-hover: var(--berry-dark);
+  --accent-2: var(--lilac);
+  --card: #ffffff;
+  --card-border: rgba(255, 197, 107, 0.4);
+
+  /* ─── Amber glow system (NO grey shadows anywhere) ─────────── */
+  --glow-card: 0 12px 32px -4px rgba(255, 197, 107, 0.35);
+  --glow-card-border: 0 12px 32px -4px rgba(255, 197, 107, 0.35), 0 0 0 1px rgba(255, 197, 107, 0.22);
+  --glow-strong: 0 0 24px rgba(255, 197, 107, 0.65);
+  --glow-halo: 0 0 60px 20px rgba(255, 197, 107, 0.30);
+  --glow-btn: 0 4px 12px rgba(255, 197, 107, 0.25);
+  --glow-badge: 0 4px 12px rgba(255, 197, 107, 0.30);
+  /* Legacy aliases used throughout scaffold CSS */
+  --glow: rgba(255, 197, 107, 0.55);
+  --shadow: rgba(255, 197, 107, 0.25);
+
+  /* ─── Typography ───────────────────────────────────────────── */
+  --font-head: "Fraunces", Georgia, serif;
+  --font-body: "Quicksand", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --font-retro: "VT323", ui-monospace, monospace;
+
+  /* ─── Spacing ──────────────────────────────────────────────── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 128px;
+
+  /* ─── Layout ───────────────────────────────────────────────── */
+  --wrap-max: 1100px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  /* ─── Motion ───────────────────────────────────────────────── */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+}
+
+/* Night theme */
+:root[data-theme="night"] {
+  --bg: var(--navy);
+  --ink: #f4ead9;
+  --accent: #ff8fb1;
+  --accent-hover: #e6729e;
+  --accent-2: var(--lilac);
+  --card: #262b52;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --glow: rgba(255, 143, 177, 0.45);
+  --shadow: rgba(0, 0, 0, 0.4);
+  --glow-card: 0 12px 32px -4px rgba(255, 143, 177, 0.25);
+  --glow-card-border: 0 12px 32px -4px rgba(255, 143, 177, 0.25);
+}
+
+/* Chaos mode */
+:root[data-chaos="true"] {
+  --accent: #ff4500;
+  --accent-2: #00ff88;
+  --bg: #0a0a0a;
+  --ink: #ffffff;
+  --card: #1a1a1a;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
