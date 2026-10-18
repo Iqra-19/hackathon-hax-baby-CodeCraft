@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { onGuestbookSubmitted } from './companion'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string
 const SUPABASE_ANON = import.meta.env.VITE_SUPABASE_ANON_KEY as string
@@ -112,6 +113,7 @@ export function initGuestbook() {
       entriesEl!.insertBefore(card, entriesEl!.firstChild)
       form.reset()
       if (statusEl) statusEl.textContent = '✨ Note posted!'
+      onGuestbookSubmitted()
       setTimeout(() => { if (statusEl) statusEl.textContent = '' }, 3000)
     } catch {
       if (statusEl) statusEl.textContent = '❌ Could not post. Try again!'
@@ -131,6 +133,7 @@ export function initGuestbook() {
     entriesEl!.insertBefore(renderEntry(fake), entriesEl!.firstChild)
     form!.reset()
     if (statusEl) statusEl.textContent = '✨ Note pinned locally!'
+    onGuestbookSubmitted()
     setTimeout(() => { if (statusEl) statusEl.textContent = '' }, 3000)
   }
 }

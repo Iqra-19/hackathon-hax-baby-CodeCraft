@@ -1,5 +1,5 @@
 import confetti from 'canvas-confetti'
-import { playLullaby } from './audio'
+import { playLullaby, isMuted } from './audio'
 
 export function initEgg(bow: HTMLElement, pip: HTMLElement) {
   let taps = 0
@@ -20,7 +20,23 @@ export function initEgg(bow: HTMLElement, pip: HTMLElement) {
     // 🎉 Easter egg triggered
     taps = 0
     pip.classList.add('asleep')
-    playLullaby()
+
+    if (isMuted()) {
+      const bubble = document.getElementById('speech-bubble')
+      if (bubble) {
+        const textEl = bubble.querySelector<HTMLElement>('.bubble-text')
+        const prevText = textEl?.textContent ?? "oh! a visitor! it was getting so quiet in here."
+        if (textEl) textEl.textContent = "unmute me, i'll sing!! 🎵"
+        bubble.removeAttribute('hidden')
+        setTimeout(() => {
+          if (textEl && textEl.textContent === "unmute me, i'll sing!! 🎵") {
+            textEl.textContent = prevText
+          }
+        }, 5000)
+      }
+    } else {
+      playLullaby()
+    }
 
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       void confetti({

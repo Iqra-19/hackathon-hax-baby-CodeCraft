@@ -1,0 +1,46 @@
+import js from '@eslint/js';
+
+export default [
+  js.configs.recommended,
+  {
+    files: ['src/**/*.{ts,js}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        navigator: 'readonly',
+        performance: 'readonly',
+        requestAnimationFrame: 'readonly',
+        cancelAnimationFrame: 'readonly',
+        addEventListener: 'readonly',
+        removeEventListener: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        matchMedia: 'readonly',
+        IntersectionObserver: 'readonly',
+        AudioContext: 'readonly',
+        GainNode: 'readonly',
+        FormData: 'readonly',
+        CustomEvent: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLButtonElement: 'readonly',
+        HTMLVideoElement: 'readonly',
+        HTMLFormElement: 'readonly',
+        HTMLTextAreaElement: 'readonly',
+        Element: 'readonly',
+        PointerEvent: 'readonly',
+        localStorage: 'readonly',
+        innerWidth: 'readonly',
+        innerHeight: 'readonly',
+        console: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': 'off',
+      'no-undef': 'off',
+      'no-empty': ['error', { allowEmptyCatch: true }],
+    },
+  },
+];

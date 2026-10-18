@@ -1,6 +1,7 @@
 let ctx: AudioContext | null = null
 let master: GainNode | null = null
 let muted = true // start muted — browsers block autoplay
+export const isMuted = (): boolean => muted
 
 function ensure() {
   if (!ctx) {

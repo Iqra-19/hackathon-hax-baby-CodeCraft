@@ -19,6 +19,7 @@ import { initProjects } from './modules/projects'
 import { initStory } from './modules/story'
 import { initGuestbook } from './modules/guestbook'
 import { initHitCounter, initChaos } from './modules/toolbar'
+import { initCompanion } from './modules/companion'
 
 // Sparkle CSS (injected once)
 const sparkleStyle = document.createElement('style')
@@ -101,6 +102,7 @@ initSparkles()
 initProjects()
 initStory()
 initGuestbook()
+initCompanion()
 
 // Welcome back memory (Tier 3)
 const VISIT_KEY = 'pip-last-visit'
