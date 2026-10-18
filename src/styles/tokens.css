@@ -21,7 +21,9 @@
   --accent-hover: var(--berry-dark);
   --accent-2: var(--lilac);
   --card: #ffffff;
+  --card-bg: #ffffff;          /* adapts per theme — use for opaque card fills */
   --card-border: rgba(255, 197, 107, 0.4);
+  --hero-bg: transparent;      /* hero section own background */
 
   /* ─── Amber glow system (NO grey shadows anywhere) ─────────── */
   --glow-card: 0 12px 32px -4px rgba(255, 197, 107, 0.35);
@@ -69,20 +71,31 @@
   --accent-hover: #e6729e;
   --accent-2: var(--lilac);
   --card: #262b52;
+  --card-bg: #262b52;
   --card-border: rgba(255, 255, 255, 0.1);
   --glow: rgba(255, 143, 177, 0.45);
   --shadow: rgba(0, 0, 0, 0.4);
   --glow-card: 0 12px 32px -4px rgba(255, 143, 177, 0.25);
   --glow-card-border: 0 12px 32px -4px rgba(255, 143, 177, 0.25);
+  /* Hero gets a deep-night radial gradient instead of flat navy */
+  --hero-bg: radial-gradient(ellipse 70% 60% at 50% 40%,
+    #2a1f4a 0%, #1b1f3b 55%, #0e1228 100%);
 }
 
-/* Chaos mode */
+/* Chaos mode — retains readable contrast; bg is dark but NOT pitch-black */
 :root[data-chaos="true"] {
-  --accent: #ff4500;
-  --accent-2: #00ff88;
-  --bg: #0a0a0a;
-  --ink: #ffffff;
-  --card: #1a1a1a;
+  --accent: #ff6b35;           /* warm orange-red, readable on dark */
+  --accent-hover: #e8551c;
+  --accent-2: #00e676;         /* electric green accent-2 */
+  --bg: #111118;               /* very dark but not #000 — retains depth */
+  --ink: #f0ece4;              /* warm off-white, easier on eyes than #fff */
+  --card: #1e1e28;
+  --card-bg: #1e1e28;
+  --card-border: rgba(255, 107, 53, 0.35);
+  --glow: rgba(255, 107, 53, 0.5);
+  /* Hero: a dramatic dark gradient so Pip still glows */
+  --hero-bg: radial-gradient(ellipse 75% 65% at 50% 40%,
+    #1f1010 0%, #111118 60%, #080810 100%);
 }
 
 /* Reduced motion */

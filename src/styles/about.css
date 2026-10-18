@@ -24,7 +24,7 @@
   max-width: 280px;
   border-radius: var(--radius-lg);
   padding: 8px;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
 }
 
 .portrait-frame .win98-inset {
@@ -130,7 +130,7 @@
 }
 
 .spec-row {
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border-radius: var(--radius);
   border: 1px solid rgba(255, 197, 107, 0.4);
   padding: 10px 12px;
@@ -188,7 +188,7 @@
   flex: 1;
   min-width: 100px;
   height: 14px;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border-radius: 99px;
   border: 1px solid var(--amber);
   overflow: hidden;

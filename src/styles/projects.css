@@ -2,6 +2,12 @@
 .projects-section {
   background: var(--card);
   position: relative;
+  /* Clip windows that extend below the section.
+     overflow:clip preserves scroll but cuts paint at the boundary. */
+  overflow: clip;
+  /* Extra bottom padding gives open windows room so they won't be
+     immediately clipped when first opened */
+  padding-bottom: var(--space-2xl);
 }
 
 /* Prompt bar (section-stamp right-side element) */
@@ -32,7 +38,8 @@
   50%       { opacity: 0; }
 }
 
-/* Desktop container */
+/* Desktop container — overflow:visible so windows can extend,
+   but .projects-section clips them at the section boundary */
 .desktop {
   background: var(--card);
   border: 2px solid var(--amber);
@@ -40,7 +47,8 @@
   padding: var(--space-lg);
   box-shadow: var(--glow-card);
   position: relative;
-  min-height: 420px;
+  /* Minimum height shows the icon grid nicely; desktop grows with content */
+  min-height: 240px;
 }
 
 /* Desktop icon grid */
@@ -69,7 +77,7 @@
 
 .desktop-icon:hover,
 .desktop-icon:focus-visible {
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border-color: rgba(255, 197, 107, 0.6);
   box-shadow: 0 0 16px rgba(255, 197, 107, 0.35);
   outline: none;
@@ -84,7 +92,7 @@
 .icon-box {
   width: 72px;
   height: 64px;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border-radius: var(--radius);
   border: 1px solid rgba(255, 197, 107, 0.5);
   display: flex;
@@ -112,18 +120,23 @@ lord-icon.desktop-lordicon {
 
 .desktop-icon.active .icon-label { color: var(--accent); }
 
-/* Windows layer */
+/* Windows layer — lives inside .desktop; windows are absolute
+   within this layer. min-height ensures the .desktop (and therefore
+   .projects-section) is tall enough to fully contain a typical open
+   window (body ≤ 380px + titlebar + menubar ≈ 440px) so no window
+   ever bleeds into the Story section below. */
 .windows-layer {
   position: relative;
   z-index: 10;
+  min-height: 440px;
 }
 
 /* ─── Dream OS window ─────────────────────────────────── */
 .os-window {
   position: absolute;
-  background: var(--cream);
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
+  background: var(--card-bg, var(--cream));
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
   border-right: 2px solid var(--amber);
   border-bottom: 2px solid var(--amber);
   border-radius: 0;
@@ -181,9 +194,9 @@ lord-icon.desktop-lordicon {
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  background: var(--cream);
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
+  background: var(--card-bg, var(--cream));
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-left: 1px solid rgba(255, 255, 255, 0.7);
   border-right: 1px solid var(--accent);
   border-bottom: 1px solid var(--accent);
   transition: filter var(--duration-fast);
@@ -201,7 +214,7 @@ lord-icon.desktop-lordicon {
 
 /* Window menu bar */
 .window-menubar {
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border-bottom: 1px solid rgba(255, 197, 107, 0.4);
   padding: 4px 12px;
   display: flex;
@@ -216,11 +229,14 @@ lord-icon.desktop-lordicon {
 }
 .window-menubar span:hover { color: var(--accent); text-decoration: underline; }
 
-/* Window body */
+/* Window body — capped height so the window never spills
+   beyond the projects section into the story section */
 .window-body {
   padding: var(--space-md);
-  background: #ffffff;
-  max-height: 55vh;
+  background: var(--card-bg, #ffffff);
+  color: var(--ink);
+  /* 44px toolbar + ~220px desktop header → leave generous room */
+  max-height: min(44vh, 380px);
   overflow-y: auto;
 }
 
@@ -306,7 +322,7 @@ lord-icon.desktop-lordicon {
 .interactive-toy {
   margin-top: var(--space-md);
   padding: 12px;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border: 1px dashed var(--accent);
   border-radius: var(--radius);
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
@@ -333,7 +349,8 @@ lord-icon.desktop-lordicon {
 
 .toy-hint {
   font-size: 0.72rem;
-  color: var(--cocoa);
+  color: var(--ink);
+  opacity: 0.8;
   font-style: italic;
 }
 
@@ -343,7 +360,7 @@ lord-icon.desktop-lordicon {
   justify-content: center;
   gap: var(--space-md);
   padding: 12px 8px;
-  background: #ffffff;
+  background: var(--card-bg, #ffffff);
   border-radius: 8px;
   border: 1px solid rgba(255, 197, 107, 0.4);
   box-shadow: var(--glow-btn);
@@ -455,7 +472,7 @@ lord-icon.desktop-lordicon {
   align-items: center;
   gap: 4px;
   padding: 8px 12px;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   border: 1px solid rgba(255, 197, 107, 0.4);
   border-radius: 10px;
   cursor: pointer;
@@ -652,5 +669,13 @@ lord-icon.desktop-lordicon {
 /* ─── Chaos Mode: tilted windows ─────────────────────── */
 :root[data-chaos="true"] .os-window {
   transform: rotate(var(--window-tilt, -2deg)) !important;
+  border-color: var(--accent);
+}
+
+/* Chaos: ensure toy-rattle-btn stays legible */
+:root[data-chaos="true"] .toy-rattle-btn {
+  background: var(--card-bg, #1e1e28);
+  color: var(--ink);
+  border-color: var(--accent);
 }
 

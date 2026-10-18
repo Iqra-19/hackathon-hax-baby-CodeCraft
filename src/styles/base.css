@@ -36,6 +36,14 @@ body {
   background-size: 70px 70px;
 }
 
+/* Chaos mode: replace wallpaper with a subtle grid/scanline pattern */
+:root[data-chaos="true"] body {
+  background-image:
+    linear-gradient(rgba(255, 107, 53, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 53, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
 /* Layout helpers */
 .wrap {
   width: min(var(--wrap-max), 100% - 2rem);
@@ -177,7 +185,7 @@ a:hover, a:focus-visible {
   border-left: 2px solid rgba(163, 64, 99, 0.4);
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
-  background: #ffffff;
+  background: var(--card-bg, #ffffff);
 }
 
 .win98-btn {
@@ -185,7 +193,7 @@ a:hover, a:focus-visible {
   border-left: 2px solid #ffffff;
   border-right: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   box-shadow: var(--glow-btn);
   cursor: pointer;
 }

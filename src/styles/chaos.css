@@ -27,9 +27,9 @@
 
 @keyframes chaos-glitch {
   0%, 90%, 100% { text-shadow: none; transform: none; }
-  92% { text-shadow: 2px 0 #ff4500, -2px 0 #00ff88; transform: skew(-2deg); }
-  94% { text-shadow: -2px 0 #ff4500, 2px 0 #00ff88; transform: skew(2deg); }
-  96% { text-shadow: 2px 2px #ff4500; transform: translate(2px, -1px); }
+  92% { text-shadow: 2px 0 #ff6b35, -2px 0 #00e676; transform: skew(-2deg); }
+  94% { text-shadow: -2px 0 #ff6b35, 2px 0 #00e676; transform: skew(2deg); }
+  96% { text-shadow: 2px 2px #ff6b35; transform: translate(2px, -1px); }
 }
 
 /* Desktop icons fly around */

@@ -5,9 +5,13 @@
   align-items: center;
   justify-content: center;
   padding-block: var(--space-xl);
+  padding-bottom: calc(var(--space-xl) + 1.5rem); /* prevent text clip at bottom */
   position: relative;
   overflow: hidden;
   text-align: center;
+  /* Uses --hero-bg token (set per theme in tokens.css; transparent in day mode) */
+  background: var(--hero-bg, transparent);
+  transition: background var(--duration-slow) var(--ease-out);
 }
 
 /* Decorative ambient stars */
@@ -98,9 +102,9 @@
   top: -12px;
   right: -24px;
   z-index: 20;
-  background: var(--cream);
+  background: var(--card-bg, var(--cream));
   color: var(--berry);
-  border: 2px solid var(--berry);
+  border: 2px solid var(--accent);
   border-radius: 99px;
   padding: 8px 20px;
   font-family: var(--font-body);
@@ -126,9 +130,9 @@
   right: 32px;
   width: 12px;
   height: 12px;
-  background: var(--cream);
-  border-bottom: 2px solid var(--berry);
-  border-right: 2px solid var(--berry);
+  background: var(--card-bg, var(--cream));
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
   transform: rotate(45deg);
 }
 
