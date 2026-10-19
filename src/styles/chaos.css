@@ -43,9 +43,10 @@
   50% { transform: translateY(-8px) rotate(5deg); }
 }
 
-/* Marquee goes 3× faster */
+/* Marquee reverses direction — FR-039 */
 :root[data-chaos="true"] .marquee-content {
   animation-duration: 8s !important;
+  animation-direction: reverse !important;
 }
 
 /* Windows tilt randomly */
@@ -53,23 +54,53 @@
   border-color: #ff4500 !important;
 }
 
-/* Stars rain */
+/* Stars rain — multiple layers for proper coverage */
 :root[data-chaos="true"] body::after {
-  content: '★✦⭐💫✨';
+  content: '★✦⭐💫✨🌟';
   position: fixed;
-  top: -20px;
-  left: 0;
+  top: -40px;
+  left: -5%;
   right: 0;
+  width: 110%;
   font-size: 1.5rem;
   color: var(--amber);
-  animation: star-rain 4s linear infinite;
+  animation: star-rain 3s linear infinite;
   pointer-events: none;
   z-index: 9998;
-  letter-spacing: 6rem;
+  letter-spacing: 3rem;
+  white-space: nowrap;
+}
+
+:root[data-chaos="true"] body::before {
+  content: '💫✦⭐★✨';
+  position: fixed;
+  top: -40px;
+  left: 20%;
+  right: 0;
+  width: 110%;
+  font-size: 1.2rem;
+  color: var(--lilac);
+  animation: star-rain 4.5s linear infinite;
+  animation-delay: -2s;
+  pointer-events: none;
+  z-index: 9997;
+  letter-spacing: 5rem;
   white-space: nowrap;
 }
 
 @keyframes star-rain {
-  from { transform: translateY(-20px); opacity: 1; }
+  from { transform: translateY(-40px); opacity: 1; }
   to { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Pip dances in chaos mode */
+:root[data-chaos="true"] #pip {
+  animation: cloud-bob 2s ease-in-out infinite, chaos-spin 8s linear infinite !important;
+}
+
+@keyframes chaos-spin {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(3deg) translateY(-4px); }
+  50% { transform: rotate(-2deg) translateY(-8px); }
+  75% { transform: rotate(4deg) translateY(-4px); }
 }

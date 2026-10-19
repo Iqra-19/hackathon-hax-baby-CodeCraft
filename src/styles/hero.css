@@ -190,12 +190,23 @@
   justify-self: center;
 }
 
+.pip-body-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: perspective(700px) rotateX(var(--head-tilt-x, 0deg)) rotateY(var(--head-tilt-y, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+}
+
 .pip--hidden { opacity: 0; pointer-events: none; }
 .pip--visible { opacity: 1; pointer-events: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .pip-wake-video { display: none !important; }
   .pip--hidden { opacity: 1 !important; pointer-events: auto !important; }
+  .pip-body-wrap { transform: none !important; }
 }
 
 @keyframes cloud-bob {
@@ -222,27 +233,26 @@
   filter: drop-shadow(0 0 26px rgba(255, 197, 107, 0.65));
 }
 
-/* Pupils */
-.pupil {
+/* ─── Expression: Night / Bedtime Mode (Cozy bedtime floating stars) ─── */
+:root[data-theme="night"] .pip:not(.asleep)::after {
+  content: '✦ z z';
   position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: 3.5%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: rgba(255, 226, 163, 0.9);
-  box-shadow: 0 0 10px 4px var(--glow);
-  translate: calc(-50% + var(--dx, 0px)) calc(-50% + var(--dy, 0px));
-  transition: translate 0.1s ease-out;
+  top: -20px;
+  right: 4px;
+  font-family: var(--font-retro);
+  font-size: 1.25rem;
+  color: var(--amber);
+  text-shadow: 0 0 8px rgba(255, 197, 107, 0.6);
+  animation: float-z 2.6s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Bow hit target */
+/* Bow hit target — matches Pip's pink bow at x:37.4%, y:32.9% */
 .bow-hit {
   position: absolute;
-  left: 42%;
-  top: 12%;
-  width: 20%;
+  left: 31%;
+  top: 26%;
+  width: 14%;
   aspect-ratio: 1;
   background: transparent;
   border: none;
@@ -261,8 +271,6 @@
   25% { transform: rotate(-5deg) translateY(-4px); }
   75% { transform: rotate(5deg) translateY(-4px); }
 }
-
-.pip.asleep .pupil { opacity: 0; transition: opacity 0.5s; }
 
 .pip.asleep::after {
   content: 'z z z';
@@ -325,7 +333,14 @@
   max-width: 100%;
 }
 
-/* Easter egg hint pill */
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .hero-hint {
   display: inline-flex;
   align-items: center;
@@ -339,6 +354,29 @@
   color: var(--accent);
   box-shadow: 0 4px 16px rgba(255, 197, 107, 0.25);
   cursor: default;
+}
+
+.hero-chat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--amber);
+  color: var(--cocoa);
+  border: 1px solid rgba(255, 197, 107, 0.8);
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(255, 197, 107, 0.35);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.hero-chat-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--amber);
 }
 
 .bow-hint-icon {

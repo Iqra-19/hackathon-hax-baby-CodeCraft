@@ -12,9 +12,11 @@
   "dependencies": {
     "@lordicon/element": "^3.0.2",
     "@supabase/supabase-js": "^2.45.4",
+    "@types/three": "^0.186.0",
     "canvas-confetti": "^1.9.3",
     "gsap": "^3.12.5",
-    "lucide": "^0.447.0"
+    "lucide": "^0.447.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.47.2",

@@ -19,7 +19,7 @@ import { initProjects } from './modules/projects'
 import { initStory } from './modules/story'
 import { initGuestbook } from './modules/guestbook'
 import { initHitCounter, initChaos } from './modules/toolbar'
-import { initCompanion } from './modules/companion'
+import { initCompanion, openPipChat } from './modules/companion'
 
 // Sparkle CSS (injected once)
 const sparkleStyle = document.createElement('style')
@@ -103,6 +103,10 @@ initProjects()
 initStory()
 initGuestbook()
 initCompanion()
+
+document.getElementById('hero-chat-trigger')?.addEventListener('click', () => {
+  openPipChat()
+})
 
 // Welcome back memory (Tier 3)
 const VISIT_KEY = 'pip-last-visit'

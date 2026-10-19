@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pip's Homepage @ Midnight Nursery 🌙</title>
   <meta name="description" content="Hi, I'm Pip! Junior Dream Engineer at the Midnight Nursery — I build the dreams you fall asleep inside.">
+  <link rel="canonical" href="https://baby-pip.portfolio/">
+  <meta name="theme-color" content="#2b3260">
+
+  <!-- Open Graph & Social Cards (T3-5 Lighthouse) -->
+  <meta property="og:title" content="Pip's Homepage @ Midnight Nursery 🌙">
+  <meta property="og:description" content="Hi, I'm Pip! Junior Dream Engineer at the Midnight Nursery — interactive 3D WebGL, storybook page-flip, Lullaby Lab & dream deliveries.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/pip_portrait.webp">
+  <meta property="og:url" content="https://baby-pip.portfolio/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pip's Homepage @ Midnight Nursery 🌙">
+  <meta name="twitter:description" content="Hi, I'm Pip! Junior Dream Engineer at the Midnight Nursery — I build the dreams you fall asleep inside.">
+  <meta name="twitter:image" content="/assets/pip_portrait.webp">
 
   <!-- Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,14 +105,14 @@
 
           <figure class="pip pip--hidden" id="pip" aria-label="Pip, skull baby dream engineer">
             <div class="pip-halo" aria-hidden="true"></div>
-            <img
-              src="/assets/pip_avatar_cloud.webp"
-              alt="Pip, a sleepy skull baby in a starry nightcap, waving from a cloud"
-              width="896" height="1090"
-            >
-            <span class="pupil" style="--x:37%;--y:31%" aria-hidden="true"></span>
-            <span class="pupil" style="--x:55%;--y:31%" aria-hidden="true"></span>
-            <button class="bow-hit" aria-label="Pip's pink bow — tap me!"></button>
+            <div class="pip-body-wrap">
+              <img
+                src="/assets/pip_hero_avatar.jpg"
+                alt="Pip, a sleepy skull baby in a starry nightcap, waving from a cloud"
+                width="841" height="1024"
+              >
+              <button class="bow-hit" aria-label="Pip's pink bow — tap me!"></button>
+            </div>
           </figure>
         </div>
 
@@ -113,9 +126,14 @@
             Junior Dream Engineer <span class="hero-dot">·</span> Midnight Nursery
           </p>
           <p class="hero-tagline">"I build the dreams you fall asleep inside."</p>
-          <div class="hero-hint" aria-label="Easter egg hint">
-            <span>psst… pip's bow is ticklish</span>
-            <span class="bow-hint-icon" aria-hidden="true">🎀</span>
+          <div class="hero-actions-row">
+            <div class="hero-hint" aria-label="Easter egg hint">
+              <span>psst… pip's bow is ticklish</span>
+              <span class="bow-hint-icon" aria-hidden="true">🎀</span>
+            </div>
+            <button class="hero-chat-btn" id="hero-chat-trigger" type="button" aria-label="Chat with Baby Pip">
+              💬 Chat with Pip ✦
+            </button>
           </div>
         </div>
       </div>
@@ -240,6 +258,12 @@
                 <lord-icon class="desktop-lordicon" src="/assets/icons/chart.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
               </div>
               <span class="icon-label">GrowthChart.dat</span>
+            </button>
+            <button class="desktop-icon" data-project="pip-3d" role="listitem" data-click-sound>
+              <div class="icon-box">
+                <lord-icon class="desktop-lordicon" src="/assets/icons/pip3d.json" colors="primary:#a34063,secondary:#ffc56b" loading="lazy" aria-hidden="true"></lord-icon>
+              </div>
+              <span class="icon-label">Pip3D.exe</span>
             </button>
           </div>
 

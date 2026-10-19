@@ -120,6 +120,37 @@ lord-icon.desktop-lordicon {
 
 .desktop-icon.active .icon-label { color: var(--accent); }
 
+/* Pip3D.exe animated 3D desktop icon */
+.desktop-icon[data-project="pip-3d"] .icon-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 235, 215, 0.9));
+  border: 1.5px solid var(--amber);
+  box-shadow: 0 4px 14px rgba(255, 197, 107, 0.35);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  perspective: 400px;
+}
+
+.desktop-icon[data-project="pip-3d"]:hover .icon-box {
+  transform: translateY(-4px) rotateY(15deg) rotateX(10deg);
+  box-shadow: 0 8px 24px rgba(255, 197, 107, 0.6), 0 0 16px rgba(163, 64, 99, 0.3);
+}
+
+.desktop-icon[data-project="pip-3d"] .icon-box::after {
+  content: '3D';
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: linear-gradient(135deg, var(--berry), #ff7b9c);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 99px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  animation: pulse-slow 2s infinite ease-in-out;
+}
+
 /* Windows layer — lives inside .desktop; windows are absolute
    within this layer. min-height ensures the .desktop (and therefore
    .projects-section) is tall enough to fully contain a typical open
@@ -678,4 +709,580 @@ lord-icon.desktop-lordicon {
   color: var(--ink);
   border-color: var(--accent);
 }
+
+/* ─── Dream Delivery Routes ───────────────────────────── */
+.delivery-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+
+.route-map {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 197, 107, 0.3);
+  overflow: visible;
+}
+
+/* Animated route path */
+.route-path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  transition: stroke-dashoffset 2.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pulsing stop markers */
+.stop-pulse {
+  animation: stop-glow 2s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes stop-glow {
+  from { r: 5; opacity: 0.8; }
+  to   { r: 7; opacity: 1; }
+}
+
+.route-stop circle {
+  cursor: pointer;
+  transition: r 0.15s ease;
+}
+.route-stop circle:hover { r: 9; }
+
+/* Courier cloud travelling the route */
+.route-courier {
+  fill: #ffc56b;
+  text-shadow: 0 0 8px rgba(255,197,107,0.8);
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(255,197,107,0.6));
+}
+
+.replay-route-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 99px;
+  background: rgba(255, 197, 107, 0.15);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.replay-route-btn:hover {
+  background: rgba(255, 197, 107, 0.3);
+  box-shadow: 0 0 12px rgba(255, 197, 107, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stop-pulse { animation: none; }
+  .route-path { transition: none; stroke-dashoffset: 0; }
+  .route-courier { display: none; }
+}
+
+/* ─── Growth Chart ─────────────────────────────────────── */
+.growth-stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.growth-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 140px;
+  padding: 0 var(--space-sm);
+  border-bottom: 2px solid rgba(255, 197, 107, 0.4);
+  border-left: 2px solid rgba(255, 197, 107, 0.2);
+  position: relative;
+}
+
+/* Y-axis grid lines */
+.growth-chart::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 0;
+  background-image:
+    linear-gradient(to top, rgba(255,197,107,0.08) 1px, transparent 1px),
+    linear-gradient(to top, rgba(255,197,107,0.05) 1px, transparent 1px);
+  background-size: 100% 35px, 100% 17.5px;
+  pointer-events: none;
+}
+
+.chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  height: var(--bar-h, 50%);
+  background: linear-gradient(to top, var(--berry), var(--lilac));
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  cursor: pointer;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.15s ease,
+              box-shadow 0.15s ease;
+  outline: none;
+}
+
+.chart-bar.bar--animated {
+  transform: scaleY(1);
+}
+
+.chart-bar .bar-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to top, transparent, rgba(255,255,255,0.2));
+  pointer-events: none;
+}
+
+.chart-bar:hover,
+.chart-bar:focus-visible,
+.chart-bar.bar--hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 16px rgba(255, 197, 107, 0.6);
+}
+
+.chart-bar:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* Chaos bar (Month 7) */
+.chart-bar.bar--chaos {
+  background: linear-gradient(to top, #ff6b35, #ffc56b);
+  animation: chaos-bar-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes chaos-bar-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,107,53,0); }
+  50%       { box-shadow: 0 0 20px rgba(255,107,53,0.6); }
+}
+
+:root[data-chaos="true"] .chart-bar.bar--chaos {
+  animation: chaos-bar-pulse 0.5s ease-in-out infinite;
+}
+
+/* Gold bar (Month 12) */
+.chart-bar.bar--gold {
+  background: linear-gradient(to top, #b8860b, #ffc56b, #fffacd);
+  box-shadow: 0 0 12px rgba(255, 197, 107, 0.5);
+}
+
+.chart-bar.bar--gold.bar--hover,
+.chart-bar.bar--gold:hover {
+  box-shadow: 0 0 24px rgba(255, 197, 107, 0.9);
+}
+
+.bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--ink);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* Milestone tooltip */
+.chart-tooltip {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--berry);
+  background: var(--cream);
+  border: 1.5px solid var(--amber);
+  border-radius: 8px;
+  padding: 6px 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(255, 197, 107, 0.3);
+  animation: float-bubble 3s ease-in-out infinite;
+}
+
+.chart-tooltip[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-bar { transform: scaleY(1); transition: none; }
+  .chart-bar.bar--chaos { animation: none; }
+}
+
+@media (max-width: 480px) {
+  .growth-chart { height: 100px; gap: 5px; }
+  .bar-label { font-size: 0.5rem; }
+  .chart-tooltip { font-size: 0.7rem; }
+  .route-map { max-width: 100%; }
+}
+
+/* ─── 3D WebGL Pip Viewer ────────────────────────────── */
+.pip3d-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  background: radial-gradient(circle at 50% 30%, #1e2448, #0e1227);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 197, 107, 0.3);
+  padding: var(--space-sm);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pip3d-canvas-wrap {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pip3d-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  outline: none;
+}
+
+.pip3d-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+}
+
+.pip3d-btn {
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 197, 107, 0.4);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.pip3d-btn:hover {
+  background: var(--amber);
+  color: var(--cocoa);
+  box-shadow: 0 0 14px var(--amber);
+  transform: translateY(-1px);
+}
+
+/* ─── Mini-Game: Dream Catcher & Stacking Blocks ────────── */
+.rattle-mini-game-wrap {
+  background: #111528;
+  border: 1px solid rgba(255, 197, 107, 0.35);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.game-scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.game-score-readout {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.game-status-hint {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+.game-restart-btn, .tower-reset-btn {
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(255, 197, 107, 0.2);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.game-restart-btn:hover, .tower-reset-btn:hover {
+  background: var(--amber);
+  color: var(--cocoa);
+}
+
+.dream-catcher-canvas {
+  width: 100%;
+  height: 180px;
+  border-radius: var(--radius-sm);
+  display: block;
+  background: #151a33;
+  cursor: crosshair;
+}
+
+/* Stacking Blocks Tower Area */
+.toy-stack-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-block: 8px;
+}
+
+.tower-status {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--berry);
+  font-weight: 600;
+}
+
+.block-tower-stage {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+  border-bottom: 2px dashed rgba(255, 197, 107, 0.6);
+  padding-bottom: 2px;
+}
+
+.tower-brick {
+  width: 52px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  animation: brick-drop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 2px;
+}
+
+.tower-brick.block-p { background: #ff9bb2; color: #fff; }
+.tower-brick.block-i { background: #ffc56b; color: #3d2712; }
+.tower-brick.block-p2 { background: #b8b1ea; color: #1e133d; }
+.tower-brick.block-star { background: #ffd54f; color: #795548; }
+
+.toy-block.stacked {
+  opacity: 0.45;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+@keyframes brick-drop {
+  0% { transform: translateY(-24px) scale(1.1); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ─── Interactive PipChat Modal / Dialogue Box ────────── */
+.pip-chat-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 13, 31, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.pip-chat-modal[hidden] {
+  display: none !important;
+}
+
+.pip-chat-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--cream);
+  border: 2px solid var(--amber);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 197, 107, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pip-chat-header {
+  background: linear-gradient(to right, #2b3260, #191f42);
+  color: var(--cream);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--amber);
+}
+
+.chat-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-header-title h4 {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--cream);
+}
+
+.chat-online-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--amber);
+}
+
+.chat-close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--cream);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.chat-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.pip-chat-messages {
+  padding: 14px;
+  height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fffbf5;
+}
+
+.chat-bubble {
+  padding: 8px 14px;
+  border-radius: 14px;
+  max-width: 82%;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.chat-bubble--pip {
+  background: #f7ebdf;
+  color: var(--cocoa);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+  border: 1px solid rgba(255, 197, 107, 0.5);
+}
+
+.chat-bubble--user {
+  background: #ff7b9c;
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.pip-chat-prompts {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  background: #fdf5ea;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.chat-prompt-pill {
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: #fff;
+  border: 1px solid rgba(255, 197, 107, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--cocoa);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.chat-prompt-pill:hover {
+  background: var(--amber);
+  color: var(--cocoa);
+}
+
+.pip-chat-form {
+  display: flex;
+  padding: 10px 12px;
+  gap: 8px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pip-chat-form input {
+  flex: 1;
+  padding: 7px 12px;
+  border-radius: 99px;
+  border: 1px solid #d4c4b8;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.pip-chat-form input:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 2px rgba(255, 197, 107, 0.3);
+}
+
+.pip-chat-form button {
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: var(--berry);
+  color: #fff;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pip-chat-form button:hover {
+  background: #882b4a;
+}
+
 
