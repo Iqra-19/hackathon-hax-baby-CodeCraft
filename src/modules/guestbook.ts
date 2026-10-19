@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 import { onGuestbookSubmitted } from './companion'
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string
-const SUPABASE_ANON = import.meta.env.VITE_SUPABASE_ANON_KEY as string
+const rawUrl = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim() || ''
+const SUPABASE_URL = rawUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/$/, '')
+const SUPABASE_ANON = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim() || ''
 
 interface Entry {
   id: string
@@ -115,9 +116,12 @@ export function initGuestbook() {
       if (statusEl) statusEl.textContent = '✨ Note posted!'
       onGuestbookSubmitted()
       setTimeout(() => { if (statusEl) statusEl.textContent = '' }, 3000)
-    } catch {
-      if (statusEl) statusEl.textContent = '❌ Could not post. Try again!'
-      setTimeout(() => { if (statusEl) statusEl.textContent = '' }, 3000)
+    } catch (err) {
+      console.error('Guestbook post error:', err)
+      // Fallback: save locally so the visitor note is never lost
+      showLocalEntry()
+      if (statusEl) statusEl.textContent = '✨ Note pinned locally (offline mode)'
+      setTimeout(() => { if (statusEl) statusEl.textContent = '' }, 4000)
     }
   })
 

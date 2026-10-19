@@ -102,7 +102,7 @@
   place-items: start center;
   width: clamp(300px, 44vw, 560px);
   /* Lock to the static image's native aspect ratio so both states match */
-  aspect-ratio: 896 / 1090;
+  aspect-ratio: 841 / 1024;
 }
 
 /* Video and figure share grid cell 1/1 → they stack perfectly */
@@ -230,7 +230,7 @@
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 26px rgba(255, 197, 107, 0.65));
+  filter: drop-shadow(0 0 28px rgba(255, 197, 107, 0.65));
 }
 
 /* ─── Expression: Night / Bedtime Mode (Cozy bedtime floating stars) ─── */
@@ -247,12 +247,12 @@
   pointer-events: none;
 }
 
-/* Bow hit target — matches Pip's pink bow at x:37.4%, y:32.9% */
+/* Bow hit target — matches Pip's pink bow on the nightcap */
 .bow-hit {
   position: absolute;
-  left: 31%;
-  top: 26%;
-  width: 14%;
+  left: 27%;
+  top: 21%;
+  width: 16%;
   aspect-ratio: 1;
   background: transparent;
   border: none;
