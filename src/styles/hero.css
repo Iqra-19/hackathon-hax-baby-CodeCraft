@@ -1,15 +1,13 @@
-/* Hero section — centered, Pip at top with amber halo */
+/* Hero section — full viewport, side-by-side on desktop */
 .hero {
   min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: var(--space-xl);
-  padding-bottom: calc(var(--space-xl) + 1.5rem); /* prevent text clip at bottom */
+  padding-block: var(--space-xl) calc(var(--space-xl) + 2rem);
   position: relative;
   overflow: hidden;
   text-align: center;
-  /* Uses --hero-bg token (set per theme in tokens.css; transparent in day mode) */
   background: var(--hero-bg, transparent);
   transition: background var(--duration-slow) var(--ease-out);
 }
@@ -79,6 +77,22 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
+  width: 100%;
+}
+
+@media (min-width: 860px) {
+  .hero-center {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 7rem);
+    text-align: left;
+  }
+
+  .hero-text {
+    align-items: flex-start !important;
+    max-width: 480px;
+  }
 }
 
 /* ─── Pip container — CSS grid overlay so video + figure occupy the same cell ── */
@@ -86,7 +100,9 @@
   position: relative;
   display: grid;
   place-items: start center;
-  justify-content: center;
+  width: clamp(300px, 44vw, 560px);
+  /* Lock to the static image's native aspect ratio so both states match */
+  aspect-ratio: 896 / 1090;
 }
 
 /* Video and figure share grid cell 1/1 → they stack perfectly */
@@ -143,10 +159,12 @@
 
 /* Wake-up video (plays once before interactive Pip appears) */
 .pip-wake-video {
-  width: clamp(260px, 45vw, 420px);
-  height: auto;
+  width: 100%;
+  height: 100%;
   display: block;
-  filter: drop-shadow(0 0 26px rgba(255, 197, 107, 0.65));
+  object-fit: cover;
+  object-position: center center;
+  filter: drop-shadow(0 0 32px rgba(255, 197, 107, 0.7));
   border-radius: 12px;
   animation: cloud-bob 5s ease-in-out infinite;
   transition: opacity 0.8s ease;
@@ -162,7 +180,8 @@
 /* Pip figure */
 .pip {
   position: relative;
-  width: clamp(260px, 45vw, 420px);
+  width: 100%;
+  height: 100%;
   margin: 0;
   animation: cloud-bob 5s ease-in-out infinite;
   cursor: pointer;
@@ -272,7 +291,7 @@
 
 .hero-name {
   font-family: var(--font-head);
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-size: clamp(2.75rem, 7vw, 5rem);
   font-weight: 600;
   color: var(--accent);
   line-height: 1.1;
@@ -289,7 +308,7 @@
 
 .hero-subtitle {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 500;
   color: var(--ink);
   max-width: 100%;
@@ -300,7 +319,7 @@
 .hero-tagline {
   font-family: var(--font-head);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
   color: var(--ink);
   opacity: 0.85;
   max-width: 100%;
@@ -333,4 +352,5 @@
   .hero-star--moon { font-size: 2rem; right: 16px; }
   .hero-star--a, .hero-star--c, .hero-star--d { display: none; }
   .speech-bubble { font-size: 0.72rem; right: -12px; padding: 6px 12px; }
+  .pip-container { width: clamp(240px, 80vw, 340px); }
 }
