@@ -1,355 +1,121 @@
-# AI Engineering Playbook
+# Pip's Portfolio — haX Baby's First Website Hackathon 2026
 
-The authoritative source for how this engineering organization builds features with Claude Code. Contains the process, the standards, the templates, and the agent definitions — not application code.
+A 48-hour hackathon submission for [hax.baby](https://hax.baby/baby-problem). Built for **Track 1: Pip the Skull Baby**, a character portfolio for a Junior Dream Engineer with a locked identity and complete creative freedom on style and storytelling.
 
----
-
-## Pilot project requirements
-
-Every pilot project must have these four things committed to the repo before any feature work begins:
-
-| Required | What it does |
-|---|---|
-| `CLAUDE.md` at the project root | Tells Claude your stack, conventions, and security rules — read at the start of every session |
-| `.claude/agents/` (all 5 agents) | Phase-owner agents: PM, Architect, Planner, Developer, Reviewer |
-| `.claude/skills/` (2 skills) | `spec-check` and `phase-gate` — quality gates before any PR |
-| `specs/README.md` | Explains the specs/ folder to any engineer who opens the project |
-
-These are not optional. A project without `CLAUDE.md` gives Claude no project context — it behaves like a generic assistant, not a project-aware one. A project without `.claude/agents/` cannot run the spec-driven phases.
-
-**Verify your project is compliant:**
-
-```bash
-ls CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
-```
-
-If any of those paths are missing, follow [Setting up a pilot project](#setting-up-a-pilot-project) below.
+**Event dates:** October 17-19, 2026 · Kickoff and freeze at 17:17 IST each day  
+**Team size:** Solo or 2-3 person squad  
+**Prize pool:** $400 total (1st $160 / 2nd $120 / 3rd $80 / 4th $40)
 
 ---
 
-## Quick start
+## What we built
 
-Everything you need to go from zero to a running feature workflow in under 10 minutes.
+A single-page interactive portfolio for Pip, a tiny skull baby who dreams of becoming a Junior Dream Engineer. The site leans into early-web nostalgia (marquees, hit counters, retro chrome) while layering in modern touches: cursor-tracking eyes, generative chimes, draggable project windows, a scroll-driven origin story, and a Supabase-backed guestbook.
 
-### Step 1 — Clone the playbook
+---
 
-```bash
-git clone https://github.com/Tntra/ai-engineering-playbook ~/ai-engineering-playbook
-```
+## Hackathon requirements
 
-### Step 2 — Copy the Claude config into your project
-
-This is the step most people miss. The playbook ships five phase-owner agents and two skills that Claude Code needs to find inside your project. Copy them in once, commit them, and every engineer on the project gets them automatically.
-
-```bash
-cd your-project
-
-# Create the .claude directories
-mkdir -p .claude/agents .claude/skills
-
-# Copy the phase-owner agents (PM, Architect, Planner, Developer, Reviewer)
-cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
-
-# Copy the project skills (spec-check, phase-gate)
-cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
-```
-
-**What these do:**
-
-| File | What Claude Code uses it for |
+| Requirement | Status |
 |---|---|
-| `.claude/agents/product-manager.md` | Writes `spec.md` with FR-NNN acceptance criteria |
-| `.claude/agents/architect.md` | Writes `plan.md` with ADRs and constitution check |
-| `.claude/agents/planner.md` | Writes `tasks.md` with task IDs and dependency tree |
-| `.claude/agents/developer.md` | Implements tasks, enforces pre-PR review gates |
-| `.claude/agents/reviewer.md` | Read-only quality gate before any PR opens |
-| `.claude/skills/spec-check.md` | `/spec-check` — checks code against FR-NNN criteria |
-| `.claude/skills/phase-gate.md` | `/phase-gate` — verifies exit criteria before next phase |
+| Character identity introduction | Hero section with animated Pip |
+| Projects / work section (min 3) | Dream OS draggable windows |
+| Origin or journey narrative | Scroll-driven storybook scenes |
+| Mouse tracking | Cursor-following pupils |
+| Click sounds with mute toggle | Web Audio chimes, always-visible mute |
+| Mobile-friendly responsive design | Fluid layout, gyro/touch fallback for eyes |
+| One hidden Easter egg | Konami code + bow tap sequence |
 
-### Step 3 — Create a project `CLAUDE.md`
+---
 
-This file tells Claude Code about your specific tech stack and project conventions. It is read automatically at the start of every session — the agents use it to give stack-aware architecture advice and apply the right review lens.
+## Judging rubric
 
-Create `CLAUDE.md` at your project root (copy the block below and fill in the blanks):
+| Criterion | Weight |
+|---|---|
+| Functionality and Polish | 35% |
+| Early-Web Soul | 30% |
+| Creativity and Surprises | 20% |
+| Clean Craft (responsive, accessible, fast) | 15% |
 
-```markdown
-# CLAUDE.md
+**Side quests:** Chaos mode (+5), click sounds + mute (+3), guestbook (+2), sparkle trail (+2), hit counter (+1)
+
+---
 
 ## Stack
 
-Language: <language and version>
-Framework: <framework>
-Package manager: <npm / pip / cargo / etc.>
-Build: `<build command>`
-Test: `<test command>`
-Lint: `<lint command>`
-DB migrations: `<migration command, if any>`
+- **Language:** TypeScript 5 (strict mode)
+- **Build / Dev:** Vite 5 · `npm run dev` · `npm run build`
+- **Styling:** Plain CSS with custom properties
+- **Motion:** CSS animations + IntersectionObserver · GSAP ScrollTrigger for the Dream Delivery section
+- **Audio:** Raw Web Audio API
+- **Backend:** Supabase (guestbook + hit counter, anon key only, RLS enabled)
+- **Deploy:** Vercel
 
-## Project conventions
+---
 
-- <e.g. API errors must use { error: string } shape>
-- <e.g. no business logic in route handlers — service layer owns it>
-- <add your own>
-
-## Security notes
-
-- <e.g. all SQL via ORM, no string interpolation>
-
-## Performance notes
-
-- <e.g. async endpoints for all I/O>
-
-## Org process
-
-Follow the spec-driven workflow: https://github.com/Tntra/ai-engineering-playbook
-Agents and skills are in .claude/ — committed to this repo.
-```
-
-Keep it to one screenful. The agents pick up the rest from the playbook's global rules.
-
-### Step 4 — Start a feature
-
-When you're ready to write a spec, open Claude Code in your project. The Product Manager agent creates the `specs/<feature-slug>/` folder and copies all four phase templates automatically — no manual setup needed.
-
-### Step 5 — Phase 1: Write the spec
-
-Open Claude Code in your project and use one of these two prompts:
+## Project structure
 
 ```
-# From a description — agent asks clarifying questions, then writes the spec
-Use the Product Manager agent to write the spec for [feature name].
-Context: [2–3 sentences on what this needs to do at the system level].
+src/
+├── main.ts                 boots all modules
+├── modules/
+│   ├── theme.ts            day / night toggle
+│   ├── audio.ts            Web Audio chimes and click sounds
+│   ├── eyes.ts             cursor-tracking pupils + gyro / touch
+│   ├── sparkle.ts          sparkle trail
+│   ├── egg.ts              Easter eggs: bow tap x5, Konami code
+│   ├── projects.ts         Dream OS draggable windows
+│   ├── story.ts            scroll scenes + flashlight cursor
+│   ├── guestbook.ts        Supabase guestbook
+│   ├── companion.ts        Pip companion interactions
+│   └── toolbar.ts          hit counter + chaos mode
+└── styles/
+    ├── tokens.css          all design tokens (day / night / chaos themes)
+    ├── base.css            reset, typography, layout helpers
+    ├── toolbar.css
+    ├── hero.css
+    ├── about.css
+    ├── projects.css
+    ├── story.css
+    ├── guestbook.css
+    ├── footer.css
+    └── chaos.css           chaos mode overrides
 
-# From a Jira ticket — agent fetches the ticket, fills gaps, then writes the spec
-Use the Product Manager agent to write the spec for PROJECT-123.
-```
-
-The agent creates `specs/<feature-slug>/` automatically, scaffolds the phase templates, and produces `spec.md` with `FR-NNN` acceptance criteria in Given-When-Then format. Review it with a peer. When approved, set `status: approved` in the frontmatter.
-
-> **Jira path:** Requires the Atlassian Rovo MCP to be connected in Claude Code. Replace `PROJECT-123` with your actual ticket key.
-
-> **Rule:** No phase starts until the previous file has `status: approved`.
-
-### Step 6 — Phase 2: Write the plan
-
-Switch to Opus (required for architecture work), then prompt:
-
-```
-/model opus
-
-Use the Architect agent to write the plan for this feature.
-The spec is approved at specs/my-feature-name/spec.md.
-```
-
-The agent produces `specs/my-feature-name/plan.md` with architecture overview, ADRs for every non-trivial decision, and a Constitution check. Get senior-engineer or architecture-review sign-off, then set `status: approved`.
-
-### Step 7 — Phase 3: Break into tasks
-
-```
-Use the Planner agent to break the approved plan into tasks.md.
-```
-
-The agent produces `specs/my-feature-name/tasks.md` — an atomic checklist with task IDs (`T001`, `T002`), parallelization markers (`[P]`), verify steps, and a dependency tree. A quick senior-engineer skim is enough to proceed.
-
-### Step 8 — Phase 4: Implement
-
-Work through the task list top to bottom:
-
-```
-Use the Developer agent to implement T001 from specs/my-feature-name/tasks.md.
-```
-
-Repeat for each task. Log any deviation from the plan in `notes.md` (append-only).
-
-Before opening any PR, run the quality gates in order:
-
-```
-/spec-check      ← verifies each FR-NNN criterion against the actual code
-/phase-gate      ← confirms all exit criteria are met before merge
-```
-
-Then run the review skills explicitly:
-
-```
-/code-review
-/security-review   ← required, must be run explicitly
-/performance-review
+public/assets/              Pip WebP / AVIF images (transparent cut-outs)
+index.html                  single page, 7 sections
 ```
 
 ---
 
-## Start here
+## Getting started
 
-If you are new to this repo, read in this order:
-
-1. **[docs/ADOPTION-GUIDE.md](docs/ADOPTION-GUIDE.md)** — The full picture: how the three layers work, installation steps, agents, skills, tech stack adaptation, and future scope. Start here if you're setting up the system or explaining it to your team.
-2. **[docs/GUIDELINES.md](docs/GUIDELINES.md)** — How to use the 4-phase process day-to-day: when to use it, how to write specs and tasks, FAQ.
-3. **[examples/engineering-arcade-leaderboard/](examples/engineering-arcade-leaderboard/)** — A complete worked example. Read `spec.md` → `plan.md` → `tasks.md` to see what a finished feature lifecycle looks like.
-4. **[docs/CLAUDE-CODE-STANDARDS.md](docs/CLAUDE-CODE-STANDARDS.md)** — Deep reference for Claude Code configuration: model selection, MCP servers, skills, sub-agents, plugins, memory.
-
----
-
-## What this process is
-
-Every non-trivial feature goes through four phases, in order. Each phase produces a file. No phase starts until the previous one is approved.
-
-```
-Phase 1: spec.md    → what the system must do (FR-NNN acceptance criteria)
-Phase 2: plan.md    → how it will be built (architecture, ADRs, constitution check)
-Phase 3: tasks.md   → atomic implementation checklist with verify steps
-Phase 4: implement  → code, checked against the spec before any PR opens
+```bash
+npm install
+npm run dev
 ```
 
-Small bugfixes, config changes, and one-PR tasks skip directly to implementation. The process is for anything that would normally need a design discussion.
+Open `http://localhost:5173` in your browser. The Supabase backend requires environment variables for the guestbook and hit counter; the rest of the site runs fully offline.
 
----
+```bash
+# Build for production
+npm run build
 
-## Repo structure
-
-```
-ai-workflows/
-├── README.md                          ← you are here
-├── CLAUDE.md                          ← AI agent behavioral rules (read by Claude Code)
-│
-├── docs/                              ← process documentation
-│   ├── ADOPTION-GUIDE.md              ← full setup and installation guide
-│   ├── GUIDELINES.md                  ← how to use the process day-to-day
-│   ├── spec-driven-development.md     ← full rationale and phase definitions
-│   └── CLAUDE-CODE-STANDARDS.md       ← Claude Code configuration standard
-│
-├── templates/                         ← copy these when starting a project or feature
-│   ├── project-claude.md              ← project CLAUDE.md starter (copy to your project root)
-│   ├── specs-readme.md                ← specs/ folder README (copy to your project's specs/)
-│   ├── research.md                    ← Phase 0 template (optional — for technical spikes)
-│   ├── spec.md                        ← copy to specs/<slug>/
-│   ├── plan.md
-│   ├── tasks.md
-│   └── notes.md
-│
-├── examples/                          ← worked example for reference
-│   └── engineering-arcade-leaderboard/
-│       ├── spec.md   (approved)
-│       ├── plan.md   (approved)
-│       └── tasks.md  (in-progress)
-│
-├── specs/                             ← live active features
-│   └── <feature-slug>/
-│       ├── spec.md
-│       ├── plan.md
-│       ├── tasks.md
-│       └── notes.md
-│
-└── .claude/                           ← Claude Code tooling
-    ├── agents/                        ← phase-owner sub-agent definitions
-    │   ├── product-manager.md         ← Phase 1 (spec)
-    │   ├── architect.md               ← Phase 2 (plan)
-    │   ├── planner.md                 ← Phase 3 (tasks)
-    │   ├── developer.md               ← Phase 4 (implement)
-    │   └── reviewer.md                ← pre-PR quality gate
-    └── skills/
-        ├── spec-check.md              ← /spec-check: verify code against FR-NNN criteria
-        └── phase-gate.md              ← /phase-gate: check exit criteria before next phase
+# Preview the production build
+npm run preview
 ```
 
 ---
 
-## Setting up a pilot project
+## Ground rules (from the hackathon brief)
 
-One-time setup per project. Run all commands from your **project root**.
-
-### Step 1 — Copy the phase-owner agents and skills
-
-```bash
-mkdir -p .claude/agents .claude/skills
-
-# Copy the five phase-owner agents
-cp ~/ai-engineering-playbook/.claude/agents/* .claude/agents/
-
-# Copy the two project skills
-cp ~/ai-engineering-playbook/.claude/skills/* .claude/skills/
-```
-
-Safe to re-run — existing files are not overwritten.
-
-### Step 2 — Create the project CLAUDE.md
-
-```bash
-# Only runs if CLAUDE.md does not already exist
-[ -f CLAUDE.md ] || cp ~/ai-engineering-playbook/templates/project-claude.md CLAUDE.md
-```
-
-Open `CLAUDE.md` and fill in:
-- Language, framework, and package manager
-- Build, test, lint, and migration commands
-- Project conventions (e.g. error shape, layer rules)
-- Security and performance notes for your stack
-
-Keep it to one screenful. The org operating principles come from `~/.claude/CLAUDE.md` — do not repeat them here.
-
-### Step 3 — Scaffold the specs/ folder
-
-```bash
-mkdir -p specs
-
-# Only runs if specs/README.md does not already exist
-[ -f specs/README.md ] || cp ~/ai-engineering-playbook/templates/specs-readme.md specs/README.md
-```
-
-### Step 4 — Commit everything
-
-```bash
-git add CLAUDE.md .claude/ specs/README.md
-git commit -m "chore: add AI workflow config (CLAUDE.md, agents, skills, specs/)"
-```
-
-### Step 5 — Verify
-
-```bash
-ls -la CLAUDE.md .claude/agents/ .claude/skills/ specs/README.md
-```
-
-All four paths must exist before you start any feature work.
-
-**Per feature** — open Claude Code and use one of these prompts. The agent creates the folder and scaffolds the templates automatically:
-
-```
-# From a description
-Use the Product Manager agent to write the spec for [feature name].
-Context: [2–3 sentences on what this needs to do at the system level].
-
-# From a Jira ticket
-Use the Product Manager agent to write the spec for PROJECT-123.
-```
+- Sound must include a visible mute control (always keyboard-reachable)
+- All art and audio sources must be credited in the footer
+- Pip is never scary, creepy, or gory: gentle · curious · sleepy · clumsy · giggly
+- Every effect respects `prefers-reduced-motion` and the mute state
+- Text capped at 150 words per section or story scene
 
 ---
 
-## Checking status across all features
+## About this repo
 
-```bash
-# Phase status of all active features
-grep -r "^status:" specs/*/spec.md specs/*/plan.md specs/*/tasks.md
-
-# Features blocked waiting for plan approval
-grep -r "^status: in-review" specs/*/plan.md
-
-# Features still in draft spec
-grep -r "^status: draft" specs/*/spec.md
-```
-
----
-
-## Claude Code setup (one-time, per machine)
-
-Install the required plugins before your first session:
-
-```bash
-/plugin install skill-creator@claude-plugins-official
-/plugin install superpowers@claude-plugins-official
-/plugin install frontend-design@claude-plugins-official
-/plugin marketplace add thedotmack/claude-mem
-/plugin install claude-mem@claude-mem
-npx get-shit-done-cc
-/reload-plugins
-```
-
-See [docs/CLAUDE-CODE-STANDARDS.md](docs/CLAUDE-CODE-STANDARDS.md) for the full setup guide, model selection rules, and MCP server configuration.
+This repository also serves as a reference implementation for the [Tntra AI Engineering Playbook](https://github.com/Tntra/ai-engineering-playbook). The `docs/`, `specs/`, `.claude/`, and `templates/` directories contain the spec-driven development process, phase-owner agent definitions, and project skills used during the build. The portfolio itself lives in `src/` and `index.html`.
